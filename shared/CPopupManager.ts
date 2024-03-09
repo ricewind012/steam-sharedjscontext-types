@@ -100,7 +100,7 @@ interface SteamPopup {
 	m_onCreateRender: any;
 	m_popup: Window;
 	m_renderWhenReady: {
-		m_fnRender: any|undefined;
+		m_fnRender: any | undefined;
 		m_rgLoadingLinks: any[];
 
 		AddLink(e, t);
@@ -119,26 +119,30 @@ export interface CPopupManager {
 	m_bShuttingDown: boolean;
 	m_mapPopups: Map<string, SteamPopup>;
 	m_mapRestoreDetails: Map<string, RestoreDetails>;
-	m_rgPopupCreatedCallbacks: ((...args: any[]) => void)[];
-	m_rgShutdownCallbacks: ((...args: any[]) => void)[];
+	m_rgPopupCreatedCallbacks: ((popup?: SteamPopup) => void)[];
+	m_rgShutdownCallbacks: ((popup?: SteamPopup) => void)[];
 	m_unCurrentAccountID: number;
 
-	AddPopupCreatedCallback(e);
-	AddShutdownCallback(e);
-	AddTrackedPopup(e);
+	AddPopupCreatedCallback(callback: (popup: SteamPopup) => void): void;
+	AddShutdownCallback(callback: (popup: SteamPopup) => void): void;
+	AddTrackedPopup(popupName: string, popup: SteamPopup): void;
 	BAnyMenuHasFocus(): boolean;
 	BAnyPopupHasFocus(): boolean;
 	BShuttingDown(): boolean;
-	ClearSavedDimensionStore();
-	ClosePopupsOwnedByBrowser(e);
-	GetExistingPopup(e);
-	GetLocalStorageKey();
-	GetPopupForWindow(e);
+	ClearSavedDimensionStore(): void;
+	ClosePopupsOwnedByBrowser(browser: BrowserContext): void;
+	GetExistingPopup(popupName: string): SteamPopup;
+	GetLocalStorageKey(): string;
+	GetPopupForWindow(window: Window): SteamPopup;
 	GetPopups();
-	GetRestoreDetails(e);
-	LoadSavedDimensionStore();
-	RemoveTrackedPopup(e);
+	GetRestoreDetails(windowName: string): string;
+	LoadSavedDimensionStore(): void;
+	RemoveTrackedPopup(popup: SteamPopup): void;
 	SaveSavedDimensionStore();
-	SetCurrentLoggedInAccountID(e);
-	SetRestoreDetails(e, t, n);
+	SetCurrentLoggedInAccountID(accountId: number): void;
+	SetRestoreDetails(
+		windowName: string,
+		restoreDetails: string,
+		expires: boolean,
+	): void;
 }
