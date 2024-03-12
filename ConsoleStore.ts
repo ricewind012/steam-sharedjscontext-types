@@ -25,8 +25,8 @@ export interface ConsoleStore {
 	/**
 	 * Add text to the console.
 	 *
-	 * @param text Text. Has to include `\n` at the end for a newline.
-	 * @param type Spew type.
+	 * @param text Text. Must include `\n` at the end for a newline.
+	 * @param type Text type.
 	 */
 	AddSpewLine(text: string, type: ConsoleSpewType): void;
 

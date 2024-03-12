@@ -5,7 +5,7 @@ export type AFunction = (...args: any[]) => any;
 
 export interface BrowserContext {
 	/**
-	 * @todo Appears when EBrowserType == 0 ?
+	 * Window type.
 	 */
 	m_eBrowserType?: EBrowserType;
 	/**

@@ -1,4 +1,4 @@
-import { ESteamRealm } from "./sharedenums";
+import { ESteamRealm } from "./enums";
 
 export enum EAccountType {
 	Invalid,

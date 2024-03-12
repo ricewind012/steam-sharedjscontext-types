@@ -1,8 +1,26 @@
-import { EBrowserType } from "./shared/enums";
-import { BrowserContext } from "./shared/interfaces";
+import {
+	BrowserContext,
+	CCallbackList,
+	SubscribableValue,
+} from "./shared/interfaces";
 
 enum ENotificationPosition {
-	BottomRight = 3,
+	TopLeft,
+	TopRight,
+	BottomLeft,
+	BottomRight,
+}
+
+enum EWindowType {
+	MainGamepadUI,
+	OverlayGamepadUI,
+	Keyboard,
+	ControllerConfigurator,
+	VR,
+	MainDesktopUI,
+	DesktopLogin,
+	OverlayDesktopUI,
+	SteamChinaReviewLauncher,
 }
 
 type SteamWindowSettingsSection =
@@ -85,6 +103,60 @@ interface SteamWindowNotificationPosition {
 	verticalInset: number;
 }
 
+/**
+ * @todo the first 2 do say `k_`, but maybe use their types instead
+ */
+export interface VirtualKeyboardManager {
+	k_nKeyboardWindowOffset: 10;
+	k_rgKeyboardLocations: [
+		"center-bottom",
+		"lower-left",
+		"upper-left",
+		"center-top",
+		"upper-right",
+		"lower-right",
+	];
+	m_OnActiveElementChanged: CCallbackList;
+	m_OnActiveElementClicked: CCallbackList;
+	m_bDismissOnEnter: boolean;
+	m_bIsInlineVirtualKeyboardOpen: SubscribableValue<boolean>;
+	m_bIsVirtualKeyboardModal: SubscribableValue<boolean>;
+	m_currentVirtualKeyboardRef: any;
+	m_iKeyboardLocation: number;
+	m_lastActiveVirtualKeyboardRef: any;
+	m_strDeadKeyCombined: any;
+	m_strDeadKeyNext: any;
+	m_strDeadKeyPending: any;
+	m_textFieldLocation: any;
+
+	ClearCurrentVirtualKeyboardRef();
+	CreateVirtualKeyboardRef(e, t);
+	GetDeadKeyPending();
+	GetEnterKeyLabel();
+	HandleDeadKeyDown(e, t, n);
+	HandleNavOut(e);
+	HandleVirtualKeyDown(e, t);
+	Init();
+	InitKeyboardLocation(e, t, n);
+	ResetDeadKeyState();
+	RestoreVirtualKeyboardForLastActiveElement();
+	/**
+	 * @param n -1 by default
+	 */
+	RotateKeyboardLocation(e, t, n);
+	SelectBestModalPosition(e);
+	SendClientPasteCommand();
+	SetActiveVirtualKeyboardTarget(e, t, n);
+	SetDismissOnEnterKey(e);
+	SetTextFieldLocation(e, t, n, o);
+	SetVirtualKeyboardActiveRef(e);
+	SetVirtualKeyboardDone(e);
+	SetVirtualKeyboardHidden(e);
+	SetVirtualKeyboardShownInternal(e, t);
+	SetVirtualKeyboardVisible(e);
+	ShowVirtualKeyboard(e, t, n, o);
+}
+
 interface SteamUIWindow {
 	/** The window's {@link Window}. */
 	m_BrowserWindow: Window;
@@ -108,7 +180,7 @@ interface SteamUIWindow {
 		/** @todo Appears only when overlay ? */
 		appid: number;
 		browserInfo: BrowserContext;
-		eWindowType: EBrowserType;
+		eWindowType: EWindowType;
 		/** @todo Appears only when overlay ? */
 		flDisplayScale: number;
 		/** @todo Appears only when overlay ? */
@@ -119,6 +191,61 @@ interface SteamUIWindow {
 		nScreenWidth: number;
 		strUserAgentIdentifier: string;
 	};
+
+	m_VirtualKeyboardManager: VirtualKeyboardManager;
+
+	BCanPopVRDashboardForCurrentPath(): boolean;
+	BHasMenus(): boolean;
+	BIsFocusNavActive(): boolean;
+	BIsGamepadApplicationUIInitialized(): boolean;
+	BIsOverlayPath(): boolean;
+	BRouteMatch(e): boolean;
+	BUseSeparateOverlayWindows(): boolean;
+	BViewingPreLoginRoute(): boolean;
+	/**
+	 * @todo Creates a browser view object similiar to the one in MainWindowBrowserManager
+	 * @param name Browser name.
+	 * @param options BrowserViewInit
+	 */
+	CreateBrowserView(name: string, options: any);
+	FocusApplicationRoot(): void;
+	GetMainVROverlayKey;
+	GetShowingGlobalModal;
+	GetStoreBrowser;
+	Init;
+	InitFocusNavContext;
+	InitGamepadApplicationUI;
+	InitNavigation;
+	InitializeDefaultActions;
+	IsControllerConfiguratorWindow;
+	IsDesktopLoginWindow;
+	IsDesktopOverlayWindow;
+	IsDesktopUIWindow;
+	IsGamepadUIOverlayWindow;
+	IsGamepadUIWindow;
+	IsMainDesktopWindow;
+	IsMainGamepadUIWindow;
+	IsStandaloneKeyboardWindow;
+	IsSteamChinaReviewLauncher;
+	IsVRSimulatedOnDesktopWindow;
+	IsVRWindow;
+	IsVRWindowInGamescope;
+	Navigate(e, t: boolean, n: boolean, o?): void;
+	NavigateBack;
+	NavigateHistory;
+	NavigateToRunningApp;
+	NavigateToStandaloneAppRunningControls;
+	NavigateToSteamWeb;
+	NavigateWithoutChangingFocus;
+	OnApplicationUIInitComplete;
+	OnHomeButtonPressed;
+	OnQuickAccessButtonPressed;
+	OnVirtualKeyboardShown;
+	SetBrowserWindow;
+	SetNavigator;
+	SetNotificationPosition;
+	SetShowingGlobalModal;
+	SetStoreBrowserGlass;
 }
 
 export default interface SteamUIStore {

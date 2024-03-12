@@ -25,6 +25,7 @@ interface GameInfoDialog {
 	ClearConnectAttemptStatus(): void;
 	/**
 	 * @returns JoinSertevrError
+	 * @todo param is force ?
 	 */
 	Connect(hadSuccessfulResponse: boolean): Promise<any>;
 	/**

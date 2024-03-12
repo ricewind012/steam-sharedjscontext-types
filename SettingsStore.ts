@@ -1,5 +1,24 @@
 import { CMInterface, SubscribableValue } from "./shared/interfaces";
 
+enum ETextFilterSetting {
+	SteamLabOptedOut,
+	Enabled,
+	EnabledAllowProfanity,
+	Disabled,
+}
+
+enum EUserReviewScorePreference {
+	Unset,
+	IncludeAll,
+	ExcludeBombs,
+}
+
+enum EProvideDeckFeedbackPreference {
+	Unset,
+	Yes,
+	No,
+}
+
 interface BatteryPreferences {
 	bShowBatteryPercentage: boolean;
 }
@@ -10,12 +29,9 @@ interface CommunityPreferences {
 	content_descriptor_preferences: {
 		content_descriptors_to_exclude: {
 			content_descriptorid: number;
-			timestamp_added: any;
+			timestamp_added: number;
 		}[];
-		/**
-		 * @todo enum
-		 */
-		eTextFilterSetting: number;
+		eTextFilterSetting: ETextFilterSetting;
 	};
 }
 
@@ -23,11 +39,8 @@ interface StorePreferences {
 	content_descriptor_preferences: {
 		content_descriptors_to_exclude: any[];
 	};
-	/**
-	 * @todo enum
-	 */
-	eReviewScorePreference: number;
-	provide_deck_feedback: number;
+	eReviewScorePreference: EUserReviewScorePreference;
+	provide_deck_feedback: EProvideDeckFeedbackPreference;
 }
 
 export interface SettingsStore {
@@ -59,6 +72,9 @@ export interface SettingsStore {
 	m_setDeferredSettings: Set<any>;
 	m_strTimeZoneID: SubscribableValue<string>;
 
+	/**
+	 * @returns `false` if connected to Steam, `true` otherwise.
+	 */
 	BIsConnectedToSteam(): boolean;
 	CommunityPreferencesToMessage(prefs: CommunityPreferences): any; // ProtoBuf message
 	GetBatteryPreferences(): BatteryPreferences;

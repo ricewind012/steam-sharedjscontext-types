@@ -2,6 +2,8 @@ import { CCallbackList } from "./shared/interfaces";
 
 type SteamBrowserAction = "POP" | "PUSH" | "REPLACE";
 
+type SteamBrowserTab = "community" | "store" | "me";
+
 interface SteamBrowserHistoryEntry {
 	hash: string;
 	key: string;
@@ -104,8 +106,6 @@ interface CTabbedBrowserStore {
 	): boolean;
 }
 
-type SteamBrowserTab = "community" | "store" | "me";
-
 export default interface MainWindowBrowserManager {
 	/** Current URL. */
 	m_URL: string;
@@ -153,18 +153,26 @@ export default interface MainWindowBrowserManager {
 	m_strTitle: string;
 
 	m_tabbedBrowserStore: CTabbedBrowserStore;
-	m_tsWaitingForBrowserChange?: number;
+	m_tsWaitingForBrowserChange: number | undefined;
 
 	ActivateTab(tab: SteamBrowserTab): void;
 	BIsWaitingForHistoryCallback(): boolean;
 	GetLastActiveTab(): SteamBrowserTab;
 	GetTabForURL(url: string): SteamBrowserTab | "ignore" | "maintain";
+
+	/**
+	 * @todo Loads a URL, but `bExternal` is `false`.
+	 */
 	LoadURL(url: string): void;
 
 	/**
 	 * Reloads the current page.
 	 */
 	Reload(): void;
+
+	/**
+	 * @todo Loads a URL, but `bExternal` is `true`.
+	 */
 	ShowURL(url: string, param1: any): void;
 	SyncWithNewBrowserHistory(entry: SteamBrowserHistory): void;
 	SyncWithNewRouterEvent(

@@ -18,7 +18,7 @@ enum EConflictResolutionMethod {
 /**
  * @todo This whole thing
  * Will break the client if a key isn't a string.
- * Probably better to not use this at all.
+ * Probably better to not look at this thing at all.
  */
 interface CloudStorage {
 	m_eNamespace: EUserConfigStoreNamespace;
