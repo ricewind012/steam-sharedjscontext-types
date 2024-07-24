@@ -1,7 +1,7 @@
-import { EBrowserType } from "./enums";
-import { BrowserContext } from "./interfaces";
+import { EBrowserType } from "./shared/enums";
+import { BrowserContext } from "./shared/interfaces";
 
-interface RestoreDetails {
+export interface RestoreDetails {
 	bExpires: boolean;
 	/**
 	 * Date as a Unix timestamp.
@@ -10,7 +10,7 @@ interface RestoreDetails {
 	strRestoreDetails: string;
 }
 
-interface SteamPopupParameters {
+export interface SteamPopupParameters {
 	availscreenheight: number;
 	availscreenwidth: number;
 	bHideOnClose: boolean;
@@ -87,15 +87,15 @@ interface SteamPopupParameters {
 	 */
 	window_opener_id: number;
 
-	DoCallback(e);
-	OnBlur();
-	OnClose();
-	OnCreate();
-	OnFocus();
-	OnLoad();
-	OnResize();
-	Render(e, t);
-	UpdateParamsBeforeShow(e);
+	DoCallback(e: any): any;
+	OnBlur(): any;
+	OnClose(): any;
+	OnCreate(): any;
+	OnFocus(): any;
+	OnLoad(): any;
+	OnResize(): any;
+	Render(e: any, t: any): any;
+	UpdateParamsBeforeShow(e: any): any;
 }
 
 // @v
@@ -103,15 +103,15 @@ interface SteamPopupParameters {
  * Helper to track when all links for a newly created popup have loaded.
  * Supports CPopup replacement too.
  */
-interface CRenderWhenLinksReady {
+export interface CRenderWhenLinksReady {
 	m_fnRender: () => void | undefined;
 	m_rgLoadingLinks: Node[];
 
 	AddLink(link: Node, checkIfLoaded: boolean): void;
-	SetTarget(renderCallback): void;
+	SetTarget(renderCallback: any): void;
 }
 
-interface SteamPopup {
+export interface SteamPopup {
 	/**
 	 * `true` if the popup will not be shown initially.
 	 */
@@ -125,15 +125,15 @@ interface SteamPopup {
 	 */
 	m_bFocused: boolean;
 	m_callbacks: {
-		onLoad(e, t);
-		onResize(t, r, i);
-		updateParamsBeforeShow(...args: any[]);
+		onLoad(e: any, t: any): any;
+		onResize(t: any, r: any, i: any): any;
+		updateParamsBeforeShow(...args: any[]): any;
 	};
 	/**
 	 * Root element.
 	 */
 	m_element: Node;
-	m_fnReadyToRender(...args: any[]);
+	m_fnReadyToRender(...args: any[]): any;
 	m_onCreateRender: any;
 	m_popup: Window;
 	m_renderWhenReady: CRenderWhenLinksReady;
@@ -201,7 +201,7 @@ export interface CPopupManager {
 	/**
 	 * @todo wtf does that return ? SteamPopup[] on [...this]
 	 */
-	GetPopups();
+	GetPopups(): any;
 	/**
 	 * @returns restore details for the specified window.
 	 */

@@ -1,29 +1,29 @@
 import { CMInterface, SubscribableValue } from "./shared/interfaces";
 
-enum ETextFilterSetting {
+export enum ETextFilterSetting {
 	SteamLabOptedOut,
 	Enabled,
 	EnabledAllowProfanity,
 	Disabled,
 }
 
-enum EUserReviewScorePreference {
+export enum EUserReviewScorePreference {
 	Unset,
 	IncludeAll,
 	ExcludeBombs,
 }
 
-enum EProvideDeckFeedbackPreference {
+export enum EProvideDeckFeedbackPreference {
 	Unset,
 	Yes,
 	No,
 }
 
-interface BatteryPreferences {
+export interface BatteryPreferences {
 	bShowBatteryPercentage: boolean;
 }
 
-interface CommunityPreferences {
+export interface CommunityPreferences {
 	bParenthesizeNicknames: boolean;
 	bTextFilterIgnoreFriends: boolean;
 	content_descriptor_preferences: {
@@ -35,7 +35,7 @@ interface CommunityPreferences {
 	};
 }
 
-interface StorePreferences {
+export interface StorePreferences {
 	content_descriptor_preferences: {
 		content_descriptors_to_exclude: any[];
 	};
@@ -65,9 +65,9 @@ export interface SettingsStore {
 	 * @todo NOT CloudStorage
 	 */
 	m_localStorage: {
-		GetString(e);
-		RemoveObject(e);
-		StoreString(e, t);
+		GetString(e: any): any;
+		RemoveObject(e: any): any;
+		StoreString(e: any, t: any): any;
 	};
 	m_setDeferredSettings: Set<any>;
 	m_strTimeZoneID: SubscribableValue<string>;
@@ -79,23 +79,23 @@ export interface SettingsStore {
 	CommunityPreferencesToMessage(prefs: CommunityPreferences): any; // ProtoBuf message
 	GetBatteryPreferences(): BatteryPreferences;
 	GetClientSetting(setting: string): any;
-	Init(e);
-	InitDefaultCommunityContentDescriptorPreferences();
-	InitDefaultStoreContentDescriptorPreferences();
+	Init(e: any): any;
+	InitDefaultCommunityContentDescriptorPreferences(): any;
+	InitDefaultStoreContentDescriptorPreferences(): any;
 	IsDeferred(value: any): boolean;
 	IsSteamInTournamentMode(): boolean;
-	MergeCommunityPreferences(e, t);
-	MergeNotificationPreferences(e);
-	MergeStorePreferences(e, t);
+	MergeCommunityPreferences(e: any, t: any): any;
+	MergeNotificationPreferences(e: any): any;
+	MergeStorePreferences(e: any, t: any): any;
 	RefreshMonitorInfo(): void;
 	SetBatteryPreferences(prefs: BatteryPreferences): void;
 	SetCommunityPreferences(prefs: CommunityPreferences): void;
 	SetDeferred(value: any): void;
 	SetStorePreferences(prefs: StorePreferences): void;
 	SetWindowedMode(value: boolean): void;
-	ToggleNotificationPreference(e, t): void;
-	UpdateCommunityPreference(e, t);
-	UpdateCommunityPreferences(e);
-	UpdateFriendSetting(e, t);
-	UpdateFriendSettings(e);
+	ToggleNotificationPreference(e: any, t: any): void;
+	UpdateCommunityPreference(e: any, t: any): any;
+	UpdateCommunityPreferences(e: any): any;
+	UpdateFriendSetting(e: any, t: any): any;
+	UpdateFriendSettings(e: any): any;
 }

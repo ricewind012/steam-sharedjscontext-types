@@ -1,6 +1,6 @@
 import { CSteamID } from "./shared/CSteamID";
 
-interface GameInfoDialog {
+export interface GameInfoDialog {
 	m_autoRetry: "None" | "AutoRetryAlert" | "AutoRetryJoin";
 	m_bInitialPingAttempt: boolean;
 	m_dialogID: number;
@@ -39,7 +39,7 @@ interface GameInfoDialog {
 	SetWindow(window: Window): void;
 }
 
-interface PendingPromise {
+export interface PendingPromise {
 	dialogID: number;
 	resolve: any;
 	reject: any;
@@ -55,7 +55,7 @@ export interface ServerBrowserStore {
 	ConnectToFriendsGameBySteamID(steamId: CSteamID, window: Window): void;
 	GetGameInfoDialogs(pid: number): GameInfoDialog[];
 	ShowServerGameInfoDialog(
-		dialog /*ServerBrowserDialog*/,
+		dialog: any /*ServerBrowserDialog*/,
 	): Promise<GameInfoDialog>;
 	ShowUserGameInfoDialog(pid: number, steamId: CSteamID): void;
 }

@@ -50,7 +50,7 @@ export interface WebSocketConnection {
 	Disconnect(): void;
 	InternalConnect(url: string, retries: number): Promise<any>; // OperationResponse
 	PrepareForShutdown(): void;
-	SendSerializedMessage(param0);
+	SendSerializedMessage(param0: any): any;
 	StartReconnect(): Promise<void>;
 	WaitForSocketOpen(ws: WebSocket, retries: number): Promise<boolean>;
 }
@@ -90,7 +90,7 @@ export interface CurrentUser {
 	rgFamilyGroupMembers: any[];
 }
 
-interface Unsubscribable {
+export interface Unsubscribable {
 	Unsubscribe(): void;
 }
 
@@ -132,9 +132,9 @@ export interface CMInterfaceCallbacks {
 	m_bRunOnce: boolean;
 	m_mapServerTypeCallbacks: Map<any, any>;
 
-	AddCallback(e, t);
-	RunAllCallbacks(e, ...t);
-	RunCallbacks(e, ...t);
+	AddCallback(e: any, t: any): any;
+	RunAllCallbacks(e: any, ...t: any): any;
+	RunCallbacks(e: any, ...t: any): any;
 }
 
 export interface ErrorReportingStore {
@@ -146,18 +146,18 @@ export interface ErrorReportingStore {
 	m_strVersion: string;
 	m_transport: ServiceTransport;
 
-	BIsBlacklisted(e);
-	Init(e, t, n);
-	QueueSend(e);
-	ReportError(e, t);
-	SendErrorReport(e);
-	SendErrorReports(e);
+	BIsBlacklisted(e: any): any;
+	Init(e: any, t: any, n: any): any;
+	QueueSend(e: any): any;
+	ReportError(e: any, t: any): any;
+	SendErrorReport(e: any): any;
+	SendErrorReports(e: any): any;
 }
 
 export interface CMInterface {
 	ClientServersAvailableHandler: {
-		invoke(...args: any[]);
-		unregister();
+		invoke(...args: any[]): any;
+		unregister(): any;
 	};
 	m_ServiceTransport: ServiceTransport;
 	m_bCompletedInitialConnect: boolean;
@@ -170,7 +170,7 @@ export interface CMInterface {
 	m_callbacksOnConnect: CMInterfaceCallbacks;
 	m_callbacksOnConnectOneTime: CMInterfaceCallbacks;
 	m_callbacksOnDisconnect: CMInterfaceCallbacks;
-	m_hEMsgRegistrationObserver(...args: any[]);
+	m_hEMsgRegistrationObserver(...args: any[]): any;
 	m_hSharedConnection: number;
 	m_messageHandlers: {
 		m_ErrorReportingStore: ErrorReportingStore;
@@ -179,19 +179,19 @@ export interface CMInterface {
 		m_rgRegisteredEMsgs: number[];
 		m_rgRegisteredServiceMethodHandlers: string[];
 
-		AddCallback(e, t, n);
-		AddServiceMethodHandler(e, t);
-		AddServiceNotificationHandler(e, t);
-		DEBUG_LogMessageDispatch(e, t);
-		DispatchMsgToHandlers(e, t);
-		InstallErrorReportingStore(e);
-		RegisterBaseEMessageHandler(e, t);
-		RegisterEMessageAction(e, t, n);
-		RegisterEMessageHandler(e, t, n);
-		RegisterServiceMethodHandler(e, t);
-		RegisterServiceMethodHandlerAction(e, t);
-		RegisterServiceNotificationHandler(e, t);
-		RegisterServiceNotificationHandlerAction(e, t);
+		AddCallback(e: any, t: any, n: any): any;
+		AddServiceMethodHandler(e: any, t: any): any;
+		AddServiceNotificationHandler(e: any, t: any): any;
+		DEBUG_LogMessageDispatch(e: any, t: any): any;
+		DispatchMsgToHandlers(e: any, t: any): any;
+		InstallErrorReportingStore(e: any): any;
+		RegisterBaseEMessageHandler(e: any, t: any): any;
+		RegisterEMessageAction(e: any, t: any, n: any): any;
+		RegisterEMessageHandler(e: any, t: any, n: any): any;
+		RegisterServiceMethodHandler(e: any, t: any): any;
+		RegisterServiceMethodHandlerAction(e: any, t: any): any;
+		RegisterServiceNotificationHandler(e: any, t: any): any;
+		RegisterServiceNotificationHandlerAction(e: any, t: any): any;
 	};
 	m_nPerfClockServerMSOffset: number;
 	m_nWallClockDriftMS: number;
@@ -206,26 +206,26 @@ export interface CMInterface {
 	m_strPersonaName: string;
 	m_unAccountFlags: number;
 
-	ClearHeartbeatInterval();
-	Connect();
-	Disconnect();
-	GetShouldChangePersonaStatusOnDisconnect();
-	OnConnect();
-	OnLogonInfoChanged(e);
-	OnMsgRecvd(e);
-	OnSharedConnectionClosed();
-	OnSharedConnectionEstablished(e);
-	ResetHeartbeatInterval();
-	SendHeartbeat();
-	SendInternal(e);
-	SendMsgAndAwaitResponse(e, t);
-	SetShouldChangePersonaStatusOnDisconnect(e);
+	ClearHeartbeatInterval(): any;
+	Connect(): any;
+	Disconnect(): any;
+	GetShouldChangePersonaStatusOnDisconnect(): any;
+	OnConnect(): any;
+	OnLogonInfoChanged(e: any): any;
+	OnMsgRecvd(e: any): any;
+	OnSharedConnectionClosed(): any;
+	OnSharedConnectionEstablished(e: any): any;
+	ResetHeartbeatInterval(): any;
+	SendHeartbeat(): any;
+	SendInternal(e: any): any;
+	SendMsgAndAwaitResponse(e: any, t: any): any;
+	SetShouldChangePersonaStatusOnDisconnect(e: any): any;
 }
 
 export interface ServiceTransport {
-	MakeReady(...args: any[]);
-	SendMsg(e, t, n);
-	SendNotification(e, t);
+	MakeReady(...args: any[]): any;
+	SendMsg(e: any, t: any, n: any): any;
+	SendNotification(e: any, t: any): any;
 }
 
 export interface WebUIServiceTransport extends ServiceTransport {
@@ -246,27 +246,27 @@ export interface WebUIServiceTransport extends ServiceTransport {
 		m_rgRegisteredEMsgs: any[];
 		m_rgRegisteredServiceMethodHandlers: string[];
 
-		AddCallback(e, t, n);
-		AddServiceMethodHandler(e, t);
-		AddServiceNotificationHandler(e, t);
-		DEBUG_LogMessageDispatch(e, t);
-		DispatchMsgToHandlers(e, t);
-		InstallErrorReportingStore(e);
-		RegisterBaseEMessageHandler(e, t);
-		RegisterEMessageAction(e, t, n);
-		RegisterEMessageHandler(e, t, n);
-		RegisterServiceMethodHandler(e, t);
-		RegisterServiceMethodHandlerAction(e, t);
-		RegisterServiceNotificationHandler(e, t);
-		RegisterServiceNotificationHandlerAction(e, t);
+		AddCallback(e: any, t: any, n: any): any;
+		AddServiceMethodHandler(e: any, t: any): any;
+		AddServiceNotificationHandler(e: any, t: any): any;
+		DEBUG_LogMessageDispatch(e: any, t: any): any;
+		DispatchMsgToHandlers(e: any, t: any): any;
+		InstallErrorReportingStore(e: any): any;
+		RegisterBaseEMessageHandler(e: any, t: any): any;
+		RegisterEMessageAction(e: any, t: any, n: any): any;
+		RegisterEMessageHandler(e: any, t: any, n: any): any;
+		RegisterServiceMethodHandler(e: any, t: any): any;
+		RegisterServiceMethodHandlerAction(e: any, t: any): any;
+		RegisterServiceNotificationHandler(e: any, t: any): any;
+		RegisterServiceNotificationHandlerAction(e: any, t: any): any;
 	};
 	m_transportInfo: any; // TransportInfo
 
-	AuthConnection(e);
-	DispatchMethodResponse(e);
-	DispatchNotification(e);
-	FailAllPendingRequests();
-	GetAuthInfoForConnection(e);
+	AuthConnection(e: any): any;
+	DispatchMethodResponse(e: any): any;
+	DispatchNotification(e: any): any;
+	FailAllPendingRequests(): any;
+	GetAuthInfoForConnection(e: any): any;
 	ReportError(message: string): void;
-	SendAuthMessage(e);
+	SendAuthMessage(e: any): any;
 }

@@ -4,14 +4,14 @@ import {
 	SubscribableValue,
 } from "./shared/interfaces";
 
-enum ENotificationPosition {
+export enum ENotificationPosition {
 	TopLeft,
 	TopRight,
 	BottomLeft,
 	BottomRight,
 }
 
-enum EWindowType {
+export enum EWindowType {
 	MainGamepadUI,
 	OverlayGamepadUI,
 	Keyboard,
@@ -57,14 +57,14 @@ type SteamWindowSettingsSection =
 	| "System"
 	| "Voice";
 
-interface SteamWindowMediaState {
+export interface SteamWindowMediaState {
 	state: {
 		strScreenshotHandle: string;
 		nAppID: number;
 	};
 }
 
-interface SteamWindowNavigator {
+export interface SteamWindowNavigator {
 	type: "desktop" | "desktopoverlay" | "gamepad";
 	setNavigatingToInitialRoute(value: boolean): void;
 
@@ -81,11 +81,11 @@ interface SteamWindowNavigator {
 	Media(state: SteamWindowMediaState): void;
 	MyAchievements(appId: number): void;
 	Settings(section: SteamWindowSettingsSection): void;
-	SteamWeb(param0, param1): void;
+	SteamWeb(param0: any, param1: any): void;
 	SteamWebTab(url: string): void;
 }
 
-interface SteamWindowNavigator_Gamepad extends SteamWindowNavigator {
+export interface SteamWindowNavigator_Gamepad extends SteamWindowNavigator {
 	Account(): void;
 	ControllerConfigurator: {
 		Main(appId: number): void;
@@ -97,7 +97,7 @@ interface SteamWindowNavigator_Gamepad extends SteamWindowNavigator {
 	Reauthentication(): void;
 }
 
-interface SteamWindowNotificationPosition {
+export interface SteamWindowNotificationPosition {
 	horizontalInset: number;
 	position: ENotificationPosition;
 	verticalInset: number;
@@ -129,35 +129,35 @@ export interface VirtualKeyboardManager {
 	m_strDeadKeyPending: any;
 	m_textFieldLocation: any;
 
-	ClearCurrentVirtualKeyboardRef();
-	CreateVirtualKeyboardRef(e, t);
-	GetDeadKeyPending();
-	GetEnterKeyLabel();
-	HandleDeadKeyDown(e, t, n);
-	HandleNavOut(e);
-	HandleVirtualKeyDown(e, t);
-	Init();
-	InitKeyboardLocation(e, t, n);
-	ResetDeadKeyState();
-	RestoreVirtualKeyboardForLastActiveElement();
+	ClearCurrentVirtualKeyboardRef(): any;
+	CreateVirtualKeyboardRef(e: any, t: any): any;
+	GetDeadKeyPending(): any;
+	GetEnterKeyLabel(): any;
+	HandleDeadKeyDown(e: any, t: any, n: any): any;
+	HandleNavOut(e: any): any;
+	HandleVirtualKeyDown(e: any, t: any): any;
+	Init(): any;
+	InitKeyboardLocation(e: any, t: any, n: any): any;
+	ResetDeadKeyState(): any;
+	RestoreVirtualKeyboardForLastActiveElement(): any;
 	/**
 	 * @param n -1 by default
 	 */
-	RotateKeyboardLocation(e, t, n);
-	SelectBestModalPosition(e);
-	SendClientPasteCommand();
-	SetActiveVirtualKeyboardTarget(e, t, n);
-	SetDismissOnEnterKey(e);
-	SetTextFieldLocation(e, t, n, o);
-	SetVirtualKeyboardActiveRef(e);
-	SetVirtualKeyboardDone(e);
-	SetVirtualKeyboardHidden(e);
-	SetVirtualKeyboardShownInternal(e, t);
-	SetVirtualKeyboardVisible(e);
-	ShowVirtualKeyboard(e, t, n, o);
+	RotateKeyboardLocation(e: any, t: any, n: any): any;
+	SelectBestModalPosition(e: any): any;
+	SendClientPasteCommand(): any;
+	SetActiveVirtualKeyboardTarget(e: any, t: any, n: any): any;
+	SetDismissOnEnterKey(e: any): any;
+	SetTextFieldLocation(e: any, t: any, n: any, o: any): any;
+	SetVirtualKeyboardActiveRef(e: any): any;
+	SetVirtualKeyboardDone(e: any): any;
+	SetVirtualKeyboardHidden(e: any): any;
+	SetVirtualKeyboardShownInternal(e: any, t: any): any;
+	SetVirtualKeyboardVisible(e: any): any;
+	ShowVirtualKeyboard(e: any, t: any, n: any, o: any): any;
 }
 
-interface SteamUIWindow {
+export interface SteamUIWindow {
 	/** The window's {@link Window}. */
 	m_BrowserWindow: Window;
 
@@ -199,7 +199,7 @@ interface SteamUIWindow {
 	BIsFocusNavActive(): boolean;
 	BIsGamepadApplicationUIInitialized(): boolean;
 	BIsOverlayPath(): boolean;
-	BRouteMatch(e): boolean;
+	BRouteMatch(e: any): boolean;
 	BUseSeparateOverlayWindows(): boolean;
 	BViewingPreLoginRoute(): boolean;
 	/**
@@ -207,45 +207,45 @@ interface SteamUIWindow {
 	 * @param name Browser name.
 	 * @param options BrowserViewInit
 	 */
-	CreateBrowserView(name: string, options: any);
+	CreateBrowserView(name: string, options: any): any;
 	FocusApplicationRoot(): void;
-	GetMainVROverlayKey;
-	GetShowingGlobalModal;
-	GetStoreBrowser;
-	Init;
-	InitFocusNavContext;
-	InitGamepadApplicationUI;
-	InitNavigation;
-	InitializeDefaultActions;
-	IsControllerConfiguratorWindow;
-	IsDesktopLoginWindow;
-	IsDesktopOverlayWindow;
-	IsDesktopUIWindow;
-	IsGamepadUIOverlayWindow;
-	IsGamepadUIWindow;
-	IsMainDesktopWindow;
-	IsMainGamepadUIWindow;
-	IsStandaloneKeyboardWindow;
-	IsSteamChinaReviewLauncher;
-	IsVRSimulatedOnDesktopWindow;
-	IsVRWindow;
-	IsVRWindowInGamescope;
-	Navigate(e, t: boolean, n: boolean, o?): void;
-	NavigateBack;
-	NavigateHistory;
-	NavigateToRunningApp;
-	NavigateToStandaloneAppRunningControls;
-	NavigateToSteamWeb;
-	NavigateWithoutChangingFocus;
-	OnApplicationUIInitComplete;
-	OnHomeButtonPressed;
-	OnQuickAccessButtonPressed;
-	OnVirtualKeyboardShown;
-	SetBrowserWindow;
-	SetNavigator;
-	SetNotificationPosition;
-	SetShowingGlobalModal;
-	SetStoreBrowserGlass;
+	GetMainVROverlayKey: any;
+	GetShowingGlobalModal: any;
+	GetStoreBrowser: any;
+	Init: any;
+	InitFocusNavContext: any;
+	InitGamepadApplicationUI: any;
+	InitNavigation: any;
+	InitializeDefaultActions: any;
+	IsControllerConfiguratorWindow: any;
+	IsDesktopLoginWindow: any;
+	IsDesktopOverlayWindow: any;
+	IsDesktopUIWindow: any;
+	IsGamepadUIOverlayWindow: any;
+	IsGamepadUIWindow: any;
+	IsMainDesktopWindow: any;
+	IsMainGamepadUIWindow: any;
+	IsStandaloneKeyboardWindow: any;
+	IsSteamChinaReviewLauncher: any;
+	IsVRSimulatedOnDesktopWindow: any;
+	IsVRWindow: any;
+	IsVRWindowInGamescope: any;
+	Navigate(e: any, t: boolean, n: boolean, o?: any): void;
+	NavigateBack: any;
+	NavigateHistory: any;
+	NavigateToRunningApp: any;
+	NavigateToStandaloneAppRunningControls: any;
+	NavigateToSteamWeb: any;
+	NavigateWithoutChangingFocus: any;
+	OnApplicationUIInitComplete: any;
+	OnHomeButtonPressed: any;
+	OnQuickAccessButtonPressed: any;
+	OnVirtualKeyboardShown: any;
+	SetBrowserWindow: any;
+	SetNavigator: any;
+	SetNotificationPosition: any;
+	SetShowingGlobalModal: any;
+	SetStoreBrowserGlass: any;
 }
 
 export default interface SteamUIStore {
