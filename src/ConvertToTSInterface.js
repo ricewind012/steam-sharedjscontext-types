@@ -32,8 +32,16 @@ function ConvertToTSInterface(obj) {
 		.sort()
 		.map((e) => obj[e])
 		.filter((e) => typeof e == "function")
-		.map((e) => e.toString().replace(/{.*/g, ""))
-		.filter((e) => e[0].match(/^[A-Z]/))
+		.map((e) =>
+			e
+				.toString()
+				.match(/^(async )?\w+\(.*?\){/g)?.[0]
+				?.replace(/\{$/, ""),
+		)
+		.filter(Boolean)
+		.map((e) =>
+			e.startsWith("async ") ? `${e.replace(/^async /, "")}: Promise<any>` : e,
+		)
 		.join("\n");
 
 	return [vars, funcs].join("\n\n");

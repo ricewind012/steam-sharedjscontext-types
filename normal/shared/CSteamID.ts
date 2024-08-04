@@ -27,20 +27,17 @@ export interface CSteamID {
 	BIsValid(): boolean;
 
 	/**
-	 * @returns community id
+	 * @returns SteamID 64
 	 */
 	ConvertTo64BitString(): string;
 
 	GetAccountID(): number;
 	GetAccountType(): EAccountType;
-	/**
-	 * @todo enum?
-	 */
 	GetInstance(): number;
 	GetUniverse(): ESteamRealm;
 
 	/**
-	 * @returns Similiar to a string like `[U:1:xxxxxxxxx]`.
+	 * @returns SteamID 3
 	 */
 	Render(): string;
 
