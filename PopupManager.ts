@@ -13,7 +13,13 @@ export interface RestoreDetails {
 export interface SteamPopupParameters {
 	availscreenheight: number;
 	availscreenwidth: number;
+	/**
+	 * Value of `SteamClient.Window.SetHideOnClose`.
+	 */
 	bHideOnClose: boolean;
+	/**
+	 * @todo bHideMainWindowForPopouts
+	 */
 	bModal: boolean;
 	bNoFocusOnShow: boolean;
 	/**
@@ -45,7 +51,7 @@ export interface SteamPopupParameters {
 	 */
 	html_class: string;
 	/**
-	 * @todo unused ?
+	 * @todo unused ? maybe used with {@link bModal} ?
 	 */
 	hwndParent: number;
 	/**
@@ -182,9 +188,6 @@ export interface CPopupManager {
 	 * Clears saved restore details from {@link m_mapRestoreDetails}.
 	 */
 	ClearSavedDimensionStore(): void;
-	/**
-	 * @todo is this used/useful ?
-	 */
 	ClosePopupsOwnedByBrowser(browser: BrowserContext): void;
 	/**
 	 * @returns the popup for the specified popup name.
@@ -199,9 +202,9 @@ export interface CPopupManager {
 	 */
 	GetPopupForWindow(window: Window): SteamPopup;
 	/**
-	 * @todo wtf does that return ? SteamPopup[] on [...this]
+	 * @todo SteamPopup[] only with `[...g_PopupManager.GetPopups()]`
 	 */
-	GetPopups(): any;
+	GetPopups(): SteamPopup[];
 	/**
 	 * @returns restore details for the specified window.
 	 */
@@ -219,7 +222,7 @@ export interface CPopupManager {
 	 */
 	SaveSavedDimensionStore(): void;
 	/**
-	 * @param accountId Steam3 ID.
+	 * @param accountId SteamID 3
 	 */
 	SetCurrentLoggedInAccountID(accountId: number): void;
 	/**

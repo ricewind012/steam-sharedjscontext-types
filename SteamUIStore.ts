@@ -103,19 +103,9 @@ export interface SteamWindowNotificationPosition {
 	verticalInset: number;
 }
 
-/**
- * @todo the first 2 do say `k_`, but maybe use their types instead
- */
 export interface VirtualKeyboardManager {
-	k_nKeyboardWindowOffset: 10;
-	k_rgKeyboardLocations: [
-		"center-bottom",
-		"lower-left",
-		"upper-left",
-		"center-top",
-		"upper-right",
-		"lower-right",
-	];
+	k_nKeyboardWindowOffset: number;
+	k_rgKeyboardLocations: string[];
 	m_OnActiveElementChanged: CCallbackList;
 	m_OnActiveElementClicked: CCallbackList;
 	m_bDismissOnEnter: boolean;
