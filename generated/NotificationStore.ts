@@ -23,7 +23,7 @@ export interface NotificationStore {
 		Register(e);
 	};
 	m_hPendingToastTimer: any;
-	m_hTrayRemoveTimer: number;
+	m_hTrayRemoveTimer: any;
 	m_iLastBatteryLevelNotification: number;
 	m_mapAppOverlayToasts: {
 		changeListeners_: any;
@@ -39,7 +39,7 @@ export interface NotificationStore {
 			lastAccessedBy_: number;
 			lowestObserverState_: number;
 			name_: string;
-			observers_: {};
+			observers_: Set<any>;
 			onBOL: any;
 			onBUOL: any;
 
@@ -75,7 +75,7 @@ export interface NotificationStore {
 	m_nUnviewedNotifications: number;
 	m_rgContextsRenderingToasts: any[];
 	m_rgNotificationToasts: any[];
-	m_rgNotificationTray: object[];
+	m_rgNotificationTray: any[];
 	m_rgPendingToasts: any[];
 	m_rtNextTrayRemove: number;
 

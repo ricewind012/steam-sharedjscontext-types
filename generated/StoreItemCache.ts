@@ -115,9 +115,9 @@ export interface StoreItemCache {
 		m_onConnect: {};
 		m_rtReconnectThrottleExpiration: number;
 		m_rtReconnectThrottleStart: number;
-		m_setConnectedServers: {};
-		m_setEMsgHandlers: {};
-		m_setServiceMethodHandlers: {};
+		m_setConnectedServers: Set<number>;
+		m_setEMsgHandlers: Set<number>;
+		m_setServiceMethodHandlers: Set<string>;
 		m_steamid: {
 			m_ulSteamID: {
 				high: number;
@@ -241,22 +241,22 @@ export interface StoreItemCache {
 	m_mapPackages: {};
 	m_mapTags: {};
 	m_mapTagsInFlight: {};
-	m_setPendingAppInfo: {};
-	m_setPendingBundleInfo: {};
-	m_setPendingCreatorInfo: {};
+	m_setPendingAppInfo: Set<any>;
+	m_setPendingBundleInfo: Set<any>;
+	m_setPendingCreatorInfo: Set<any>;
 	m_setPendingDataRequest: {};
-	m_setPendingHubCategoryInfo: {};
-	m_setPendingPackageInfo: {};
-	m_setPendingTagInfo: {};
-	m_setUnavailableApps: {};
-	m_setUnavailableBundles: {};
-	m_setUnavailableCreators: {};
-	m_setUnavailableDueToCountryRestrictionApps: {};
-	m_setUnavailableDueToCountryRestrictionBundles: {};
-	m_setUnavailableDueToCountryRestrictionPackages: {};
-	m_setUnavailableHubCategories: {};
-	m_setUnavailablePackages: {};
-	m_setUnavailableTags: {};
+	m_setPendingHubCategoryInfo: Set<any>;
+	m_setPendingPackageInfo: Set<any>;
+	m_setPendingTagInfo: Set<any>;
+	m_setUnavailableApps: Set<number>;
+	m_setUnavailableBundles: Set<any>;
+	m_setUnavailableCreators: Set<any>;
+	m_setUnavailableDueToCountryRestrictionApps: Set<number>;
+	m_setUnavailableDueToCountryRestrictionBundles: Set<any>;
+	m_setUnavailableDueToCountryRestrictionPackages: Set<any>;
+	m_setUnavailableHubCategories: Set<any>;
+	m_setUnavailablePackages: Set<any>;
+	m_setUnavailableTags: Set<any>;
 
 	BHasApp(e, t);
 	BHasBundle(e, t);

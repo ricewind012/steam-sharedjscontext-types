@@ -17,7 +17,7 @@ export interface g_GRS {
 			lastAccessedBy_: number;
 			lowestObserverState_: number;
 			name_: string;
-			observers_: {};
+			observers_: Set<any>;
 			onBOL: any;
 			onBUOL: any;
 
@@ -63,7 +63,7 @@ export interface g_GRS {
 			lastAccessedBy_: number;
 			lowestObserverState_: number;
 			name_: string;
-			observers_: {};
+			observers_: Set<any>;
 			onBOL: any;
 			onBUOL: any;
 
@@ -109,7 +109,7 @@ export interface g_GRS {
 			lastAccessedBy_: number;
 			lowestObserverState_: number;
 			name_: string;
-			observers_: {};
+			observers_: Set<any>;
 			onBOL: any;
 			onBUOL: any;
 

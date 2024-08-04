@@ -111,7 +111,7 @@ export interface RemotePlayStore_SteamUI {
 			lastAccessedBy_: number;
 			lowestObserverState_: number;
 			name_: string;
-			observers_: {};
+			observers_: Set<object>;
 			onBOL: any;
 			onBUOL: any;
 
@@ -122,7 +122,7 @@ export interface RemotePlayStore_SteamUI {
 			function();
 		};
 		changeListeners_: any;
-		data_: {};
+		data_: Set<any>;
 		dehancer: any;
 		enhancer_(...args: any[]);
 		interceptors_: any;

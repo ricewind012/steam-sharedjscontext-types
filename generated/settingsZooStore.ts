@@ -13,7 +13,7 @@ export interface settingsZooStore {
 			lastAccessedBy_: number;
 			lowestObserverState_: number;
 			name_: string;
-			observers_: {};
+			observers_: Set<object>;
 			onBOL: any;
 			onBUOL: any;
 

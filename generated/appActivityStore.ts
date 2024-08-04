@@ -108,9 +108,9 @@ export interface appActivityStore {
 		m_onConnect: {};
 		m_rtReconnectThrottleExpiration: number;
 		m_rtReconnectThrottleStart: number;
-		m_setConnectedServers: {};
-		m_setEMsgHandlers: {};
-		m_setServiceMethodHandlers: {};
+		m_setConnectedServers: Set<number>;
+		m_setEMsgHandlers: Set<number>;
+		m_setServiceMethodHandlers: Set<string>;
 		m_steamid: {
 			m_ulSteamID: {
 				high: number;
@@ -238,7 +238,7 @@ export interface appActivityStore {
 			lastAccessedBy_: number;
 			lowestObserverState_: number;
 			name_: string;
-			observers_: {};
+			observers_: Set<any>;
 			onBOL: any;
 			onBUOL: any;
 
@@ -271,8 +271,8 @@ export interface appActivityStore {
 		function();
 	};
 	m_rgDeckCompatibilityFeedback_Ask: any[];
-	m_setAppFetchRequested: {};
-	m_setAppsLoading: {};
+	m_setAppFetchRequested: Set<any>;
+	m_setAppsLoading: Set<any>;
 
 	BAllowDeckCompatibilityFeedback(e);
 	BShouldPromptForDeckCompatibilityFeedback(e);
