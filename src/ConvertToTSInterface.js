@@ -35,6 +35,12 @@ function ConvertToTSInterface(obj) {
 				return `${e}: CCallbackList`;
 			}
 
+			if (m.RemoveObject) {
+				const interfaceName =
+					typeof m.m_eNamespace !== "undefined" ? "CloudStorage" : "Storage";
+				return `${e}: ${interfaceName}`;
+			}
+
 			if (m.m_currentValue !== undefined) {
 				const svType = typeof m.m_currentValue;
 				const svValue =
@@ -82,8 +88,6 @@ function ConvertToTSInterface(obj) {
 				return `${e}: Map<${typeof k}, { ${ConvertToTSInterface(v)} }>`;
 			}
 
-			// replace "{}" with "any"
-			console.log("%o is undefined => %o", e, ConvertToTSInterface(m));
 			return `${e}: { ${ConvertToTSInterface(m)} }`;
 		})
 		.join("\n");
@@ -114,6 +118,7 @@ function ActuallyConvertToTSInterface(obj, name) {
 			CCallbackList,
 			SubscribableValue,
 		} from "../normal/shared/interfaces";
+		import type { CloudStorage } from "./shared/storage";
 		import type { CMInterface } from "../normal/shared/CMInterface";
 
 		export interface ${name} { ${ConvertToTSInterface(obj)} }

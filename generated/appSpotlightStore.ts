@@ -4,11 +4,7 @@ export interface appSpotlightStore {
 	m_CMInterface: CMInterface;
 	m_dlcLocalStore: {};
 	m_gamePlayLocalStore: {};
-	m_localStorage: {
-		GetString(e): Promise<any>;
-		RemoveObject(e): Promise<any>;
-		StoreString(e, t): Promise<any>;
-	};
+	m_localStorage: Storage;
 	m_mapAppData: Map<any, any>;
 
 	BHasAppData(e);

@@ -1,3 +1,4 @@
+import type { CloudStorage } from "./shared/storage";
 import type { CMInterface } from "../normal/shared/CMInterface";
 
 export interface App {
@@ -33,19 +34,7 @@ export interface App {
 	m_bStartedStage2: boolean;
 	m_bSupportAlertModalActive: boolean;
 	m_bWasEverLoggedIn: boolean;
-	m_cloudStorage: {
-		m_eNamespace: number;
-
-		Get(e);
-		GetByPrefix(e);
-		GetMapForPrefix(e);
-		GetObject(e): Promise<any>;
-		GetString(e): Promise<any>;
-		RegisterForChangeNotifications(e);
-		RemoveObject(e, t, r): Promise<any>;
-		StoreObject(e, t, r, n): Promise<any>;
-		StoreString(e, t, r, n): Promise<any>;
-	};
+	m_cloudStorage: CloudStorage;
 	m_cm: CMInterface;
 	m_eLoginState: number;
 

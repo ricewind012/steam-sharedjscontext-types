@@ -1,31 +1,9 @@
+import type { CloudStorage } from "./shared/storage";
+
 export interface collectionStore {
-	m_cloudStorage: {
-		m_eNamespace: number;
-
-		Get(e);
-		GetByPrefix(e);
-		GetMapForPrefix(e);
-		GetObject(e): Promise<any>;
-		GetString(e): Promise<any>;
-		RegisterForChangeNotifications(e);
-		RemoveObject(e, t, r): Promise<any>;
-		StoreObject(e, t, r, n): Promise<any>;
-		StoreString(e, t, r, n): Promise<any>;
-	};
+	m_cloudStorage: CloudStorage;
 	m_cloudStorageMap: {
-		m_cloudStorage: {
-			m_eNamespace: number;
-
-			Get(e);
-			GetByPrefix(e);
-			GetMapForPrefix(e);
-			GetObject(e): Promise<any>;
-			GetString(e): Promise<any>;
-			RegisterForChangeNotifications(e);
-			RemoveObject(e, t, r): Promise<any>;
-			StoreObject(e, t, r, n): Promise<any>;
-			StoreString(e, t, r, n): Promise<any>;
-		};
+		m_cloudStorage: CloudStorage;
 		m_strKeyPrefix: string;
 
 		GetObject(e);
@@ -42,11 +20,7 @@ export interface collectionStore {
 		set(e, t, r, n);
 		values();
 	};
-	m_localStorage: {
-		GetString(e): Promise<any>;
-		RemoveObject(e): Promise<any>;
-		StoreString(e, t): Promise<any>;
-	};
+	m_localStorage: Storage;
 	m_mapCollectionsFromStorage: Map<
 		string,
 		{

@@ -1,49 +1,6 @@
-import type {
-	CMInterface,
-	CurrentUser,
-	WebUIServiceTransport,
-} from "./shared/interfaces";
-
-export enum EUserConfigStoreNamespace {
-	Invalid = 0,
-	Library = 1,
-}
-
-export enum EConflictResolutionMethod {
-	LastWriteWins = "last-write",
-	CustomMethod = "custom",
-	InitializationOnly = "initial",
-}
-
-/**
- * @todo This whole thing
- * Will break the client if a key isn't a string.
- * Probably better to not look at this thing at all.
- */
-export interface CloudStorage {
-	m_eNamespace: EUserConfigStoreNamespace;
-
-	Get(key: string): string | null;
-	GetByPrefix(prefix: string): Map<string, string>;
-	GetMapForPrefix(prefix: string): any;
-	GetObject(key: string): Promise<any | null>;
-	GetString(key: string): Promise<string | null>;
-	/**
-	 * @param resolutionMethodId Must include if selecting {@link EConflictResolutionMethod.CustomMethod}.
-	 */
-	RemoveObject(
-		key: string,
-		resolutionMethod: EConflictResolutionMethod,
-		resolutionMethodId?: any,
-	): Promise<void>;
-	StoreObject(key: string, value: any, param2: any, param3: any): Promise<void>;
-	StoreString(
-		key: string,
-		value: string,
-		param2: any,
-		param3: any,
-	): Promise<void>;
-}
+import type { CurrentUser, WebUIServiceTransport } from "./shared/interfaces";
+import type { CMInterface } from "./shared/CMInterface";
+import type { CloudStorage } from "./shared/storage";
 
 export interface App {
 	m_CurrentUser: CurrentUser;

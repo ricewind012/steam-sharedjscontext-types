@@ -1,10 +1,6 @@
 export interface securitystore {
 	m_ActiveLockScreenProps: any;
-	m_MachineStorage: {
-		GetString(e): Promise<any>;
-		RemoveObject(e): Promise<any>;
-		StoreString(e, t): Promise<any>;
-	};
+	m_MachineStorage: Storage;
 	m_Settings: {
 		bLockDesktopMode: boolean;
 		bLockOnLogin: boolean;

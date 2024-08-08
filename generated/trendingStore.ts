@@ -9,11 +9,7 @@ export interface trendingStore {
 		nFailureRetryIntervalMS: number;
 		nMaxLifetimeMS: number;
 		nStorageVersion: number;
-		storage: {
-			GetString(e): Promise<any>;
-			RemoveObject(e): Promise<any>;
-			StoreString(e, t): Promise<any>;
-		};
+		storage: Storage;
 		strStorageKey: string;
 	};
 	m_timeoutNextFetch: number;

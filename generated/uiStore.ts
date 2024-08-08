@@ -45,11 +45,7 @@ export interface uiStore {
 	m_eSelectedGameListView: number;
 	m_gameListSelection: { nAppId: any; strCollectionId: string };
 	m_latchedMostRecentApp: number;
-	m_localStorage: {
-		GetString(e): Promise<any>;
-		RemoveObject(e): Promise<any>;
-		StoreString(e, t): Promise<any>;
-	};
+	m_localStorage: Storage;
 	m_mapLibrarySectionCollapseState: Map<string, {}>;
 	m_setStoreSuggestionIds: Set<any>;
 	m_setStoreSuggestions: any;

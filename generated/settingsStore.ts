@@ -288,11 +288,7 @@ export interface settingsStore {
 	};
 	m_bSteamIsInTournamentMode: boolean;
 	m_bWindowed: boolean;
-	m_localStorage: {
-		GetString(e): Promise<any>;
-		RemoveObject(e): Promise<any>;
-		StoreString(e, t): Promise<any>;
-	};
+	m_localStorage: Storage;
 	m_setDeferredSettings: Set<any>;
 	m_strTimeZoneID: SubscribableValue<string>;
 

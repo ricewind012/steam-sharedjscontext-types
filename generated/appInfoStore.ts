@@ -50,7 +50,7 @@ export interface appInfoStore {
 							lastAccessedBy_: number;
 							lowestObserverState_: number;
 							name_: string;
-							observers_: Set<any>;
+							observers_: Set<{ undefined }>;
 							onBOL: any;
 							onBUOL: any;
 							value_: string;
@@ -70,7 +70,39 @@ export interface appInfoStore {
 					>;
 					dehancer: any;
 					enhancer_(...args: any[]);
-					hasMap_: Map<any, any>;
+					hasMap_: Map<
+						string,
+						{
+							changeListeners_: any;
+							dehancer: any;
+							diffValue_: number;
+							enhancer(...args: any[]);
+							equals(...args: any[]);
+							hasUnreportedChange_: boolean;
+							interceptors_: any;
+							isBeingObserved: boolean;
+							isPendingUnobservation: boolean;
+							lastAccessedBy_: number;
+							lowestObserverState_: number;
+							name_: string;
+							observers_: Set<{ undefined }>;
+							onBOL: any;
+							onBUOL: Set<function>;
+							value_: boolean;
+
+							function(e);
+							function();
+							function(e);
+							function(e, t);
+							function(e);
+							function();
+							function(e);
+							function(e);
+							function();
+							function();
+							function();
+						}
+					>;
 					interceptors_: any;
 					keysAtom_: {
 						diffValue_: number;

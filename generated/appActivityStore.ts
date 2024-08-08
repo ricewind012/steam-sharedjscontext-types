@@ -4,11 +4,7 @@ export interface appActivityStore {
 	RestoreCachedActivity(...args: any[]);
 	m_CMInterface: CMInterface;
 	m_deckCompatibilityFeedback_EligibleApps: {};
-	m_localStorage: {
-		GetString(e): Promise<any>;
-		RemoveObject(e): Promise<any>;
-		StoreString(e, t): Promise<any>;
-	};
+	m_localStorage: Storage;
 	m_mapAppActivity: Map<any, any>;
 	m_rgDeckCompatibilityFeedback_Ask: any[];
 	m_setAppFetchRequested: Set<any>;

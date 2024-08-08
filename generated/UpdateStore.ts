@@ -10,12 +10,7 @@ export interface UpdateStore {
 			state: number;
 			supports_os_updates: boolean;
 			update_apply_results: any[];
-			update_check_results: {
-				available: boolean;
-				eresult: number;
-				rtime_checked: number;
-				type: number;
-			}[];
+			update_check_results: any[];
 		};
 
 		ApplyUpdate(e, t, r = !1): Promise<any>;

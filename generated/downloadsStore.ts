@@ -37,11 +37,7 @@ export interface downloadsStore {
 		update_start_time: number;
 		update_state: string;
 	};
-	m_MachineStorage: {
-		GetString(e): Promise<any>;
-		RemoveObject(e): Promise<any>;
-		StoreString(e, t): Promise<any>;
-	};
+	m_MachineStorage: Storage;
 	m_cmInterface: CMInterface;
 	m_fnCallbackOnDownloadItemsUpdate: CCallbackList;
 	m_mapRecentDownloadPreviousBuilds: Map<number, {}>;

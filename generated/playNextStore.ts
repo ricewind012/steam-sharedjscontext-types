@@ -2,11 +2,7 @@ import type { CMInterface } from "../normal/shared/CMInterface";
 
 export interface playNextStore {
 	m_CMInterface: CMInterface;
-	m_LocalStorage: {
-		GetString(e): Promise<any>;
-		RemoveObject(e): Promise<any>;
-		StoreString(e, t): Promise<any>;
-	};
+	m_LocalStorage: Storage;
 	m_bFresh: boolean;
 	m_bPlayNextRequestInFlight: boolean;
 	m_cachedPlayNext: { appids: number[]; last_update_time: number };

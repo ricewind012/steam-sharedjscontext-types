@@ -5,11 +5,7 @@ export interface userProfileStore {
 	m_FriendEquippedProfileItemsChangedHandler: { invoke(r, n); unregister() };
 	m_equippedItems: any;
 	m_keyboardSkins: any;
-	m_localStorage: {
-		GetString(e): Promise<any>;
-		RemoveObject(e): Promise<any>;
-		StoreString(e, t): Promise<any>;
-	};
+	m_localStorage: Storage;
 	m_mapKeyboardSkinThemes: Map<any, any>;
 	m_notifyClaimRewardsTimer: any;
 	m_promiseEquipped: any;

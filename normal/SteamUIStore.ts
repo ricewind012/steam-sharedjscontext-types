@@ -5,22 +5,22 @@ import type {
 } from "./shared/interfaces";
 
 export enum ENotificationPosition {
-	TopLeft = 0,
-	TopRight = 1,
-	BottomLeft = 2,
-	BottomRight = 3,
+	TopLeft,
+	TopRight,
+	BottomLeft,
+	BottomRight,
 }
 
 export enum EWindowType {
-	MainGamepadUI = 0,
-	OverlayGamepadUI = 1,
-	Keyboard = 2,
-	ControllerConfigurator = 3,
-	VR = 4,
-	MainDesktopUI = 5,
-	DesktopLogin = 6,
-	OverlayDesktopUI = 7,
-	SteamChinaReviewLauncher = 8,
+	MainGamepadUI,
+	OverlayGamepadUI,
+	Keyboard,
+	ControllerConfigurator,
+	VR,
+	MainDesktopUI,
+	DesktopLogin,
+	OverlayDesktopUI,
+	SteamChinaReviewLauncher,
 }
 
 type SteamWindowSettingsSection =

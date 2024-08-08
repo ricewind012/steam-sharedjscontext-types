@@ -4,6 +4,9 @@
 			"correctness": {
 				"noUnusedImports": "error"
 			},
+			"style": {
+				"useEnumInitializers": "off"
+			},
 			"suspicious": {
 				"noExplicitAny": "off"
 			}
