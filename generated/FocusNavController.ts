@@ -1,90 +1,32 @@
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+
 export interface FocusNavController {
 	m_ActiveContext: any;
 	m_DefaultContext: any;
 	m_LastActiveContext: any;
-	m_UnhandledButtonEventsCallbacks: {
-		m_vecCallbacks: any[];
-
-		ClearAllCallbacks();
-		CountRegistered();
-		Dispatch(...e);
-		Register(e);
-	};
+	m_UnhandledButtonEventsCallbacks: CCallbackList;
 	m_bGlobalEventsInitialized: boolean;
 	m_bRestoringHistory: boolean;
-	m_bShowDebugFocusRing: {
-		m_callbacks: {
-			m_vecCallbacks: any[];
-
-			ClearAllCallbacks();
-			CountRegistered();
-			Dispatch(...e);
-			Register(e);
-		};
-		m_currentValue: boolean;
-		m_fnEquals: any;
-
-		Set(e);
-		Subscribe(e);
-	};
+	m_bShowDebugFocusRing: SubscribableValue<boolean>;
 	m_fnCatchAllGamepadInput: any;
 	m_fnGamepadEventUpdateBatcher(...args: any[]);
-	m_navigationSource: {
-		m_callbacks: {
-			m_vecCallbacks: any[];
-
-			ClearAllCallbacks();
-			CountRegistered();
-			Dispatch(...e);
-			Register(e);
-		};
-		m_currentValue: {
+	m_navigationSource: SubscribableValue<{
+		eActivationSourceType: number;
+		nActiveGamepadIndex: number;
+		nLastActiveGamepadIndex: number;
+	}>;
+	m_navigationSourceSupportsFocus: {
+		m_fnMap(...args: any[]);
+		m_mappedSubscribableValue: SubscribableValue<boolean>;
+		m_mappedUnsubscribe: any;
+		m_originalSubscribableValue: SubscribableValue<{
 			eActivationSourceType: number;
 			nActiveGamepadIndex: number;
 			nLastActiveGamepadIndex: number;
-		};
-		m_fnEquals(...args: any[]);
-
-		Set(e);
-		Subscribe(e);
-	};
-	m_navigationSourceSupportsFocus: {
-		m_fnMap(...args: any[]);
-		m_mappedSubscribableValue: {
-			m_callbacks: {
-				m_vecCallbacks: any[];
-
-				ClearAllCallbacks();
-				CountRegistered();
-				Dispatch(...e);
-				Register(e);
-			};
-			m_currentValue: boolean;
-			m_fnEquals: any;
-
-			Set(e);
-			Subscribe(e);
-		};
-		m_mappedUnsubscribe: any;
-		m_originalSubscribableValue: {
-			m_callbacks: {
-				m_vecCallbacks: any[];
-
-				ClearAllCallbacks();
-				CountRegistered();
-				Dispatch(...e);
-				Register(e);
-			};
-			m_currentValue: {
-				eActivationSourceType: number;
-				nActiveGamepadIndex: number;
-				nLastActiveGamepadIndex: number;
-			};
-			m_fnEquals(...args: any[]);
-
-			Set(e);
-			Subscribe(e);
-		};
+		}>;
 		m_subscriptionRefCount: number;
 
 		Subscribe(e);

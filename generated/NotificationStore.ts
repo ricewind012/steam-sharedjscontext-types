@@ -1,3 +1,5 @@
+import type { CCallbackList } from "../normal/shared/interfaces";
+
 export interface NotificationStore {
 	m_LastSystemUpdateNotification: any;
 	m_bCheckBatteryAfterResume: boolean;
@@ -6,76 +8,17 @@ export interface NotificationStore {
 	m_bShowedLowBatteryTempNotification: boolean;
 	m_bShowedRefreshLogin: boolean;
 	m_bTestNotifications: boolean;
-	m_cbkCurrentToast: {
-		m_vecCallbacks: function[];
-
-		ClearAllCallbacks();
-		CountRegistered();
-		Dispatch(...e);
-		Register(e);
-	};
-	m_cbkNotificationTray: {
-		m_vecCallbacks: function[];
-
-		ClearAllCallbacks();
-		CountRegistered();
-		Dispatch(...e);
-		Register(e);
-	};
+	m_cbkCurrentToast: CCallbackList;
+	m_cbkNotificationTray: CCallbackList;
 	m_hPendingToastTimer: any;
 	m_hTrayRemoveTimer: any;
 	m_iLastBatteryLevelNotification: number;
-	m_mapAppOverlayToasts: {
-		changeListeners_: any;
-		data_: {};
-		dehancer: any;
-		enhancer_(...args: any[]);
-		hasMap_: {};
-		interceptors_: any;
-		keysAtom_: {
-			diffValue_: number;
-			isBeingObserved: boolean;
-			isPendingUnobservation: boolean;
-			lastAccessedBy_: number;
-			lowestObserverState_: number;
-			name_: string;
-			observers_: Set<any>;
-			onBOL: any;
-			onBUOL: any;
-
-			function();
-			function();
-			function();
-			function();
-			function();
-		};
-		name_: string;
-
-		function(e, t);
-		function();
-		function(e);
-		function(e);
-		function();
-		function(e, t);
-		function(e);
-		function(e);
-		function(e);
-		function(e);
-		function();
-		function(e);
-		function(e, t);
-		function(e);
-		function(e, t);
-		function();
-		function();
-		function(e, t);
-		function();
-	};
+	m_mapAppOverlayToasts: Map<any, any>;
 	m_nNextTestNotificationID: number;
 	m_nUnviewedNotifications: number;
 	m_rgContextsRenderingToasts: any[];
 	m_rgNotificationToasts: any[];
-	m_rgNotificationTray: any[];
+	m_rgNotificationTray: { undefined }[];
 	m_rgPendingToasts: any[];
 	m_rtNextTrayRemove: number;
 

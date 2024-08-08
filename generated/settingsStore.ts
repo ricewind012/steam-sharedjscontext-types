@@ -1,237 +1,9 @@
+import type { SubscribableValue } from "../normal/shared/interfaces";
+import type { CMInterface } from "../normal/shared/CMInterface";
+
 export interface settingsStore {
-	m_BatteryPreferences: {
-		m_callbacks: {
-			m_vecCallbacks: any[];
-
-			ClearAllCallbacks();
-			CountRegistered();
-			Dispatch(...e);
-			Register(e);
-		};
-		m_currentValue: { bShowBatteryPercentage: boolean };
-		m_fnEquals: any;
-
-		Set(e);
-		Subscribe(e);
-	};
-	m_CMInterface: {
-		ClientServersAvailableHandler: { invoke(...args: any[]); unregister() };
-		m_ServiceTransport: {
-			MakeReady(...args: any[]);
-			SendMsg(e, t, r);
-			SendNotification(e, t);
-		};
-		m_bCompletedInitialConnect: boolean;
-		m_bConnected: boolean;
-		m_bConnectionFailed: boolean;
-		m_bForceDisconnect: boolean;
-		m_bLoggedOn: boolean;
-		m_bPerformedInitialClockAdjustment: boolean;
-		m_callbacksOnConnect: {
-			m_ClientConnectionCallbacks: {
-				m_vecCallbacks: function[];
-
-				ClearAllCallbacks();
-				CountRegistered();
-				Dispatch(...e);
-				Register(e);
-			};
-			m_bRunOnce: boolean;
-			m_mapServerTypeCallbacks: {};
-
-			AddCallback(e, t);
-			RunAllCallbacks(e, ...t);
-			RunCallbacks(e, ...t);
-		};
-		m_callbacksOnConnectOneTime: {
-			m_ClientConnectionCallbacks: {
-				m_vecCallbacks: any[];
-
-				ClearAllCallbacks();
-				CountRegistered();
-				Dispatch(...e);
-				Register(e);
-			};
-			m_bRunOnce: boolean;
-			m_mapServerTypeCallbacks: {};
-
-			AddCallback(e, t);
-			RunAllCallbacks(e, ...t);
-			RunCallbacks(e, ...t);
-		};
-		m_callbacksOnDisconnect: {
-			m_ClientConnectionCallbacks: {
-				m_vecCallbacks: function[];
-
-				ClearAllCallbacks();
-				CountRegistered();
-				Dispatch(...e);
-				Register(e);
-			};
-			m_bRunOnce: boolean;
-			m_mapServerTypeCallbacks: {};
-
-			AddCallback(e, t);
-			RunAllCallbacks(e, ...t);
-			RunCallbacks(e, ...t);
-		};
-		m_hEMsgRegistrationObserver(...args: any[]);
-		m_hSharedConnection: number;
-		m_messageHandlers: {
-			m_ErrorReportingStore: {
-				m_bEnabled: boolean;
-				m_bInitialized: boolean;
-				m_rgErrorQueue: any[];
-				m_sendTimer: any;
-				m_strProduct: string;
-				m_strVersion: string;
-				m_transport: {
-					MakeReady(...args: any[]);
-					SendMsg(e, t, r);
-					SendNotification(e, t);
-				};
-
-				BIsBlacklisted(e);
-				Init(e, t, r);
-				QueueSend(e);
-				ReportError(e, t): Promise<any>;
-				SendErrorReport(e);
-				SendErrorReports(e);
-			};
-			m_mapCallbacks: {};
-			m_mapServiceMethodHandlers: {};
-			m_rgRegisteredEMsgs: number[];
-			m_rgRegisteredServiceMethodHandlers: string[];
-
-			AddCallback(e, t, r);
-			AddServiceMethodHandler(e, t);
-			AddServiceNotificationHandler(e, t);
-			DEBUG_LogMessageDispatch(e, t);
-			DispatchMsgToHandlers(e, t);
-			InstallErrorReportingStore(e);
-			RegisterBaseEMessageHandler(e, t);
-			RegisterEMessageAction(e, t, r);
-			RegisterEMessageHandler(e, t, r);
-			RegisterServiceMethodHandler(e, t);
-			RegisterServiceMethodHandlerAction(e, t);
-			RegisterServiceNotificationHandler(e, t);
-			RegisterServiceNotificationHandlerAction(e, t);
-		};
-		m_nPerfClockServerMSOffset: number;
-		m_nWallClockDriftMS: number;
-		m_onConnect: {};
-		m_rtReconnectThrottleExpiration: number;
-		m_rtReconnectThrottleStart: number;
-		m_setConnectedServers: Set<number>;
-		m_setEMsgHandlers: Set<number>;
-		m_setServiceMethodHandlers: Set<string>;
-		m_steamid: {
-			m_ulSteamID: {
-				high: number;
-				low: number;
-				unsigned: boolean;
-
-				function(e);
-				function(e);
-				function();
-				function(e);
-				function(e);
-				function();
-				function();
-				function();
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function();
-				function(e);
-				function();
-				function();
-				function();
-				function();
-				function();
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function();
-				function();
-				function();
-				function();
-				function();
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function();
-				function();
-				function(e);
-				function();
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function();
-				function();
-				function();
-				function();
-				function();
-				function(e);
-				function();
-				function(e);
-			};
-
-			BIsClanAccount();
-			BIsIndividualAccount();
-			BIsValid();
-			ConvertTo64BitString();
-			GetAccountID();
-			GetAccountType();
-			GetInstance();
-			GetUniverse();
-			Render();
-			SetAccountID(e);
-			SetAccountType(e);
-			SetFromComponents(e, t, r, i);
-			SetInstance(e);
-			SetUniverse(e);
-		};
-		m_strIPCountry: string;
-		m_strPersonaName: string;
-		m_unAccountFlags: number;
-
-		ClearHeartbeatInterval();
-		Connect();
-		Disconnect();
-		OnConnect();
-		OnLogonInfoChanged(e);
-		OnMsgRecvd(e);
-		OnSharedConnectionClosed();
-		OnSharedConnectionEstablished(e);
-		ResetHeartbeatInterval();
-		SendHeartbeat();
-		SendInternal(e);
-		SendMsgAndAwaitResponse(e, t);
-	};
+	m_BatteryPreferences: SubscribableValue<{ bShowBatteryPercentage: boolean }>;
+	m_CMInterface: CMInterface;
 	m_ClientSettings: {
 		always_show_user_chooser: boolean;
 		always_use_gamepadui_overlay: boolean;
@@ -429,7 +201,10 @@ export interface settingsStore {
 		bParenthesizeNicknames: boolean;
 		bTextFilterIgnoreFriends: boolean;
 		content_descriptor_preferences: {
-			content_descriptors_to_exclude: object[];
+			content_descriptors_to_exclude: {
+				content_descriptorid: number;
+				timestamp_added: any;
+			}[];
 		};
 		eTextFilterSetting: number;
 	};
@@ -473,7 +248,10 @@ export interface settingsStore {
 		nChatFontSize: number;
 	};
 	m_MonitorInfo: any;
-	m_NotificationSettings: object[];
+	m_NotificationSettings: {
+		notification_targets: number;
+		notification_type: number;
+	}[];
 	m_Settings: {
 		bChangeBetaEnabled: boolean;
 		bCompatEnabled: boolean;
@@ -498,10 +276,10 @@ export interface settingsStore {
 		strCompatTool: string;
 		strDisplayName: string;
 		strSelectedBetaName: string;
-		vecAvailableClientBetas: object[];
-		vecNightModeScheduledHours: object[];
-		vecValidAutoUpdateRestrictHours: object[];
-		vecValidDownloadRegions: object[];
+		vecAvailableClientBetas: { nBetaID: number; strName: string }[];
+		vecNightModeScheduledHours: { nHour: number; strDisplay: string }[];
+		vecValidAutoUpdateRestrictHours: { nHour: number; strDisplay: string }[];
+		vecValidDownloadRegions: { nRegionID: number; strRegionName: string }[];
 	};
 	m_StorePreferences: {
 		content_descriptor_preferences: { content_descriptors_to_exclude: any[] };
@@ -515,68 +293,8 @@ export interface settingsStore {
 		RemoveObject(e): Promise<any>;
 		StoreString(e, t): Promise<any>;
 	};
-	m_setDeferredSettings: {
-		atom_: {
-			diffValue_: number;
-			isBeingObserved: boolean;
-			isPendingUnobservation: boolean;
-			lastAccessedBy_: number;
-			lowestObserverState_: number;
-			name_: string;
-			observers_: Set<object>;
-			onBOL: any;
-			onBUOL: any;
-
-			function();
-			function();
-			function();
-			function();
-			function();
-		};
-		changeListeners_: any;
-		data_: Set<any>;
-		dehancer: any;
-		enhancer_(...args: any[]);
-		interceptors_: any;
-		name_: string;
-
-		function(e);
-		function();
-		function(e);
-		function(e);
-		function(e);
-		function();
-		function(e, t);
-		function(e);
-		function(e);
-		function(e);
-		function(e);
-		function(e);
-		function(e);
-		function();
-		function(e, t);
-		function(e);
-		function(e);
-		function();
-		function();
-		function(e);
-		function();
-	};
-	m_strTimeZoneID: {
-		m_callbacks: {
-			m_vecCallbacks: any[];
-
-			ClearAllCallbacks();
-			CountRegistered();
-			Dispatch(...e);
-			Register(e);
-		};
-		m_currentValue: string;
-		m_fnEquals: any;
-
-		Set(e);
-		Subscribe(e);
-	};
+	m_setDeferredSettings: Set<any>;
+	m_strTimeZoneID: SubscribableValue<string>;
 
 	BIsConnectedToSteam();
 	CommunityPreferencesToMessage(e);

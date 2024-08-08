@@ -6,7 +6,12 @@ export interface loginStore {
 	m_nLoginPercentage: number;
 	m_strAccountName: string;
 	m_strEmailDomain: string;
-	m_vecLoginUsers: object[];
+	m_vecLoginUsers: {
+		accountName: string;
+		avatarUrl: string;
+		personaName: string;
+		rememberPassword: boolean;
+	}[];
 
 	GetLoginUsers();
 	Init(): Promise<any>;

@@ -1,22 +1,22 @@
-import { CMInterface, SubscribableValue } from "./shared/interfaces";
+import type { CMInterface, SubscribableValue } from "./shared/interfaces";
 
 export enum ETextFilterSetting {
-	SteamLabOptedOut,
-	Enabled,
-	EnabledAllowProfanity,
-	Disabled,
+	SteamLabOptedOut = 0,
+	Enabled = 1,
+	EnabledAllowProfanity = 2,
+	Disabled = 3,
 }
 
 export enum EUserReviewScorePreference {
-	Unset,
-	IncludeAll,
-	ExcludeBombs,
+	Unset = 0,
+	IncludeAll = 1,
+	ExcludeBombs = 2,
 }
 
 export enum EProvideDeckFeedbackPreference {
-	Unset,
-	Yes,
-	No,
+	Unset = 0,
+	Yes = 1,
+	No = 2,
 }
 
 export interface BatteryPreferences {

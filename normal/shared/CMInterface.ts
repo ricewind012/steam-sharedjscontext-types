@@ -1,5 +1,5 @@
-import { CSteamID } from "./CSteamID";
-import { CCallbackList } from "./interfaces";
+import type { CSteamID } from "./CSteamID";
+import type { CCallbackList } from "./interfaces";
 
 export interface CMInterfaceCallbacks {
 	m_ClientConnectionCallbacks: CCallbackList;

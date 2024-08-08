@@ -1,3 +1,5 @@
+import type { CCallbackList } from "../normal/shared/interfaces";
+
 export interface MainWindowBrowserManager {
 	m_URL: string;
 	m_URLRequested: string;
@@ -35,13 +37,13 @@ export interface MainWindowBrowserManager {
 		off(...args: any[]);
 		on(...args: any[]);
 	};
-	m_browserHistory: { entries: object[]; index: number };
+	m_browserHistory: { entries: { url: string }[]; index: number };
 	m_history: {
 		action: string;
 		block(...args: any[]);
 		canGo(...args: any[]);
 		createHref(...args: any[]);
-		entries: object[];
+		entries: { undefined }[];
 		go(...args: any[]);
 		goBack(...args: any[]);
 		goForward(...args: any[]);
@@ -82,14 +84,7 @@ export interface MainWindowBrowserManager {
 	m_rootTabURLs: { community: string; me: string; store: string };
 	m_strTitle: string;
 	m_tabbedBrowserStore: {
-		m_cbWebPageRequestsChanged: {
-			m_vecCallbacks: function[];
-
-			ClearAllCallbacks();
-			CountRegistered();
-			Dispatch(...e);
-			Register(e);
-		};
+		m_cbWebPageRequestsChanged: CCallbackList;
 		m_nActiveWebpageRequestID: number;
 		m_nWebPageRequestID: number;
 		m_rgWebPageRequests: any[];

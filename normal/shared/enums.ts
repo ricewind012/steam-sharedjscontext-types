@@ -1,18 +1,18 @@
 export enum EBrowserType {
-	OffScreen,
-	OpenVROverlay,
-	OpenVROverlay_Dashboard,
-	DirectHWND,
-	DirectHWND_Borderless,
-	DirectHWND_Hidden,
-	ChildHWNDNative,
-	Transparent_Toplevel,
-	OffScreen_SharedTexture,
-	OffScreen_GameOverlay,
-	OffScreen_GameOverlay_SharedTexture,
-	Offscreen_FriendsUI,
-	Offscreen_SteamUI,
-	OpenVROverlay_Subview,
+	OffScreen = 0,
+	OpenVROverlay = 1,
+	OpenVROverlay_Dashboard = 2,
+	DirectHWND = 3,
+	DirectHWND_Borderless = 4,
+	DirectHWND_Hidden = 5,
+	ChildHWNDNative = 6,
+	Transparent_Toplevel = 7,
+	OffScreen_SharedTexture = 8,
+	OffScreen_GameOverlay = 9,
+	OffScreen_GameOverlay_SharedTexture = 10,
+	Offscreen_FriendsUI = 11,
+	Offscreen_SteamUI = 12,
+	OpenVROverlay_Subview = 13,
 }
 
 export enum EUIMode {
@@ -22,7 +22,7 @@ export enum EUIMode {
 }
 
 export enum ESteamRealm {
-	Unknown,
-	Global,
-	China,
+	Unknown = 0,
+	Global = 1,
+	China = 2,
 }

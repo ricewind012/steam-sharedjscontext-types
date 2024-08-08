@@ -1,38 +1,12 @@
+import type { CCallbackList } from "../normal/shared/interfaces";
+
 export interface overlayStore {
-	m_OnBrowserClosedCallbacks: {
-		m_vecCallbacks: function[];
-
-		ClearAllCallbacks();
-		CountRegistered();
-		Dispatch(...e);
-		Register(e);
-	};
-	m_OnBrowserCreatedCallbacks: {
-		m_vecCallbacks: function[];
-
-		ClearAllCallbacks();
-		CountRegistered();
-		Dispatch(...e);
-		Register(e);
-	};
-	m_OnBrowserUpdatedCallbacks: {
-		m_vecCallbacks: function[];
-
-		ClearAllCallbacks();
-		CountRegistered();
-		Dispatch(...e);
-		Register(e);
-	};
-	m_OnNotificationPositionChangedCallbacks: {
-		m_vecCallbacks: function[];
-
-		ClearAllCallbacks();
-		CountRegistered();
-		Dispatch(...e);
-		Register(e);
-	};
+	m_OnBrowserClosedCallbacks: CCallbackList;
+	m_OnBrowserCreatedCallbacks: CCallbackList;
+	m_OnBrowserUpdatedCallbacks: CCallbackList;
+	m_OnNotificationPositionChangedCallbacks: CCallbackList;
 	m_hOverlayBrowserInfoChanged: { unregister(...args: any[]) };
-	m_mapBrowserInfo: {};
+	m_mapBrowserInfo: Map<any, any>;
 
 	HasOverlayInstance(e);
 	Init(e);

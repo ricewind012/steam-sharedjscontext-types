@@ -1,60 +1,11 @@
 export interface g_PopupManager {
-	DebouncedSaveSavedDimensionStore_DebounceProperties: {
-		hTimer: any;
-		nPending: number;
-	};
 	m_DynamicCSSObserver: {};
 	m_bSaveRequired: boolean;
 	m_bShuttingDown: boolean;
-	m_mapPopups: {
-		changeListeners_: any;
-		data_: {};
-		dehancer: any;
-		enhancer_(...args: any[]);
-		hasMap_: {};
-		interceptors_: any;
-		keysAtom_: {
-			diffValue_: number;
-			isBeingObserved: boolean;
-			isPendingUnobservation: boolean;
-			lastAccessedBy_: number;
-			lowestObserverState_: number;
-			name_: string;
-			observers_: Set<object>;
-			onBOL: any;
-			onBUOL: any;
-
-			function();
-			function();
-			function();
-			function();
-			function();
-		};
-		name_: string;
-
-		function(e, t);
-		function();
-		function(e);
-		function(e);
-		function();
-		function(e, t);
-		function(e);
-		function(e);
-		function(e);
-		function(e);
-		function();
-		function(e);
-		function(e, t);
-		function(e);
-		function(e, t);
-		function();
-		function();
-		function(e, t);
-		function();
-	};
-	m_mapRestoreDetails: {};
-	m_rgPopupCreatedCallbacks: function[];
-	m_rgShutdownCallbacks: function[];
+	m_mapPopups: Map<any, any>;
+	m_mapRestoreDetails: Map<any, any>;
+	m_rgPopupCreatedCallbacks: any[];
+	m_rgShutdownCallbacks: any[];
 	m_unCurrentAccountID: number;
 
 	AddPopupCreatedCallback(e);

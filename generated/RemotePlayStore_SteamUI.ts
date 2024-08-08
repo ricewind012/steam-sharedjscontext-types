@@ -103,53 +103,7 @@ export interface RemotePlayStore_SteamUI {
 		function();
 		toObject(e = !1);
 	};
-	m_setAdditionalParentalBlocks: {
-		atom_: {
-			diffValue_: number;
-			isBeingObserved: boolean;
-			isPendingUnobservation: boolean;
-			lastAccessedBy_: number;
-			lowestObserverState_: number;
-			name_: string;
-			observers_: Set<object>;
-			onBOL: any;
-			onBUOL: any;
-
-			function();
-			function();
-			function();
-			function();
-			function();
-		};
-		changeListeners_: any;
-		data_: Set<any>;
-		dehancer: any;
-		enhancer_(...args: any[]);
-		interceptors_: any;
-		name_: string;
-
-		function(e);
-		function();
-		function(e);
-		function(e);
-		function(e);
-		function();
-		function(e, t);
-		function(e);
-		function(e);
-		function(e);
-		function(e);
-		function(e);
-		function(e);
-		function();
-		function(e, t);
-		function(e);
-		function(e);
-		function();
-		function();
-		function(e);
-		function();
-	};
+	m_setAdditionalParentalBlocks: Set<any>;
 	m_settings: {
 		RemotePlayClientConfig: {};
 		RemotePlayServerConfig: {};

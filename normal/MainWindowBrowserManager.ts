@@ -1,4 +1,4 @@
-import { CCallbackList } from "./shared/interfaces";
+import type { CCallbackList } from "./shared/interfaces";
 
 type SteamBrowserAction = "POP" | "PUSH" | "REPLACE";
 

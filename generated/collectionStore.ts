@@ -47,54 +47,51 @@ export interface collectionStore {
 		RemoveObject(e): Promise<any>;
 		StoreString(e, t): Promise<any>;
 	};
-	m_mapCollectionsFromStorage: {
-		changeListeners_: any;
-		data_: {};
-		dehancer: any;
-		enhancer_(...args: any[]);
-		hasMap_: {};
-		interceptors_: any;
-		keysAtom_: {
-			diffValue_: number;
-			isBeingObserved: boolean;
-			isPendingUnobservation: boolean;
-			lastAccessedBy_: number;
-			lowestObserverState_: number;
-			name_: string;
-			observers_: Set<object>;
-			onBOL: any;
-			onBUOL: any;
+	m_mapCollectionsFromStorage: Map<
+		string,
+		{
+			m_filter: any;
+			m_mapFilterToAppCounts: Map<number, {}>;
+			m_rgApps: any[];
+			m_setAddedManually: Set<number>;
+			m_setApps: Set<number>;
+			m_setRemovedManually: Set<any>;
+			m_strId: string;
+			m_strName: string;
 
-			function();
-			function();
-			function();
-			function();
-			function();
-		};
-		name_: string;
-
-		function(e, t);
-		function();
-		function(e);
-		function(e);
-		function();
-		function(e, t);
-		function(e);
-		function(e);
-		function(e);
-		function(e);
-		function();
-		function(e);
-		function(e, t);
-		function(e);
-		function(e, t);
-		function();
-		function();
-		function(e, t);
-		function();
-	};
-	m_mapPartnerCollectionIdToName: {};
-	m_mapSystemCollectionIdToName: {};
+			AsDeletableCollection();
+			AsDragDropCollection();
+			AsEditableCollection();
+			Delete(): Promise<any>;
+			Save(): Promise<any>;
+		}
+	>;
+	m_mapPartnerCollectionIdToName: Map<
+		string,
+		{
+			0: string;
+			1: string;
+			2: string;
+			3: string;
+			4: string;
+			5: string;
+			6: string;
+		}
+	>;
+	m_mapSystemCollectionIdToName: Map<
+		string,
+		{
+			0: string;
+			1: string;
+			2: string;
+			3: string;
+			4: string;
+			5: string;
+			6: string;
+			7: string;
+			8: string;
+		}
+	>;
 	m_shortcutCollectionInfo: {
 		favorite: { added: number[]; id: string; removed: any[] };
 	};

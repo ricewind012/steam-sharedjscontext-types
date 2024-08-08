@@ -3,7 +3,7 @@ export interface SuspendResumeStore {
 	m_bShowResumeUI: boolean;
 	m_bSuspending: boolean;
 	m_cSuspendBlockers: number;
-	m_eSuspendResumeProgress: any;
+	m_eSuspendResumeProgress: number;
 	m_nSuspendSleepMS: number;
 
 	BShowSuspendResumeDialogs();

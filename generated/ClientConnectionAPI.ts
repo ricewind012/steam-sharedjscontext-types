@@ -11,7 +11,7 @@ export interface ClientConnectionAPI {
 		m_bReady: boolean;
 		m_bSecurityException: boolean;
 		m_iCallSeq: number;
-		m_mapWaitingCallbacks: {};
+		m_mapWaitingCallbacks: Map<any, any>;
 		m_promiseConnect: any;
 		m_socket: any;
 
@@ -20,7 +20,7 @@ export interface ClientConnectionAPI {
 		OnSocketMessage(e);
 		SendMsgAndAwaitResponse(e);
 	};
-	m_mapCacheSubscribedApp: {};
+	m_mapCacheSubscribedApp: Map<any, any>;
 
 	BClientAccountMatches();
 	BClientConnected();

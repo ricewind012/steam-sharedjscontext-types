@@ -1,5 +1,5 @@
-import { ESteamRealm } from "./shared/enums";
-import { CCallbackList } from "./shared/interfaces";
+import type { ESteamRealm } from "./shared/enums";
+import type { CCallbackList } from "./shared/interfaces";
 
 export interface LocalizationManager {
 	m_cbkTokensChanged: CCallbackList;

@@ -1,5 +1,5 @@
-import { ServiceTransport } from "./CMInterface";
-import { EBrowserType, EUIMode } from "./enums";
+import type { ServiceTransport } from "./CMInterface";
+import type { EBrowserType, EUIMode } from "./enums";
 
 export type AFunction = (...args: any[]) => any;
 

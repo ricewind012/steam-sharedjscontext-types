@@ -1,271 +1,81 @@
+import type { CMInterface } from "../normal/shared/CMInterface";
+
 export interface appStore {
 	m_bIsInitialized: boolean;
-	m_cm: {
-		ClientServersAvailableHandler: { invoke(...args: any[]); unregister() };
-		m_ServiceTransport: {
-			MakeReady(...args: any[]);
-			SendMsg(e, t, r);
-			SendNotification(e, t);
-		};
-		m_bCompletedInitialConnect: boolean;
-		m_bConnected: boolean;
-		m_bConnectionFailed: boolean;
-		m_bForceDisconnect: boolean;
-		m_bLoggedOn: boolean;
-		m_bPerformedInitialClockAdjustment: boolean;
-		m_callbacksOnConnect: {
-			m_ClientConnectionCallbacks: {
-				m_vecCallbacks: function[];
-
-				ClearAllCallbacks();
-				CountRegistered();
-				Dispatch(...e);
-				Register(e);
-			};
-			m_bRunOnce: boolean;
-			m_mapServerTypeCallbacks: {};
-
-			AddCallback(e, t);
-			RunAllCallbacks(e, ...t);
-			RunCallbacks(e, ...t);
-		};
-		m_callbacksOnConnectOneTime: {
-			m_ClientConnectionCallbacks: {
-				m_vecCallbacks: any[];
-
-				ClearAllCallbacks();
-				CountRegistered();
-				Dispatch(...e);
-				Register(e);
-			};
-			m_bRunOnce: boolean;
-			m_mapServerTypeCallbacks: {};
-
-			AddCallback(e, t);
-			RunAllCallbacks(e, ...t);
-			RunCallbacks(e, ...t);
-		};
-		m_callbacksOnDisconnect: {
-			m_ClientConnectionCallbacks: {
-				m_vecCallbacks: function[];
-
-				ClearAllCallbacks();
-				CountRegistered();
-				Dispatch(...e);
-				Register(e);
-			};
-			m_bRunOnce: boolean;
-			m_mapServerTypeCallbacks: {};
-
-			AddCallback(e, t);
-			RunAllCallbacks(e, ...t);
-			RunCallbacks(e, ...t);
-		};
-		m_hEMsgRegistrationObserver(...args: any[]);
-		m_hSharedConnection: number;
-		m_messageHandlers: {
-			m_ErrorReportingStore: {
-				m_bEnabled: boolean;
-				m_bInitialized: boolean;
-				m_rgErrorQueue: any[];
-				m_sendTimer: any;
-				m_strProduct: string;
-				m_strVersion: string;
-				m_transport: {
-					MakeReady(...args: any[]);
-					SendMsg(e, t, r);
-					SendNotification(e, t);
-				};
-
-				BIsBlacklisted(e);
-				Init(e, t, r);
-				QueueSend(e);
-				ReportError(e, t): Promise<any>;
-				SendErrorReport(e);
-				SendErrorReports(e);
-			};
-			m_mapCallbacks: {};
-			m_mapServiceMethodHandlers: {};
-			m_rgRegisteredEMsgs: number[];
-			m_rgRegisteredServiceMethodHandlers: string[];
-
-			AddCallback(e, t, r);
-			AddServiceMethodHandler(e, t);
-			AddServiceNotificationHandler(e, t);
-			DEBUG_LogMessageDispatch(e, t);
-			DispatchMsgToHandlers(e, t);
-			InstallErrorReportingStore(e);
-			RegisterBaseEMessageHandler(e, t);
-			RegisterEMessageAction(e, t, r);
-			RegisterEMessageHandler(e, t, r);
-			RegisterServiceMethodHandler(e, t);
-			RegisterServiceMethodHandlerAction(e, t);
-			RegisterServiceNotificationHandler(e, t);
-			RegisterServiceNotificationHandlerAction(e, t);
-		};
-		m_nPerfClockServerMSOffset: number;
-		m_nWallClockDriftMS: number;
-		m_onConnect: {};
-		m_rtReconnectThrottleExpiration: number;
-		m_rtReconnectThrottleStart: number;
-		m_setConnectedServers: Set<number>;
-		m_setEMsgHandlers: Set<number>;
-		m_setServiceMethodHandlers: Set<string>;
-		m_steamid: {
-			m_ulSteamID: {
-				high: number;
-				low: number;
-				unsigned: boolean;
-
-				function(e);
-				function(e);
-				function();
-				function(e);
-				function(e);
-				function();
-				function();
-				function();
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function();
-				function(e);
-				function();
-				function();
-				function();
-				function();
-				function();
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function();
-				function();
-				function();
-				function();
-				function();
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function();
-				function();
-				function(e);
-				function();
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function(e);
-				function();
-				function();
-				function();
-				function();
-				function();
-				function(e);
-				function();
-				function(e);
-			};
-
-			BIsClanAccount();
-			BIsIndividualAccount();
-			BIsValid();
-			ConvertTo64BitString();
-			GetAccountID();
-			GetAccountType();
-			GetInstance();
-			GetUniverse();
-			Render();
-			SetAccountID(e);
-			SetAccountType(e);
-			SetFromComponents(e, t, r, i);
-			SetInstance(e);
-			SetUniverse(e);
-		};
-		m_strIPCountry: string;
-		m_strPersonaName: string;
-		m_unAccountFlags: number;
-
-		ClearHeartbeatInterval();
-		Connect();
-		Disconnect();
-		OnConnect();
-		OnLogonInfoChanged(e);
-		OnMsgRecvd(e);
-		OnSharedConnectionClosed();
-		OnSharedConnectionEstablished(e);
-		ResetHeartbeatInterval();
-		SendHeartbeat();
-		SendInternal(e);
-		SendMsgAndAwaitResponse(e, t);
-	};
+	m_cm: CMInterface;
 	m_collator: {};
-	m_mapApps: {
-		changeListeners_: any;
-		data_: {};
-		dehancer: any;
-		enhancer_(...args: any[]);
-		hasMap_: {};
-		interceptors_: any;
-		keysAtom_: {
-			diffValue_: number;
-			isBeingObserved: boolean;
-			isPendingUnobservation: boolean;
-			lastAccessedBy_: number;
-			lowestObserverState_: number;
-			name_: string;
-			observers_: Set<object>;
-			onBOL: any;
-			onBUOL: any;
+	m_mapApps: Map<
+		number,
+		{
+			LOG_CHANGE(...args: any[]);
+			__cachedLastPlayedSection: any;
+			__cachedLastPlayedTime: any;
+			__cachedReleaseYearString: any;
+			app_type: number;
+			appid: number;
+			canonicalAppType: number;
+			display_name: string;
+			header_filename: string;
+			icon_data: any;
+			icon_data_format: any;
+			icon_hash: string;
+			library_capsule_filename: any;
+			library_id: string;
+			local_cache_version: number;
+			m_gameid: any;
+			m_setStoreCategories: Set<number>;
+			m_setStoreTags: Set<number>;
+			m_ulGameId: any;
+			mastersub_appid: any;
+			mastersub_includedwith_logo: any;
+			metacritic_score: any;
+			minutes_playtime_forever: number;
+			minutes_playtime_last_two_weeks: number;
+			most_available_clientid: string;
+			mru_index: number;
+			number_of_copies: number;
+			optional_parent_app_id: any;
+			owner_account_id: any;
+			per_client_data: {
+				bytes_downloaded: string;
+				bytes_total: string;
+				client_name: string;
+				clientid: string;
+				display_status: number;
+				installed: boolean;
+				is_available_on_current_platform: boolean;
+				status_percentage: number;
+			}[];
+			review_percentage_with_bombs: number;
+			review_percentage_without_bombs: number;
+			review_score_with_bombs: number;
+			review_score_without_bombs: number;
+			rt_custom_image_mtime: any;
+			rt_last_time_locally_played: number;
+			rt_last_time_played: number;
+			rt_last_time_played_or_installed: number;
+			rt_original_release_date: number;
+			rt_purchased_time: number;
+			rt_recent_activity_time: number;
+			rt_steam_release_date: number;
+			rt_store_asset_mtime: number;
+			selected_clientid: string;
+			shortcut_override_appid: any;
+			site_license_site_name: any;
+			size_on_disk: string;
+			sort_as: string;
+			steam_hw_compat_category_packed: number;
+			subscribed_to: boolean;
+			third_party_mod: any;
+			visible_in_game_list: boolean;
+			vr_only: any;
+			vr_supported: any;
+			xbox_controller_support: number;
 
-			function();
-			function();
-			function();
-			function();
-			function();
-		};
-		name_: string;
-
-		function(e, t);
-		function();
-		function(e);
-		function(e);
-		function();
-		function(e, t);
-		function(e);
-		function(e);
-		function(e);
-		function(e);
-		function();
-		function(e);
-		function(e, t);
-		function(e);
-		function(e, t);
-		function();
-		function();
-		function(e, t);
-		function();
-	};
-	m_mapStoreTagLocalization: {};
+			BHasObservables();
+		}
+	>;
+	m_mapStoreTagLocalization: Map<number, { name: string; tagid: number }>;
 	m_msTagMapLoaded: number;
 
 	GetAppOverviewByAppID(e);

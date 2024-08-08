@@ -1,12 +1,12 @@
-import {
+import type {
 	CMInterface,
 	CurrentUser,
 	WebUIServiceTransport,
 } from "./shared/interfaces";
 
 export enum EUserConfigStoreNamespace {
-	Invalid,
-	Library,
+	Invalid = 0,
+	Library = 1,
 }
 
 export enum EConflictResolutionMethod {

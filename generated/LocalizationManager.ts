@@ -1,14 +1,20 @@
-export interface LocalizationManager {
-	m_cbkTokensChanged: {
-		m_vecCallbacks: any[];
+import type { CCallbackList } from "../normal/shared/interfaces";
 
-		ClearAllCallbacks();
-		CountRegistered();
-		Dispatch(...e);
-		Register(e);
-	};
-	m_mapFallbackTokens: {};
-	m_mapTokens: {};
+export interface LocalizationManager {
+	m_cbkTokensChanged: CCallbackList;
+	m_mapFallbackTokens: Map<any, any>;
+	m_mapTokens: Map<
+		string,
+		{
+			0: string;
+			1: string;
+			2: string;
+			3: string;
+			4: string;
+			5: string;
+			6: string;
+		}
+	>;
 	m_rgLocalesToUse: string[];
 
 	AddTokens(e, t);

@@ -1,5 +1,5 @@
 export interface installFolderStore {
-	m_InstallFolders: object[];
+	m_InstallFolders: { undefined }[];
 	m_bLowDiskSpace: boolean;
 
 	BSteamDeckHasLowDiskSpace();

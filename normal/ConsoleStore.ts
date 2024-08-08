@@ -1,4 +1,4 @@
-import { Unregisterable } from "./shared/interfaces";
+import type { Unregisterable } from "./shared/interfaces";
 
 type ConsoleSpewType = "error" | "info" | "input";
 

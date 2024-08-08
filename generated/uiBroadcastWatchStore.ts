@@ -6,54 +6,9 @@ export interface uiBroadcastWatchStore {
 		nVolume: number;
 		ulViewerToken: string;
 	};
-	m_mapBroadcasts: {
-		changeListeners_: any;
-		data_: {};
-		dehancer: any;
-		enhancer_(...args: any[]);
-		hasMap_: {};
-		interceptors_: any;
-		keysAtom_: {
-			diffValue_: number;
-			isBeingObserved: boolean;
-			isPendingUnobservation: boolean;
-			lastAccessedBy_: number;
-			lowestObserverState_: number;
-			name_: string;
-			observers_: Set<any>;
-			onBOL: any;
-			onBUOL: any;
-
-			function();
-			function();
-			function();
-			function();
-			function();
-		};
-		name_: string;
-
-		function(e, t);
-		function();
-		function(e);
-		function(e);
-		function();
-		function(e, t);
-		function(e);
-		function(e);
-		function(e);
-		function(e);
-		function();
-		function(e);
-		function(e, t);
-		function(e);
-		function(e, t);
-		function();
-		function();
-		function(e, t);
-		function();
-	};
-	m_mapClips: {};
-	m_mapVODs: {};
+	m_mapBroadcasts: Map<any, any>;
+	m_mapClips: Map<any, any>;
+	m_mapVODs: Map<any, any>;
 	m_schSaveSettings: {
 		m_fnCallback: any;
 		m_schTimer: any;

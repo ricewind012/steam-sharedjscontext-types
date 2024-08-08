@@ -1,26 +1,26 @@
-import {
+import type {
 	BrowserContext,
 	CCallbackList,
 	SubscribableValue,
 } from "./shared/interfaces";
 
 export enum ENotificationPosition {
-	TopLeft,
-	TopRight,
-	BottomLeft,
-	BottomRight,
+	TopLeft = 0,
+	TopRight = 1,
+	BottomLeft = 2,
+	BottomRight = 3,
 }
 
 export enum EWindowType {
-	MainGamepadUI,
-	OverlayGamepadUI,
-	Keyboard,
-	ControllerConfigurator,
-	VR,
-	MainDesktopUI,
-	DesktopLogin,
-	OverlayDesktopUI,
-	SteamChinaReviewLauncher,
+	MainGamepadUI = 0,
+	OverlayGamepadUI = 1,
+	Keyboard = 2,
+	ControllerConfigurator = 3,
+	VR = 4,
+	MainDesktopUI = 5,
+	DesktopLogin = 6,
+	OverlayDesktopUI = 7,
+	SteamChinaReviewLauncher = 8,
 }
 
 type SteamWindowSettingsSection =

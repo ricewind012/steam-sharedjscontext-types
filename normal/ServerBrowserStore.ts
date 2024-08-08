@@ -1,4 +1,4 @@
-import { CSteamID } from "./shared/CSteamID";
+import type { CSteamID } from "./shared/CSteamID";
 
 export interface GameInfoDialog {
 	m_autoRetry: "None" | "AutoRetryAlert" | "AutoRetryJoin";

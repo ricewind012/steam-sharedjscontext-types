@@ -3,8 +3,10 @@ import cp from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
-// Globals that do not end with "store"
-const otherGlobals = [
+/**
+ * Globals that do not end with "store"
+ */
+const OTHER_GLOBALS = [
 	"App",
 	"ClientConnectionAPI",
 	"FocusNavController",
@@ -40,10 +42,14 @@ const runWithResult = async (expression) =>
 async function main() {
 	await runCdpFile("ConvertToTSInterface.js");
 
-	const stores = await runWithResult(
-		"Object.keys(window).filter(e => e !== 'cookieStore' && e.toLowerCase().endsWith('store'))",
-	);
-	for (const store of [...stores, ...otherGlobals]) {
+	const stores = await runWithResult(`
+	Object.keys(window).filter(
+		(e) =>
+			e !== 'cookieStore' &&
+			e !== 'SteamUIStore' &&
+			e.toLowerCase().endsWith('store'))
+	`);
+	for (const store of [...stores, ...OTHER_GLOBALS].sort()) {
 		const output = await run(
 			`ActuallyConvertToTSInterface(${store}, '${store}')`,
 		);
@@ -54,8 +60,11 @@ async function main() {
 
 		const file = path.join("generated", `${store}.ts`);
 		fs.writeFileSync(file, output?.result?.value);
-		cp.spawnSync("npx", ["@biomejs/biome", "format", "--write", file]);
+		console.log("[%s] done", store);
 	}
+
+	cp.spawnSync("npx", ["@biomejs/biome", "lint", "--write", "generated"]);
+	cp.spawnSync("npx", ["@biomejs/biome", "format", "--write", "generated"]);
 
 	connection.close();
 }
