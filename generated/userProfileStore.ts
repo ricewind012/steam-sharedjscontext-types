@@ -1,3 +1,4 @@
+import type { SteamLocalStorage } from "../normal/shared/storage";
 import type { CMInterface } from "../normal/shared/CMInterface";
 
 export interface userProfileStore {
@@ -5,7 +6,7 @@ export interface userProfileStore {
 	m_FriendEquippedProfileItemsChangedHandler: { invoke(r, n); unregister() };
 	m_equippedItems: any;
 	m_keyboardSkins: any;
-	m_localStorage: Storage;
+	m_localStorage: SteamLocalStorage;
 	m_mapKeyboardSkinThemes: Map<any, any>;
 	m_notifyClaimRewardsTimer: any;
 	m_promiseEquipped: any;

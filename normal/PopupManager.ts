@@ -81,7 +81,7 @@ export interface SteamPopupParameters {
 	 */
 	target_browser: BrowserContext;
 	/**
-	 * Popup name.
+	 * Popup (internal) name.
 	 */
 	m_strName: string;
 	/**
@@ -110,7 +110,7 @@ export interface SteamPopupParameters {
  * Supports CPopup replacement too.
  */
 export interface CRenderWhenLinksReady {
-	m_fnRender: () => void | undefined;
+	m_fnRender: () => void;
 	m_rgLoadingLinks: Node[];
 
 	AddLink(link: Node, checkIfLoaded: boolean): void;
@@ -138,17 +138,25 @@ export interface SteamPopup {
 	/**
 	 * Root element.
 	 */
-	m_element: Node;
+	m_element: HTMLElement;
 	m_fnReadyToRender(...args: any[]): any;
 	m_onCreateRender: any;
 	m_popup: Window;
 	m_renderWhenReady: CRenderWhenLinksReady;
 	m_rgParams: Partial<SteamPopupParameters>;
+	/**
+	 * Popup (internal) name.
+	 */
+	m_strName: string;
+	/**
+	 * Document title.
+	 */
+	m_strTitle: string;
 }
 
 export interface CPopupManager {
 	DebouncedSaveSavedDimensionStore_DebounceProperties: {
-		hTimer: any;
+		hTimer: number;
 		nPending: number;
 	};
 	m_DynamicCSSObserver: MutationObserver;

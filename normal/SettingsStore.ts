@@ -1,4 +1,5 @@
 import type { SubscribableValue } from "./shared/interfaces";
+import type { SteamLocalStorage } from "./shared/storage";
 import type { CMInterface } from "./shared/CMInterface";
 
 export enum ETextFilterSetting {
@@ -62,14 +63,7 @@ export interface SettingsStore {
 	m_StorePreferences: StorePreferences;
 	m_bSteamIsInTournamentMode: boolean;
 	m_bWindowed: boolean;
-	/**
-	 * @todo NOT CloudStorage
-	 */
-	m_localStorage: {
-		GetString(e: any): any;
-		RemoveObject(e: any): any;
-		StoreString(e: any, t: any): any;
-	};
+	m_localStorage: SteamLocalStorage;
 	m_setDeferredSettings: Set<any>;
 	m_strTimeZoneID: SubscribableValue<string>;
 

@@ -1,3 +1,4 @@
+import type { SteamLocalStorage } from "../normal/shared/storage";
 import type { CMInterface } from "../normal/shared/CMInterface";
 
 export interface trendingStore {
@@ -9,7 +10,7 @@ export interface trendingStore {
 		nFailureRetryIntervalMS: number;
 		nMaxLifetimeMS: number;
 		nStorageVersion: number;
-		storage: Storage;
+		storage: SteamLocalStorage;
 		strStorageKey: string;
 	};
 	m_timeoutNextFetch: number;

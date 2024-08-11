@@ -1,9 +1,9 @@
-import type { CloudStorage } from "./shared/storage";
+import type { SteamCloudStorage } from "../normal/shared/storage";
 
 export interface gameReleaseStore {
 	m_bForceCloudUpdate: boolean;
 	m_cloudData: { apps: any[]; lastChangeNumber: number };
-	m_cloudStorage: CloudStorage;
+	m_cloudStorage: SteamCloudStorage;
 	m_hCloudAutorun(...args: any[]);
 	m_hPrePurchasedAppChanges: { unregister(...args: any[]) };
 	m_nShownAppID: number;

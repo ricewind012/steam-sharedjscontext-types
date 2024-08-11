@@ -1,4 +1,4 @@
-import type { CloudStorage } from "./shared/storage";
+import type { SteamCloudStorage } from "../normal/shared/storage";
 import type { CMInterface } from "../normal/shared/CMInterface";
 
 export interface App {
@@ -34,7 +34,7 @@ export interface App {
 	m_bStartedStage2: boolean;
 	m_bSupportAlertModalActive: boolean;
 	m_bWasEverLoggedIn: boolean;
-	m_cloudStorage: CloudStorage;
+	m_cloudStorage: SteamCloudStorage;
 	m_cm: CMInterface;
 	m_eLoginState: number;
 

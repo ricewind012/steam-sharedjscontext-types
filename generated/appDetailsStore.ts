@@ -44,7 +44,6 @@ export interface appDetailsStore {
 				bOverrideInternalResolution: boolean;
 				bRemotePlayTogether: boolean;
 				bRequiresLegacyCDKey: boolean;
-				bShortcutIsVR: boolean;
 				bShowCDKeyInMenus: boolean;
 				bShowControllerConfig: boolean;
 				bStorePagePublished: boolean;
@@ -80,6 +79,7 @@ export interface appDetailsStore {
 				strDeveloperURL: string;
 				strDisplayName: string;
 				strExternalSubscriptionURL: string;
+				strFallbackHeaderImage: string;
 				strFlatpakAppID: string;
 				strHomepageURL: string;
 				strInstallFolder: string;
@@ -89,10 +89,8 @@ export interface appDetailsStore {
 				strOwnerSteamID: string;
 				strResolutionOverride: string;
 				strSelectedBeta: string;
-				strShortcutExe: string;
-				strShortcutLaunchOptions: string;
-				strShortcutStartDir: string;
 				strSteamDeckBlogURL: string;
+				strStoreHeaderImage: string;
 				unAppID: number;
 				unEntitledContentApp: number;
 				unMemberCopies: number;

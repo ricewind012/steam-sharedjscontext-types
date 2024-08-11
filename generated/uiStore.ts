@@ -1,3 +1,4 @@
+import type { SteamLocalStorage } from "../normal/shared/storage";
 import type { CMInterface } from "../normal/shared/CMInterface";
 
 export interface uiStore {
@@ -43,9 +44,9 @@ export interface uiStore {
 		MatchesScoredImpl(e);
 	};
 	m_eSelectedGameListView: number;
-	m_gameListSelection: { nAppId: any; strCollectionId: string };
+	m_gameListSelection: { nAppId: number; strCollectionId: string };
 	m_latchedMostRecentApp: number;
-	m_localStorage: Storage;
+	m_localStorage: SteamLocalStorage;
 	m_mapLibrarySectionCollapseState: Map<string, {}>;
 	m_setStoreSuggestionIds: Set<any>;
 	m_setStoreSuggestions: any;

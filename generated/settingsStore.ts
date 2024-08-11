@@ -1,4 +1,5 @@
 import type { SubscribableValue } from "../normal/shared/interfaces";
+import type { SteamLocalStorage } from "../normal/shared/storage";
 import type { CMInterface } from "../normal/shared/CMInterface";
 
 export interface settingsStore {
@@ -288,7 +289,7 @@ export interface settingsStore {
 	};
 	m_bSteamIsInTournamentMode: boolean;
 	m_bWindowed: boolean;
-	m_localStorage: Storage;
+	m_localStorage: SteamLocalStorage;
 	m_setDeferredSettings: Set<any>;
 	m_strTimeZoneID: SubscribableValue<string>;
 

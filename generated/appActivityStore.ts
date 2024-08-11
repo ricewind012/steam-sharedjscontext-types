@@ -1,10 +1,11 @@
+import type { SteamLocalStorage } from "../normal/shared/storage";
 import type { CMInterface } from "../normal/shared/CMInterface";
 
 export interface appActivityStore {
 	RestoreCachedActivity(...args: any[]);
 	m_CMInterface: CMInterface;
 	m_deckCompatibilityFeedback_EligibleApps: {};
-	m_localStorage: Storage;
+	m_localStorage: SteamLocalStorage;
 	m_mapAppActivity: Map<any, any>;
 	m_rgDeckCompatibilityFeedback_Ask: any[];
 	m_setAppFetchRequested: Set<any>;

@@ -1,6 +1,8 @@
+import type { SteamLocalStorage } from "../normal/shared/storage";
+
 export interface securitystore {
 	m_ActiveLockScreenProps: any;
-	m_MachineStorage: Storage;
+	m_MachineStorage: SteamLocalStorage;
 	m_Settings: {
 		bLockDesktopMode: boolean;
 		bLockOnLogin: boolean;

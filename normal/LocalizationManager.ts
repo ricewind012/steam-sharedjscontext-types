@@ -11,7 +11,7 @@ export interface LocalizationManager {
 	 * Adds `dict` to {@link m_mapTokens}
 	 * and adds `fallback` to {@link m_mapFallbackTokens}.
 	 */
-	AddTokens(dict: any, fallback: any): void;
+	AddTokens(dict: any, fallback?: any): void;
 
 	/**
 	 * @returns `true` if the string looks like a token (starts with a "#"),
@@ -28,7 +28,7 @@ export interface LocalizationManager {
 	 *
 	 * @returns a localized string.
 	 */
-	LocalizeString(token: string, failSilently: boolean): string;
+	LocalizeString(token: string, failSilently?: boolean): string;
 
 	/**
 	 * Like {@link LocalizeString}, but falls back to the given string
@@ -36,7 +36,7 @@ export interface LocalizationManager {
 	 *
 	 * @returns a localized or the given string.
 	 */
-	LocalizeIfToken(token: string, failSilently: boolean): string;
+	LocalizeIfToken(token: string, failSilently?: boolean): string;
 
 	/**
 	 * Like {@link LocalizeString}, but uses fallback tokens instead.

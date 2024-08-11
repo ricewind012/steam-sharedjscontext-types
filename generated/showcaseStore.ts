@@ -1,10 +1,13 @@
-import type { CloudStorage } from "./shared/storage";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
 
 export interface showcaseStore {
-	m_cloudStorage: CloudStorage;
-	m_localStorage: Storage;
+	m_cloudStorage: SteamCloudStorage;
+	m_localStorage: SteamLocalStorage;
 	m_mapCollectionStorage: {
-		m_cloudStorage: CloudStorage;
+		m_cloudStorage: SteamCloudStorage;
 		m_strKeyPrefix: string;
 
 		GetObject(e);
@@ -31,7 +34,7 @@ export interface showcaseStore {
 			strCollectionId: string;
 		}
 	>;
-	m_roamingStorage: Storage;
+	m_roamingStorage: SteamLocalStorage;
 
 	AddNewShowcase(e = "");
 	BHasEmptyShowcase();

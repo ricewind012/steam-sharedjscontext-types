@@ -9,7 +9,7 @@ export enum EConflictResolutionMethod {
 	InitializationOnly = "initial",
 }
 
-export interface Storage {
+export interface SteamLocalStorage {
 	GetObject(key: string): Promise<any | null>;
 	GetString(key: string): Promise<string | null>;
 	/**
@@ -27,7 +27,7 @@ export interface Storage {
  * Will break the client if a key isn't a string.
  * Probably better to not look at this thing at all.
  */
-export interface CloudStorage extends Storage {
+export interface SteamCloudStorage extends SteamLocalStorage {
 	m_eNamespace: EUserConfigStoreNamespace;
 
 	Get(key: string): string | null;

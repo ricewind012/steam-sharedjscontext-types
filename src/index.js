@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 /**
- * Globals that do not end with "store"
+ * Globals that do not have a detectable name.
  */
 const OTHER_GLOBALS = [
 	"App",
@@ -13,13 +13,13 @@ const OTHER_GLOBALS = [
 	"LocalizationManager",
 	"MainWindowBrowserManager",
 	"RemotePlayStore_SteamUI",
+	"SteamClient",
 	"StoreItemCache",
 	"appAchievementProgressCache",
 	"appDetailsCache",
 	"cloudStorageInternalState",
-	"g_GRS",
-	"g_PopupManager",
 ];
+const GENERATED_DIR = "generated";
 
 const connection = await cdp({
 	host: "127.0.0.1",
@@ -28,6 +28,9 @@ const connection = await cdp({
 });
 
 const readFile = (file) => fs.readFileSync(file).toString();
+const runBiomeCmd = (cmd) =>
+	cp.spawnSync("npx", ["@biomejs/biome", cmd, "--write", GENERATED_DIR]);
+
 const run = async (expression) =>
 	await connection.Runtime.evaluate({
 		expression,
@@ -43,11 +46,11 @@ async function main() {
 	await runCdpFile("ConvertToTSInterface.js");
 
 	const stores = await runWithResult(`
-	Object.keys(window).filter(
-		(e) =>
-			e !== 'cookieStore' &&
-			e !== 'SteamUIStore' &&
-			e.toLowerCase().endsWith('store'))
+		Object.keys(window).filter(
+			(e) =>
+				e !== "cookieStore" &&
+				(e.toLowerCase().endsWith("store") || e.startsWith("g_")),
+		);
 	`);
 	for (const store of [...stores, ...OTHER_GLOBALS].sort()) {
 		const output = await run(
@@ -58,13 +61,13 @@ async function main() {
 			continue;
 		}
 
-		const file = path.join("generated", `${store}.ts`);
+		const file = path.join(GENERATED_DIR, `${store}.ts`);
 		fs.writeFileSync(file, output?.result?.value);
 		console.log("[%s] done", store);
 	}
 
-	cp.spawnSync("npx", ["@biomejs/biome", "lint", "--write", "generated"]);
-	cp.spawnSync("npx", ["@biomejs/biome", "format", "--write", "generated"]);
+	runBiomeCmd("lint");
+	runBiomeCmd("format");
 
 	connection.close();
 }

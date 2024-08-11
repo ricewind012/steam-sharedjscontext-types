@@ -1,9 +1,12 @@
-import type { CloudStorage } from "./shared/storage";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
 
 export interface collectionStore {
-	m_cloudStorage: CloudStorage;
+	m_cloudStorage: SteamCloudStorage;
 	m_cloudStorageMap: {
-		m_cloudStorage: CloudStorage;
+		m_cloudStorage: SteamCloudStorage;
 		m_strKeyPrefix: string;
 
 		GetObject(e);
@@ -20,7 +23,7 @@ export interface collectionStore {
 		set(e, t, r, n);
 		values();
 	};
-	m_localStorage: Storage;
+	m_localStorage: SteamLocalStorage;
 	m_mapCollectionsFromStorage: Map<
 		string,
 		{

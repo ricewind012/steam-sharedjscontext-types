@@ -1,6 +1,6 @@
 import type { CurrentUser, WebUIServiceTransport } from "./shared/interfaces";
 import type { CMInterface } from "./shared/CMInterface";
-import type { CloudStorage } from "./shared/storage";
+import type { SteamCloudStorage } from "./shared/storage";
 
 export interface App {
 	m_CurrentUser: CurrentUser;
@@ -13,7 +13,7 @@ export interface App {
 	 * @todo Does not seem to be used.
 	 */
 	m_bWasEverLoggedIn: boolean;
-	m_cloudStorage: CloudStorage;
+	m_cloudStorage: SteamCloudStorage;
 	m_cm: CMInterface;
 	m_eLoginState: number;
 	m_transportClient: WebUIServiceTransport;
@@ -31,7 +31,7 @@ export interface App {
 	BSupportAlertDialogActive(): boolean;
 	BWasEverLoggedIn(): boolean;
 	CloseSupportAlertsModal(): void;
-	GetCloudStorageForLibrary(): CloudStorage;
+	GetCloudStorageForLibrary(): SteamCloudStorage;
 	GetCurrentUser(): CurrentUser;
 	GetFamilyGroupID(): CurrentUser["strFamilyGroupID"];
 	GetFamilyGroupName(): CurrentUser["strFamilyGroupName"];

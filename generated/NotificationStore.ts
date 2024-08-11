@@ -18,7 +18,7 @@ export interface NotificationStore {
 	m_nUnviewedNotifications: number;
 	m_rgContextsRenderingToasts: any[];
 	m_rgNotificationToasts: any[];
-	m_rgNotificationTray: { undefined }[];
+	m_rgNotificationTray: any[];
 	m_rgPendingToasts: any[];
 	m_rtNextTrayRemove: number;
 

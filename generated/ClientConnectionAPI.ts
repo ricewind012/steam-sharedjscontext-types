@@ -3,7 +3,7 @@ export interface ClientConnectionAPI {
 	m_connection: {
 		m_ClientInfo: {
 			bFriendsUIEnabled: boolean;
-			rgSupportedMessages: string[];
+			rgSupportedMessages: any[];
 			ulVersion: string;
 			unAccountID: number;
 		};
@@ -13,14 +13,14 @@ export interface ClientConnectionAPI {
 		m_iCallSeq: number;
 		m_mapWaitingCallbacks: Map<any, any>;
 		m_promiseConnect: any;
-		m_socket: {};
+		m_socket: any;
 
 		BSendMsg(e, t);
 		Connect();
 		OnSocketMessage(e);
 		SendMsgAndAwaitResponse(e);
 	};
-	m_mapCacheSubscribedApp: Map<number, {}>;
+	m_mapCacheSubscribedApp: Map<any, any>;
 
 	BClientAccountMatches();
 	BClientConnected();

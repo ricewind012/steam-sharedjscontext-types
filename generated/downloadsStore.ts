@@ -1,4 +1,5 @@
 import type { CCallbackList } from "../normal/shared/interfaces";
+import type { SteamLocalStorage } from "../normal/shared/storage";
 import type { CMInterface } from "../normal/shared/CMInterface";
 
 export interface downloadsStore {
@@ -37,7 +38,7 @@ export interface downloadsStore {
 		update_start_time: number;
 		update_state: string;
 	};
-	m_MachineStorage: Storage;
+	m_MachineStorage: SteamLocalStorage;
 	m_cmInterface: CMInterface;
 	m_fnCallbackOnDownloadItemsUpdate: CCallbackList;
 	m_mapRecentDownloadPreviousBuilds: Map<number, {}>;

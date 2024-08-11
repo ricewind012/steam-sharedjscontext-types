@@ -1,4 +1,4 @@
-const EZ_IDENTIFIABLE_OBJECT_TYPES = ["RegExp"];
+const EZ_IDENTIFIABLE_OBJECT_TYPES = ["RegExp", "Window"];
 
 function GetVecType(vec) {
 	const vecType = typeof [...vec][0];
@@ -37,7 +37,9 @@ function ConvertToTSInterface(obj) {
 
 			if (m.RemoveObject) {
 				const interfaceName =
-					typeof m.m_eNamespace !== "undefined" ? "CloudStorage" : "Storage";
+					typeof m.m_eNamespace !== "undefined"
+						? "SteamCloudStorage"
+						: "SteamLocalStorage";
 				return `${e}: ${interfaceName}`;
 			}
 
@@ -118,7 +120,7 @@ function ActuallyConvertToTSInterface(obj, name) {
 			CCallbackList,
 			SubscribableValue,
 		} from "../normal/shared/interfaces";
-		import type { CloudStorage } from "./shared/storage";
+		import type { SteamCloudStorage, SteamLocalStorage } from "../normal/shared/storage";
 		import type { CMInterface } from "../normal/shared/CMInterface";
 
 		export interface ${name} { ${ConvertToTSInterface(obj)} }

@@ -1,10 +1,11 @@
+import type { SteamLocalStorage } from "../normal/shared/storage";
 import type { CMInterface } from "../normal/shared/CMInterface";
 
 export interface appSpotlightStore {
 	m_CMInterface: CMInterface;
 	m_dlcLocalStore: {};
 	m_gamePlayLocalStore: {};
-	m_localStorage: Storage;
+	m_localStorage: SteamLocalStorage;
 	m_mapAppData: Map<any, any>;
 
 	BHasAppData(e);
