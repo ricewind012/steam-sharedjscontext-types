@@ -131,6 +131,7 @@ export interface urlStore {
 		UserLeaderboardsPage: { feature: number; url: string };
 		UserStatsPage: { feature: number; url: string };
 		UserWishlist: { feature: number; url: string };
+		VideoCDN: { feature: number; url: string };
 		WatchVideo: { feature: number; url: string };
 		WebAPI: { feature: number; url: string };
 		WorkshopEula: { feature: number; url: string };
@@ -345,6 +346,7 @@ export interface urlStore {
 		userleaderboardspage: { bDuplicate: boolean; feature: number; url: string };
 		userstatspage: { bDuplicate: boolean; feature: number; url: string };
 		userwishlist: { bDuplicate: boolean; feature: number; url: string };
+		videocdn: { bDuplicate: boolean; feature: number; url: string };
 		watchvideo: { bDuplicate: boolean; feature: number; url: string };
 		webapi: { bDuplicate: boolean; feature: number; url: string };
 		workshopeula: { bDuplicate: boolean; feature: number; url: string };
@@ -379,6 +381,7 @@ export interface urlStore {
 	GetStoreIconBaseURL();
 	GetStoreURL();
 	GetStoreVRURL();
+	GetVideoCDNAssetURL();
 	GetWebApiURL();
 	Init(): Promise<any>;
 	NavigateToSteamURLInOwningWindow(e, t, ...r);

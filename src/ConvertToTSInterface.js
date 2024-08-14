@@ -120,7 +120,10 @@ function ActuallyConvertToTSInterface(obj, name) {
 			CCallbackList,
 			SubscribableValue,
 		} from "../normal/shared/interfaces";
-		import type { SteamCloudStorage, SteamLocalStorage } from "../normal/shared/storage";
+		import type {
+			SteamCloudStorage,
+			SteamLocalStorage,
+		} from "../normal/shared/storage";
 		import type { CMInterface } from "../normal/shared/CMInterface";
 
 		export interface ${name} { ${ConvertToTSInterface(obj)} }

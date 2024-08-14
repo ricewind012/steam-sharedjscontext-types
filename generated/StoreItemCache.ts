@@ -22,11 +22,11 @@ export interface StoreItemCache {
 				m_strCommunityIcon: string;
 				m_strHeaderURL: string;
 				m_strHeroCapsuleURL: string;
-				m_strHeroCapsuleURL_2x: string;
+				m_strHeroCapsuleURL_2x: any;
 				m_strLibraryCapsuleURL: string;
 				m_strLibraryCapsuleURL_2x: string;
 				m_strLibraryHeroURL: string;
-				m_strLibraryHeroURL_2x: string;
+				m_strLibraryHeroURL_2x: any;
 				m_strMainCapsuleURL: string;
 				m_strPackageHeaderURL: any;
 				m_strPageBackgroundURL: string;
@@ -61,14 +61,13 @@ export interface StoreItemCache {
 				user_active_discounts: any[];
 				user_can_purchase_as_gift: boolean;
 			};
-			m_ContentDescriptorIDs: any[];
+			m_ContentDescriptorIDs: number[];
 			m_DataRequested: {
 				include_assets: boolean;
 				include_platforms: boolean;
 				include_tag_count: number;
 			};
 			m_Platforms: {
-				mac: boolean;
 				steam_deck_compat_category: number;
 				steamos_linux: boolean;
 				vr_support: {};
@@ -94,6 +93,7 @@ export interface StoreItemCache {
 			m_freeWeekend: {};
 			m_rgIncludedAppIDs: any[];
 			m_rgIncludedAppTypes: any[];
+			m_rgLinks: any;
 			m_rgPurchaseOptions: any;
 			m_rgStoreTagIDs: any[];
 			m_rgStoreTags: any[];
@@ -158,6 +158,7 @@ export interface StoreItemCache {
 			GetIncludedAppIDsOrSelf();
 			GetIncludedAppTypes();
 			GetInternalName();
+			GetLinks();
 			GetMicroTrailer();
 			GetName();
 			GetOnlyAllAgesSafeScreenshots();

@@ -83,10 +83,12 @@ export interface settingsStore {
 		game_notes_enable_spellcheck: boolean;
 		gamescope_allow_tearing: boolean;
 		gamescope_app_target_framerate: number;
+		gamescope_composite_debug: boolean;
 		gamescope_disable_framelimit: boolean;
 		gamescope_disable_mura_correction: boolean;
 		gamescope_display_refresh_rate: number;
 		gamescope_enable_app_target_framerate: boolean;
+		gamescope_force_composite: boolean;
 		gamescope_hdr_visualization: number;
 		gamescope_include_steamui_in_screenshots: boolean;
 		gamescope_use_game_refresh_rate_in_steam: boolean;

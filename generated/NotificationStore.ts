@@ -16,11 +16,11 @@ export interface NotificationStore {
 	m_mapAppOverlayToasts: Map<any, any>;
 	m_nNextTestNotificationID: number;
 	m_nUnviewedNotifications: number;
-	m_rgContextsRenderingToasts: any[];
 	m_rgNotificationToasts: any[];
-	m_rgNotificationTray: any[];
+	m_rgNotificationTray: { undefined }[];
 	m_rgPendingToasts: any[];
 	m_rtNextTrayRemove: number;
+	m_setContextsRenderingToasts: Set<any>;
 
 	AddBroadcastAvailableToWatch(e, t);
 	AddOverlaySplashScreen(e);
