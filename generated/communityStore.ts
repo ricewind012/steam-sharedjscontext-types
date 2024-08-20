@@ -36,17 +36,7 @@ export interface communityStore {
 		Init(e);
 		RequestEmoticonListInternal();
 	};
-	m_UserStatusPostBBCodeParser: {
-		m_dictComponents: Map<
-			string,
-			{ Constructor(...args: any[]); autocloses: boolean }
-		>;
-		m_fnAccumulatorFactory();
-		m_renderingLanguage: number;
-
-		ParseBBCode(e, t, r = !1);
-		UpdateOverrideLanguage(e);
-	};
+	m_UserStatusPostBBCodeParser: any;
 
 	FormatAndParseUserStatusBBCode(e, t = {});
 	Init(e): Promise<any>;

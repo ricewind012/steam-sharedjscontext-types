@@ -41,7 +41,7 @@ export interface downloadsStore {
 	m_MachineStorage: SteamLocalStorage;
 	m_cmInterface: CMInterface;
 	m_fnCallbackOnDownloadItemsUpdate: CCallbackList;
-	m_mapRecentDownloadPreviousBuilds: Map<number, {}>;
+	m_mapRecentDownloadPreviousBuilds: Map<number, { undefined }>;
 	m_rgRecentlyCompleted: { undefined }[];
 
 	GetDownloadItemForAppId(e);

@@ -55,19 +55,19 @@ export interface MainWindowBrowserManager {
 			key: string;
 			pathname: string;
 			search: string;
-			state: {};
+			state: any;
 		};
 		push(...args: any[]);
 		replace(...args: any[]);
 	};
 	m_lastActiveTab: string;
-	m_lastActiveTabURLs: {};
+	m_lastActiveTabURLs: { me: string };
 	m_lastLocation: {
 		hash: string;
 		key: string;
 		pathname: string;
 		search: string;
-		state: {};
+		state: any;
 	};
 	m_loadErrorCode: any;
 	m_loadErrorDesc: any;

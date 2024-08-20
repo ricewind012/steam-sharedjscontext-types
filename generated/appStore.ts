@@ -15,7 +15,7 @@ export interface appStore {
 			appid: number;
 			canonicalAppType: number;
 			display_name: string;
-			header_filename: any;
+			header_filename: string;
 			icon_data: any;
 			icon_data_format: any;
 			icon_hash: string;
@@ -32,7 +32,7 @@ export interface appStore {
 			minutes_playtime_forever: number;
 			minutes_playtime_last_two_weeks: number;
 			most_available_clientid: string;
-			mru_index: number;
+			mru_index: any;
 			number_of_copies: number;
 			optional_parent_app_id: any;
 			owner_account_id: any;
@@ -70,7 +70,7 @@ export interface appStore {
 			visible_in_game_list: boolean;
 			vr_only: any;
 			vr_supported: any;
-			xbox_controller_support: any;
+			xbox_controller_support: number;
 
 			BAreCategoriesEqual(e);
 			BAreSetsEqual(e, t);

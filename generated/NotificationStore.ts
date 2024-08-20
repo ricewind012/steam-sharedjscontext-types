@@ -1,4 +1,7 @@
-import type { CCallbackList } from "../normal/shared/interfaces";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
 
 export interface NotificationStore {
 	m_LastSystemUpdateNotification: any;
@@ -8,7 +11,6 @@ export interface NotificationStore {
 	m_bShowedLowBatteryTempNotification: boolean;
 	m_bShowedRefreshLogin: boolean;
 	m_bTestNotifications: boolean;
-	m_cbkCurrentToast: CCallbackList;
 	m_cbkNotificationTray: CCallbackList;
 	m_hPendingToastTimer: any;
 	m_hTrayRemoveTimer: any;
@@ -17,10 +19,11 @@ export interface NotificationStore {
 	m_nNextTestNotificationID: number;
 	m_nUnviewedNotifications: number;
 	m_rgNotificationToasts: any[];
-	m_rgNotificationTray: { undefined }[];
+	m_rgNotificationTray: any[];
 	m_rgPendingToasts: any[];
 	m_rtNextTrayRemove: number;
 	m_setContextsRenderingToasts: Set<any>;
+	m_valueCurrentToast: SubscribableValue<{ undefined }>;
 
 	AddBroadcastAvailableToWatch(e, t);
 	AddOverlaySplashScreen(e);

@@ -68,6 +68,7 @@ export interface StoreItemCache {
 				include_tag_count: number;
 			};
 			m_Platforms: {
+				mac: boolean;
 				steam_deck_compat_category: number;
 				steamos_linux: boolean;
 				vr_support: {};
@@ -79,7 +80,7 @@ export interface StoreItemCache {
 			m_Screenshots: any;
 			m_SelfPurchaseOption: any;
 			m_StoreCategories: {
-				controller_categoryids: number[];
+				controller_categoryids: any[];
 				feature_categoryids: number[];
 				supported_player_categoryids: number[];
 			};

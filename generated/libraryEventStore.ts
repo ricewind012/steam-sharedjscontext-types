@@ -11,7 +11,7 @@ export interface libraryEventStore {
 	m_bLastPriorityChangeWasLower: boolean;
 	m_bNoMoreOrLessDataFetched: boolean;
 	m_iGetBestEventsForUserErrorBackoff: number;
-	m_mapAppEventPriorities: Map<number, { undefined }>;
+	m_mapAppEventPriorities: Map<any, any>;
 	m_mapFailedImagesThisSession: Map<any, any>;
 	m_nAppIDJustChangedPriority: number;
 	m_nEventsReturnedLastTime: string;
@@ -27,7 +27,7 @@ export interface libraryEventStore {
 	};
 	m_vecAppsShowingLess: any[];
 	m_vecAppsShowingMore: any[];
-	m_vecHomeBestEventsForUser: { undefined }[];
+	m_vecHomeBestEventsForUser: any[];
 	m_vecHomeTakeOverEventsForUser: any[];
 
 	AddToDoNotShowList(e);

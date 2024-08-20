@@ -14,7 +14,14 @@ export interface g_GRS {
 	m_mapSharedClipLoaders: Map<any, any>;
 	m_mapTimelineLoaders: Map<any, any>;
 	m_recordingState: any;
-	m_rgAppsWithTimelines: any[];
+	m_rgAppsWithTimelines: {
+		file_size: string;
+		game_id: string;
+		is_active: boolean;
+		most_recent_start_time: number;
+		timeline_duration_seconds: number;
+		video_duration_seconds: number;
+	}[];
 	m_strLastClipID: any;
 	m_transport: {
 		MakeReady(...args: any[]);

@@ -44,12 +44,24 @@ export interface appDetailsStore {
 				bOverrideInternalResolution: boolean;
 				bRemotePlayTogether: boolean;
 				bRequiresLegacyCDKey: boolean;
-				bShortcutIsVR: boolean;
 				bShowCDKeyInMenus: boolean;
 				bShowControllerConfig: boolean;
 				bStorePagePublished: boolean;
 				bSupportsCDKeyCopyToClipboard: boolean;
 				bWorkshopVisible: boolean;
+				deckDerivedProperties: {
+					gamescope_frame_limiter_not_supported: boolean;
+					hdr_support: number;
+					non_deck_display_glyphs: boolean;
+					primary_player_is_controller_slot_0: boolean;
+					requires_h264: boolean;
+					requires_internet_for_setup: boolean;
+					requires_internet_for_singleplayer: boolean;
+					requires_manual_keyboard_invoke: boolean;
+					requires_non_controller_launcher_nav: boolean;
+					small_text: boolean;
+					supported_input: number;
+				};
 				eAppOwnershipFlags: number;
 				eAppUpdateError: number;
 				eAutoUpdateValue: number;
@@ -63,6 +75,18 @@ export interface appDetailsStore {
 				iInstallFolder: number;
 				lDiskUsageBytes: number;
 				lDlcUsageBytes: number;
+				libraryAssets: {
+					logoPosition: {
+						nHeightPct: number;
+						nWidthPct: number;
+						pinnedPosition: string;
+					};
+					strCapsuleImage: string;
+					strHeaderImage: string;
+					strHeroBlurImage: string;
+					strHeroImage: string;
+					strLogoImage: string;
+				};
 				nBuildID: number;
 				nCompatToolPriority: number;
 				nPlaytimeForever: number;
@@ -80,6 +104,7 @@ export interface appDetailsStore {
 				strDeveloperURL: string;
 				strDisplayName: string;
 				strExternalSubscriptionURL: string;
+				strFallbackHeaderImage: string;
 				strFlatpakAppID: string;
 				strHomepageURL: string;
 				strInstallFolder: string;
@@ -89,10 +114,8 @@ export interface appDetailsStore {
 				strOwnerSteamID: string;
 				strResolutionOverride: string;
 				strSelectedBeta: string;
-				strShortcutExe: string;
-				strShortcutLaunchOptions: string;
-				strShortcutStartDir: string;
 				strSteamDeckBlogURL: string;
+				strStoreHeaderImage: string;
 				unAppID: number;
 				unEntitledContentApp: number;
 				unMemberCopies: number;
@@ -102,7 +125,10 @@ export interface appDetailsStore {
 				vecBetas: any[];
 				vecChildConfigApps: any[];
 				vecDLC: any[];
-				vecDeckCompatTestResults: any[];
+				vecDeckCompatTestResults: {
+					test_loc_token: string;
+					test_result: number;
+				}[];
 				vecLanguages: { strDisplayName: string; strShortName: string }[];
 				vecLegacyCDKeys: any[];
 				vecMusicAlbums: any[];
