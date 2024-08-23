@@ -718,7 +718,6 @@ export interface SteamClient {
 		CopyFile(...args: any[]);
 		CreateTempPath(...args: any[]);
 		Devkit: {
-			DeveloperModeChanged(...args: any[]);
 			RegisterForPairingPrompt(...args: any[]);
 			RespondToPairingPrompt(...args: any[]);
 			SetPairing(...args: any[]);

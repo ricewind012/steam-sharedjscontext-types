@@ -1,6 +1,6 @@
+import type { CMInterface } from "../normal/shared/CMInterface";
 import type { SubscribableValue } from "../normal/shared/interfaces";
 import type { SteamLocalStorage } from "../normal/shared/storage";
-import type { CMInterface } from "../normal/shared/CMInterface";
 
 export interface settingsStore {
 	m_BatteryPreferences: SubscribableValue<{ bShowBatteryPercentage: boolean }>;
@@ -32,6 +32,7 @@ export interface settingsStore {
 		controller_xbox_driver: boolean;
 		controller_xbox_support: boolean;
 		default_ping_rate: number;
+		developer_mode_enabled: boolean;
 		disable_all_toasts: boolean;
 		disable_toasts_in_game: boolean;
 		display_name: string;
@@ -89,6 +90,7 @@ export interface settingsStore {
 		gamescope_display_refresh_rate: number;
 		gamescope_enable_app_target_framerate: boolean;
 		gamescope_force_composite: boolean;
+		gamescope_game_resolution_global: string;
 		gamescope_hdr_visualization: number;
 		gamescope_include_steamui_in_screenshots: boolean;
 		gamescope_use_game_refresh_rate_in_steam: boolean;
@@ -156,6 +158,7 @@ export interface settingsStore {
 		setting_validation_uint32: number;
 		setting_validation_uint64: string;
 		shader_precached_size: string;
+		show_advanced_update_channels: boolean;
 		show_copy_count_in_library: boolean;
 		show_family_sharing_notifications: boolean;
 		show_screenshot_manager: boolean;
