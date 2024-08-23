@@ -26,10 +26,10 @@ const connection = await cdp({
 	port: 8080,
 	target: (e) => e.find((e) => e.title === "SharedJSContext"),
 });
+const options = process.argv.slice(2);
 
+const checkOption = (arg) => options.some((e) => e === arg);
 const readFile = (file) => fs.readFileSync(file).toString();
-const runBiomeCmd = (cmd) =>
-	cp.spawnSync("npx", ["@biomejs/biome", cmd, "--write", GENERATED_DIR]);
 
 const run = async (expression) =>
 	await connection.Runtime.evaluate({
@@ -65,9 +65,21 @@ async function main() {
 		fs.writeFileSync(file, output?.result?.value);
 		console.log("[%s] done", store);
 	}
+	cp.spawnSync("npx", ["@biomejs/biome", "check", "--write", GENERATED_DIR]);
 
-	runBiomeCmd("lint");
-	runBiomeCmd("format");
+	if (checkOption("-c") || checkOption("--commit")) {
+		const steamVersion = await runWithResult(
+			"(async () => (await SteamClient.System.GetSystemInfo()).nSteamVersion)()",
+		);
+		const cmds = [
+			["git", ["add", GENERATED_DIR]],
+			["git", ["commit", "-m", `generate types to ${steamVersion}`]],
+		];
+
+		for (const cmd of cmds) {
+			cp.spawnSync(...cmd);
+		}
+	}
 
 	connection.close();
 }
