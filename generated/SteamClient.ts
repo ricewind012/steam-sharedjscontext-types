@@ -642,6 +642,7 @@ export interface SteamClient {
 		RegisterForSettingsChanges(...args: any[]);
 		RegisterForTimeZoneChange(...args: any[]);
 		ReinitMicSettings(...args: any[]);
+		RenderHotkey(...args: any[]);
 		RequestDeviceAuthInfo(...args: any[]);
 		SelectClientBeta(...args: any[]);
 		SetCurrentLanguage(...args: any[]);
@@ -716,6 +717,7 @@ export interface SteamClient {
 			SetDeviceVolume(...args: any[]);
 		};
 		CopyFile(...args: any[]);
+		CopyFilesToClipboard(...args: any[]);
 		CreateTempPath(...args: any[]);
 		Devkit: {
 			RegisterForPairingPrompt(...args: any[]);

@@ -39,6 +39,7 @@ export interface collectionStore {
 			AsDeletableCollection();
 			AsDragDropCollection();
 			AsEditableCollection();
+			BIncludesFriend(e);
 			Delete(): Promise<any>;
 			Save(): Promise<any>;
 		}
@@ -77,6 +78,7 @@ export interface collectionStore {
 	BHasNonGamepadOptions();
 	BIncludeInFamilyGroupCollection(e);
 	BIncludeInSharedLibraryCollection(e);
+	BIsFriendInAnyCollection(e);
 	ImportUserTags(e, t, r): Promise<any>;
 	Init(e): Promise<any>;
 	InitPartnerCollectionNameMap();
