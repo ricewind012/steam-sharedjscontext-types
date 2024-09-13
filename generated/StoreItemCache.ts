@@ -50,43 +50,46 @@ export interface StoreItemCache {
 			m_BasicInfo: any;
 			m_BestPurchaseOption: {
 				active_discounts: any[];
-				final_price_in_cents: string;
-				formatted_final_price: string;
 				hide_discount_pct_for_compliance: boolean;
 				inactive_discounts: any[];
-				included_game_count: number;
-				packageid: number;
-				purchase_option_name: string;
-				requires_shipping: boolean;
 				user_active_discounts: any[];
-				user_can_purchase_as_gift: boolean;
 			};
 			m_ContentDescriptorIDs: number[];
 			m_DataRequested: {
 				include_assets: boolean;
 				include_platforms: boolean;
+				include_release: boolean;
+				include_screenshots: boolean;
 				include_tag_count: number;
 			};
 			m_Platforms: {
-				mac: boolean;
 				steam_deck_compat_category: number;
 				steamos_linux: boolean;
 				vr_support: {};
 				windows: boolean;
 			};
 			m_RelatedItems: {};
-			m_ReleaseInfo: any;
+			m_ReleaseInfo: {
+				original_release_date: number;
+				steam_release_date: number;
+			};
 			m_ReviewInfo: any;
-			m_Screenshots: any;
+			m_Screenshots: {
+				m_rgAllScreenshots: string[];
+				m_rgOnlyAllAgesScreenshots: string[];
+
+				GetAllAgesAndMatureScreenshots();
+				GetOnlyAllAgesScreenshots();
+			};
 			m_SelfPurchaseOption: any;
 			m_StoreCategories: {
-				controller_categoryids: any[];
+				controller_categoryids: number[];
 				feature_categoryids: number[];
 				supported_player_categoryids: number[];
 			};
 			m_Trailers: any;
 			m_bIsEarlyAccess: any;
-			m_bIsFree: any;
+			m_bIsFree: boolean;
 			m_bIsFreeTemporary: any;
 			m_bVisible: boolean;
 			m_eAppType: number;

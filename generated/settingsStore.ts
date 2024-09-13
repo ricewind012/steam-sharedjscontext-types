@@ -82,6 +82,15 @@ export interface settingsStore {
 		g_background_time_resolution: number;
 		g_max_fps: number;
 		game_notes_enable_spellcheck: boolean;
+		gamerecording_hotkey_ic: {
+			alt_key: boolean;
+			ctrl_key: boolean;
+			display_name: string;
+			key_code: number;
+			meta_key: boolean;
+			shift_key: boolean;
+		};
+		gamerecording_ic_seconds: number;
 		gamescope_allow_tearing: boolean;
 		gamescope_app_target_framerate: number;
 		gamescope_composite_debug: boolean;
@@ -116,6 +125,7 @@ export interface settingsStore {
 		needs_steam_service_repair: boolean;
 		no_save_personal_info: boolean;
 		oobe_test_mode_enabled: boolean;
+		os_version_unsupported: boolean;
 		overlay_fps_counter_corner: number;
 		overlay_fps_counter_high_contrast: boolean;
 		overlay_key: {
@@ -265,7 +275,7 @@ export interface settingsStore {
 		bDisplayIsExternal: boolean;
 		bDisplayIsUsingAutoScale: boolean;
 		bEnableSoftProcessKill: boolean;
-		bFamilyGroupsEnabled: boolean;
+		bGameRecordingFeatureEnabled: boolean;
 		bIsInClientBeta: boolean;
 		bIsInDesktopUIBeta: boolean;
 		bIsSteamSideload: boolean;

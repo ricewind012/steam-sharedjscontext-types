@@ -1,15 +1,22 @@
-import type { SteamLocalStorage } from "../normal/shared/storage";
 import type { CMInterface } from "../normal/shared/CMInterface";
+import type { SteamLocalStorage } from "../normal/shared/storage";
 
 export interface userProfileStore {
 	m_CMInterface: CMInterface;
 	m_FriendEquippedProfileItemsChangedHandler: { invoke(r, n); unregister() };
-	m_equippedItems: any;
+	m_equippedItems: {
+		animated_avatar: { profile_colors: any[] };
+		avatar_frame: { profile_colors: any[] };
+		mini_profile_background: { profile_colors: any[] };
+		profile_background: { profile_colors: any[] };
+		profile_modifier: { profile_colors: any[] };
+		steam_deck_keyboard_skin: { profile_colors: any[] };
+	};
 	m_keyboardSkins: any;
 	m_localStorage: SteamLocalStorage;
 	m_mapKeyboardSkinThemes: Map<any, any>;
 	m_notifyClaimRewardsTimer: any;
-	m_promiseEquipped: any;
+	m_promiseEquipped: Promise<any>;
 	m_startupMovies: any;
 	m_steamDeckRegistration: any;
 	m_strCachedKeyboardTheme: any;

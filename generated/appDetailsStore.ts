@@ -17,8 +17,31 @@ export interface appDetailsStore {
 					nAchieved: number;
 					nTotal: number;
 					vecAchievedHidden: any[];
-					vecHighlight: any[];
-					vecUnachieved: any[];
+					vecHighlight: {
+						bAchieved: boolean;
+						bHidden: boolean;
+						flAchieved: number;
+						flCurrentProgress: number;
+						flMaxProgress: number;
+						flMinProgress: number;
+						rtUnlocked: number;
+						strDescription: string;
+						strID: string;
+						strImage: string;
+						strName: string;
+					}[];
+					vecUnachieved: {
+						bAchieved: boolean;
+						flAchieved: number;
+						flCurrentProgress: number;
+						flMaxProgress: number;
+						flMinProgress: number;
+						rtUnlocked: number;
+						strDescription: string;
+						strID: string;
+						strImage: string;
+						strName: string;
+					}[];
 				};
 				bAvailableContentOnStore: boolean;
 				bCanMoveInstallFolder: boolean;
@@ -122,7 +145,7 @@ export interface appDetailsStore {
 				unMembersPlaying: number;
 				unTimedTrialSecondsAllowed: number;
 				unTimedTrialSecondsPlayed: number;
-				vecBetas: any[];
+				vecBetas: { strDescription: string; strName: string }[];
 				vecChildConfigApps: any[];
 				vecDLC: any[];
 				vecDeckCompatTestResults: {
@@ -133,7 +156,21 @@ export interface appDetailsStore {
 				vecLegacyCDKeys: any[];
 				vecMusicAlbums: any[];
 				vecPlatforms: string[];
-				vecScreenShots: any[];
+				vecScreenShots: {
+					bSpoilers: boolean;
+					bUploaded: boolean;
+					ePrivacy: number;
+					hHandle: number;
+					nAppID: number;
+					nCreated: number;
+					nHeight: number;
+					nWidth: number;
+					publishedFileID: string;
+					strCaption: string;
+					strGameID: string;
+					strUrl: string;
+					ugcHandle: string;
+				}[];
 			};
 			hAppDetails: { unregister(...args: any[]) };
 			listeners: any[];

@@ -6,7 +6,17 @@ export interface overlayStore {
 	m_OnBrowserUpdatedCallbacks: CCallbackList;
 	m_OnNotificationPositionChangedCallbacks: CCallbackList;
 	m_hOverlayBrowserInfoChanged: { unregister(...args: any[]) };
-	m_mapBrowserInfo: Map<any, any>;
+	m_mapBrowserInfo: Map<
+		number,
+		{
+			m_eBrowserType: number;
+			m_eUIMode: number;
+			m_gameID: string;
+			m_nBrowserID: number;
+			m_unAppID: number;
+			m_unPID: number;
+		}
+	>;
 
 	HasOverlayInstance(e);
 	Init(e);
