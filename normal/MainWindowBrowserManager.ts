@@ -4,6 +4,10 @@ type SteamBrowserAction = "POP" | "PUSH" | "REPLACE";
 
 type SteamBrowserTab = "community" | "store" | "me";
 
+type SteamBrowserTabs = {
+	[key in SteamBrowserTab]: string;
+};
+
 export interface SteamBrowserHistoryEntry {
 	hash: string;
 	key: string;
@@ -12,28 +16,33 @@ export interface SteamBrowserHistoryEntry {
 
 	/**
 	 * Present if `pathname` is `/browser/`.
+	 * @todo Move this to different interfaces according to the route.
 	 */
 	state?: {
 		/**
 		 * `true` if called from Steam.
 		 */
-		bExternal: boolean;
+		bExternal?: boolean;
 		/**
 		 * Entry URL.
 		 */
-		strURL: string;
+		strURL?: string;
 	};
 }
 
-export interface SteamBrowserHistory {
+export interface SteamWebBrowserHistory {
 	entries: SteamBrowserHistoryEntry[];
 	index: number;
 }
 
-export interface SteamBrowserHistory_Full extends SteamBrowserHistory {
+export interface SteamRouterHistory extends SteamWebBrowserHistory {
 	action: SteamBrowserAction;
 	block(param0: any): any;
 	canGo(index: number): boolean;
+
+	/**
+	 * Creates a route string from a history entry.
+	 */
 	createHref(entry: SteamBrowserHistoryEntry): string;
 	go(param0: any): any;
 	goBack(): void;
@@ -44,7 +53,7 @@ export interface SteamBrowserHistory_Full extends SteamBrowserHistory {
 
 	listen(param0: any): any;
 
-	/** Current location. */
+	/** Current route. */
 	location: SteamBrowserHistoryEntry;
 
 	push(param0: any, param1: any): any;
@@ -123,18 +132,14 @@ export default interface MainWindowBrowserManager {
 	/** `BrowserViewPopup` */
 	m_browser: any;
 
-	/** Browser history. */
-	m_browserHistory: SteamBrowserHistory;
+	/** Web browser history. */
+	m_browserHistory: SteamWebBrowserHistory;
 
-	/** Browser history. */
-	m_history: SteamBrowserHistory_Full;
+	/** Router history. */
+	m_history: SteamRouterHistory;
 
 	m_lastActiveTab: SteamBrowserTab;
-	m_lastActiveTabURLs: {
-		community: string;
-		me: string;
-		store: string;
-	};
+	m_lastActiveTabURLs: SteamBrowserTabs;
 	m_lastLocation: SteamBrowserHistoryEntry;
 	m_loadErrorCode: any | null;
 	m_loadErrorDesc: any | null;
@@ -143,11 +148,7 @@ export default interface MainWindowBrowserManager {
 	/** `BrowserViewPageSecurity` */
 	m_pageSecurity: any | null;
 
-	m_rootTabURLs: {
-		store: "StoreFrontPage";
-		community: "CommunityFrontPage";
-		me: "SteamIDMyProfile";
-	};
+	m_rootTabURLs: SteamBrowserTabs;
 
 	/** Current location's `<title>`. */
 	m_strTitle: string;
@@ -174,7 +175,7 @@ export default interface MainWindowBrowserManager {
 	 * @todo Loads a URL, but `bExternal` is `true`.
 	 */
 	ShowURL(url: string, param1: any): void;
-	SyncWithNewBrowserHistory(entry: SteamBrowserHistory): void;
+	SyncWithNewBrowserHistory(entry: SteamWebBrowserHistory): void;
 	SyncWithNewRouterEvent(
 		entry: SteamBrowserHistoryEntry,
 		action: SteamBrowserAction,
