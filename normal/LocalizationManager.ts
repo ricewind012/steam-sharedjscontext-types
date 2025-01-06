@@ -3,7 +3,7 @@ import type { CCallbackList } from "./shared/interfaces";
 
 export interface LocalizationManager {
 	m_cbkTokensChanged: CCallbackList;
-	m_mapFallbackTokens: any;
+	m_mapFallbackTokens: Map<string, string>;
 	m_mapTokens: Map<string, string>;
 	m_rgLocalesToUse: string[];
 

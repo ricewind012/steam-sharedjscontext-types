@@ -4,6 +4,7 @@ import type {
 	SubscribableValue,
 } from "./shared/interfaces";
 
+/** @todo Move to SteamClient.Notifications or whatever */
 export enum ENotificationPosition {
 	TopLeft,
 	TopRight,

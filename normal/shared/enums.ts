@@ -6,12 +6,7 @@ export enum EBrowserType {
 	DirectHWND_Borderless,
 	DirectHWND_Hidden,
 	ChildHWNDNative,
-	Transparent_Toplevel,
-	OffScreen_SharedTexture,
-	OffScreen_GameOverlay,
-	OffScreen_GameOverlay_SharedTexture,
-	Offscreen_FriendsUI,
-	Offscreen_SteamUI,
+	Offscreen_SteamUI = 12,
 	OpenVROverlay_Subview,
 }
 

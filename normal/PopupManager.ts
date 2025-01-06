@@ -1,6 +1,8 @@
 import type { EBrowserType } from "./shared/enums";
 import type { BrowserContext } from "./shared/interfaces";
 
+type PopupCallback_t = (popup?: SteamPopup) => void;
+
 export interface RestoreDetails {
 	bExpires: boolean;
 	/**
@@ -192,14 +194,14 @@ export interface CPopupManager {
 	m_bShuttingDown: boolean;
 	m_mapPopups: Map<string, SteamPopup>;
 	m_mapRestoreDetails: Map<string, RestoreDetails>;
-	m_rgPopupCreatedCallbacks: ((popup?: SteamPopup) => void)[];
-	m_rgShutdownCallbacks: ((popup?: SteamPopup) => void)[];
+	m_rgPopupCreatedCallbacks: PopupCallback_t[];
+	m_rgShutdownCallbacks: PopupCallback_t[];
 	m_unCurrentAccountID: number;
 
 	/**
 	 * Adds a callback to dispatch on popup creation.
 	 */
-	AddPopupCreatedCallback(callback: (popup: SteamPopup) => void): void;
+	AddPopupCreatedCallback(callback: PopupCallback_t): void;
 	/**
 	 * Adds a callback to dispatch on Steam shutdown.
 	 */

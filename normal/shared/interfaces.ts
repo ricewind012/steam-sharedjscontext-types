@@ -1,7 +1,7 @@
 import type { ServiceTransport } from "./CMInterface";
 import type { EBrowserType, EUIMode } from "./enums";
 
-export type AFunction = (...args: any[]) => any;
+export type UnknownFn_t = (...args: any[]) => any;
 
 export interface BrowserContext {
 	/**
@@ -99,7 +99,7 @@ export interface Unsubscribable {
  * Interface to register and unregister callbacks from, with ability to dispatch.
  */
 export interface CCallbackList {
-	m_vecCallbacks: AFunction[];
+	m_vecCallbacks: UnknownFn_t[];
 
 	/**
 	 * Empties {@link m_vecCallbacks}.
@@ -110,7 +110,7 @@ export interface CCallbackList {
 	 */
 	CountRegistered(): number;
 	Dispatch(...args: any[]): void;
-	Register(callback: AFunction): Unsubscribable;
+	Register(callback: UnknownFn_t): Unsubscribable;
 }
 
 // @v
@@ -122,7 +122,7 @@ export interface SubscribableValue<T> {
 	/** Sets a new value and notifies Subscribers of the new value.  */
 	Set(newValue: T): void;
 	/** Adds a subscription to the backing CCallbackList.  */
-	Subscribe(subscriber: AFunction): Unsubscribable;
+	Subscribe(subscriber: UnknownFn_t): Unsubscribable;
 	/** A snapshot of the current value which can change at any time.  */
 	get Value(): T;
 }
