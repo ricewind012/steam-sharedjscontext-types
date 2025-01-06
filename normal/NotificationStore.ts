@@ -86,7 +86,9 @@ export interface TrayNotification {
 }
 
 export interface NotificationTarget {
-	// enum
+	/**
+	 * @todo enum
+	 */
 	eFeature: number;
 	fnShowModal: () => void;
 	fnTray: (
@@ -95,6 +97,9 @@ export interface NotificationTarget {
 	) => void;
 	nRemoveFromTraySec: number;
 	toastDurationMS: number;
+	/**
+	 * @todo enum
+	 */
 	type: number;
 }
 

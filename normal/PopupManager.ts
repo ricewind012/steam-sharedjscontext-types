@@ -152,6 +152,34 @@ export interface SteamPopup {
 	 * Document title.
 	 */
 	m_strTitle: string;
+
+	BIsClosed(): boolean;
+	BIsFocused(): boolean;
+	BIsValid(): boolean;
+	BIsVisible(): boolean;
+	Close(): void;
+	/** @todo EWindowBringToFront in SteamClient.Window */
+	Focus(forceOS?: number): void;
+	GetName(): string;
+	GetWindowRestoreDetails(): Promise<string>;
+	IsMaximized(): Promise<boolean>;
+	IsMinimized(): Promise<boolean>;
+	OnBlur(): void;
+	OnCreate(): void;
+	OnDragOver(ev: DragEvent): void;
+	OnDrop(ev: DragEvent): void;
+	OnFocus(): void;
+	OnMessage(ev: MessageEvent): void;
+	OnResize(): void;
+	OnResizeEvent(): void;
+	/** @todo It accepts an argument, but the default one doesn't use it. */
+	OnUnload(param0: any): void;
+	ReleasePopup(): void;
+	RemoveEventListeners(): void;
+	Render(wnd: Window, element: HTMLElement): void;
+	/** @todo EWindowBringToFront in SteamClient.Window */
+	Show(forceOS?: number): void;
+	UpdateParamsBeforeShow(param0: any): any;
 }
 
 export interface CPopupManager {

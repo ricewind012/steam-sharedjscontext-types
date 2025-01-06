@@ -103,6 +103,18 @@ export interface SteamWindowNotificationPosition {
 	verticalInset: number;
 }
 
+export interface ActiveElementProps {
+	onEnterKeyPress?: (() => void) | null;
+	onKeyboardFullyVisible?: (() => void) | null;
+	onKeyboardNavOut?: (() => void) | null;
+	onKeyboardShow?: (() => void) | null;
+	/**
+	 * @todo "text" seems actually like a key
+	 */
+	onTextEntered?: (text: string) => void;
+	strEnterKeyLabel?: string;
+}
+
 export interface VirtualKeyboardManager {
 	k_nKeyboardWindowOffset: number;
 	k_rgKeyboardLocations: string[];
@@ -112,39 +124,75 @@ export interface VirtualKeyboardManager {
 	m_bIsInlineVirtualKeyboardOpen: SubscribableValue<boolean>;
 	m_bIsVirtualKeyboardModal: SubscribableValue<boolean>;
 	m_currentVirtualKeyboardRef: any;
+	/**
+	 * Index of {@link k_rgKeyboardLocations}
+	 */
 	m_iKeyboardLocation: number;
 	m_lastActiveVirtualKeyboardRef: any;
-	m_strDeadKeyCombined: any;
-	m_strDeadKeyNext: any;
-	m_strDeadKeyPending: any;
-	m_textFieldLocation: any;
+	m_strDeadKeyCombined: string | null;
+	m_strDeadKeyNext: string | null;
+	m_strDeadKeyPending: string | null;
+	/**
+	 * @todo enum?
+	 */
+	m_textFieldLocation: {
+		top: number;
+		right: number;
+		bottom: number;
+		left: number;
+	};
 
-	ClearCurrentVirtualKeyboardRef(): any;
+	ClearCurrentVirtualKeyboardRef(): void;
 	CreateVirtualKeyboardRef(e: any, t: any): any;
-	GetDeadKeyPending(): any;
-	GetEnterKeyLabel(): any;
-	HandleDeadKeyDown(e: any, t: any, n: any): any;
+	GetDeadKeyPending(): string | null;
+	GetEnterKeyLabel(): string | undefined;
+	HandleDeadKeyDown(
+		key: string,
+		deadKeyNext: string,
+		deadKeyCombined: string,
+	): void;
 	HandleNavOut(e: any): any;
-	HandleVirtualKeyDown(e: any, t: any): any;
-	Init(): any;
-	InitKeyboardLocation(e: any, t: any, n: any): any;
+	HandleVirtualKeyDown(key: string, t: any): any;
+	Init(): void;
+	InitKeyboardLocation(e: any, t: any, n: any): void;
 	ResetDeadKeyState(): any;
-	RestoreVirtualKeyboardForLastActiveElement(): any;
+	RestoreVirtualKeyboardForLastActiveElement(): void;
 	/**
 	 * @param n -1 by default
 	 */
-	RotateKeyboardLocation(e: any, t: any, n: any): any;
-	SelectBestModalPosition(e: any): any;
-	SendClientPasteCommand(): any;
-	SetActiveVirtualKeyboardTarget(e: any, t: any, n: any): any;
-	SetDismissOnEnterKey(e: any): any;
-	SetTextFieldLocation(e: any, t: any, n: any, o: any): any;
-	SetVirtualKeyboardActiveRef(e: any): any;
-	SetVirtualKeyboardDone(e: any): any;
-	SetVirtualKeyboardHidden(e: any): any;
-	SetVirtualKeyboardShownInternal(e: any, t: any): any;
-	SetVirtualKeyboardVisible(e: any): any;
-	ShowVirtualKeyboard(e: any, t: any, n: any, o: any): any;
+	RotateKeyboardLocation(
+		move: boolean,
+		ownerWindow: Window,
+		location: number,
+	): void;
+	SelectBestModalPosition(ownerWindow: any): void;
+	SendClientPasteCommand(): void;
+	SetActiveVirtualKeyboardTarget(
+		ref: any,
+		props: ActiveElementProps,
+		ownerWindow: any,
+	): void;
+	SetDismissOnEnterKey(value: boolean): void;
+	SetTextFieldLocation(
+		top: number,
+		right: number,
+		bottom: number,
+		left: number,
+	): void;
+	SetVirtualKeyboardActiveRef(ref: any): void;
+	SetVirtualKeyboardDone(ownerWindow: any): void;
+	SetVirtualKeyboardHidden(ownerWindow: any): void;
+	SetVirtualKeyboardShownInternal(value: boolean, ownerWindow: any): void;
+	SetVirtualKeyboardVisible(ownerWindow: any): void;
+	/**
+	 * @todo ownerWindow is r?.()
+	 */
+	ShowVirtualKeyboard(
+		ref: any,
+		props: ActiveElementProps,
+		ownerWindow: any,
+		bIsModal: boolean,
+	): void;
 }
 
 export interface SteamUIWindow {
@@ -192,12 +240,17 @@ export interface SteamUIWindow {
 	BRouteMatch(e: any): boolean;
 	BUseSeparateOverlayWindows(): boolean;
 	BViewingPreLoginRoute(): boolean;
+
 	/**
 	 * @todo Creates a browser view object similiar to the one in MainWindowBrowserManager
 	 * @param name Browser name.
 	 * @param options BrowserViewInit
 	 */
 	CreateBrowserView(name: string, options: any): any;
+
+	/**
+	 * Focuses the main window.
+	 */
 	FocusApplicationRoot(): void;
 	GetMainVROverlayKey: any;
 	GetShowingGlobalModal: any;
@@ -207,19 +260,19 @@ export interface SteamUIWindow {
 	InitGamepadApplicationUI: any;
 	InitNavigation: any;
 	InitializeDefaultActions: any;
-	IsControllerConfiguratorWindow: any;
-	IsDesktopLoginWindow: any;
-	IsDesktopOverlayWindow: any;
-	IsDesktopUIWindow: any;
-	IsGamepadUIOverlayWindow: any;
-	IsGamepadUIWindow: any;
-	IsMainDesktopWindow: any;
-	IsMainGamepadUIWindow: any;
-	IsStandaloneKeyboardWindow: any;
-	IsSteamChinaReviewLauncher: any;
-	IsVRSimulatedOnDesktopWindow: any;
-	IsVRWindow: any;
-	IsVRWindowInGamescope: any;
+	IsControllerConfiguratorWindow(): boolean;
+	IsDesktopLoginWindow(): boolean;
+	IsDesktopOverlayWindow(): boolean;
+	IsDesktopUIWindow(): boolean;
+	IsGamepadUIOverlayWindow(): boolean;
+	IsGamepadUIWindow(): boolean;
+	IsMainDesktopWindow(): boolean;
+	IsMainGamepadUIWindow(): boolean;
+	IsStandaloneKeyboardWindow(): boolean;
+	IsSteamChinaReviewLauncher(): boolean;
+	IsVRSimulatedOnDesktopWindow(): boolean;
+	IsVRWindow(): boolean;
+	IsVRWindowInGamescope(): boolean;
 	Navigate(e: any, t: boolean, n: boolean, o?: any): void;
 	NavigateBack: any;
 	NavigateHistory: any;
