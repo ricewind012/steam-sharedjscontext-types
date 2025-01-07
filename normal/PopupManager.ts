@@ -1,7 +1,7 @@
 import type { EBrowserType } from "./shared/enums";
 import type { BrowserContext } from "./shared/interfaces";
 
-type PopupCallback_t = (popup?: SteamPopup) => void;
+export type PopupCallback_t = (popup?: SteamPopup) => void;
 
 export interface RestoreDetails {
 	bExpires: boolean;
@@ -161,7 +161,7 @@ export interface SteamPopup {
 	BIsVisible(): boolean;
 	Close(): void;
 	/** @todo EWindowBringToFront in SteamClient.Window */
-	Focus(forceOS?: number): void;
+	Focus(eForceOS?: number): void;
 	GetName(): string;
 	GetWindowRestoreDetails(): Promise<string>;
 	IsMaximized(): Promise<boolean>;
@@ -180,7 +180,7 @@ export interface SteamPopup {
 	RemoveEventListeners(): void;
 	Render(wnd: Window, element: HTMLElement): void;
 	/** @todo EWindowBringToFront in SteamClient.Window */
-	Show(forceOS?: number): void;
+	Show(eForceOS?: number): void;
 	UpdateParamsBeforeShow(param0: any): any;
 }
 

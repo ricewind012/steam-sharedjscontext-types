@@ -1,10 +1,12 @@
 import type { CCallbackList } from "./shared/interfaces";
 
-type SteamBrowserAction = "POP" | "PUSH" | "REPLACE";
+// TODO: https://www.npmjs.com/package/@types/react-router?activeTab=code
 
-type SteamBrowserTab = "community" | "store" | "me";
+export type SteamBrowserAction = "POP" | "PUSH" | "REPLACE";
 
-type SteamBrowserTabs = {
+export type SteamBrowserTab = "community" | "store" | "me";
+
+export type SteamBrowserTabs = {
 	[key in SteamBrowserTab]: string;
 };
 

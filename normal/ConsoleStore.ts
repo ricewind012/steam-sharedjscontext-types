@@ -1,6 +1,6 @@
 import type { Unregisterable } from "./shared/interfaces";
 
-type ConsoleSpewType = "error" | "info" | "input";
+export type ConsoleSpewType = "error" | "info" | "input";
 
 export interface ConsoleSpewInfo {
 	text: string;

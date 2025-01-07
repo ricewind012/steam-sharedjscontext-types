@@ -115,8 +115,7 @@ export interface NotificationStore {
 	m_bShowedLowBatteryTempNotification: boolean;
 	m_bShowedRefreshLogin: boolean;
 	m_bTestNotifications: boolean;
-	m_cbkCurrentToast: CCallbackList;
-	m_cbkNotificationTray: CCallbackList;
+	m_cbkCurrentToast: CCallbackList<TrayNotification[]>;
 	m_hPendingToastTimer: number;
 	m_hTrayRemoveTimer: number;
 	m_iLastBatteryLevelNotification: number;

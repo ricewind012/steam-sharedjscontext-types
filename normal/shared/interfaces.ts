@@ -94,36 +94,41 @@ export interface Unsubscribable {
 	Unsubscribe(): void;
 }
 
-// @v
+/**
+ * @todo somehow make F be 1/2/etc args idfk
+ */
+export type CCallbackListCallback_t<T> = (...args: T[]) => void;
+
 /**
  * Interface to register and unregister callbacks from, with ability to dispatch.
  */
-export interface CCallbackList {
-	m_vecCallbacks: UnknownFn_t[];
+export interface CCallbackList<T = never> {
+	m_vecCallbacks: CCallbackListCallback_t<T>[];
 
-	/**
-	 * Empties {@link m_vecCallbacks}.
-	 */
 	ClearAllCallbacks(): void;
-	/**
-	 * Length of {@link m_vecCallbacks}.
-	 */
 	CountRegistered(): number;
-	Dispatch(...args: any[]): void;
-	Register(callback: UnknownFn_t): Unsubscribable;
+	Dispatch(...args: T[]): void;
+	Register(callback: CCallbackListCallback_t<T>): Unsubscribable;
 }
 
-// @v
 export interface SubscribableValue<T> {
-	m_callbacks: CCallbackList;
+	m_callbacks: CCallbackList<T>;
 	m_currentValue: T;
-	m_fnEquals: any;
+	m_fnEquals: (currentValue: T, newValue: T) => boolean;
 
-	/** Sets a new value and notifies Subscribers of the new value.  */
-	Set(newValue: T): void;
-	/** Adds a subscription to the backing CCallbackList.  */
-	Subscribe(subscriber: UnknownFn_t): Unsubscribable;
-	/** A snapshot of the current value which can change at any time.  */
+	/**
+	 * Sets a new value and notifies Subscribers of the new value.
+	 */
+	Set(value: T): void;
+
+	/**
+	 * Adds a subscription to the backing CCallbackList.
+	 */
+	Subscribe(subscriber: CCallbackListCallback_t<T>): Unsubscribable;
+
+	/**
+	 * A snapshot of the current value which can change at any time.
+	 */
 	get Value(): T;
 }
 

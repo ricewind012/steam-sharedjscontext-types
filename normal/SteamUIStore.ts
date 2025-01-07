@@ -24,7 +24,7 @@ export enum EWindowType {
 	SteamChinaReviewLauncher,
 }
 
-type SteamWindowSettingsSection =
+export type SteamWindowSettingsSection =
 	| "Account"
 	| "Audio"
 	| "Bluetooth"
@@ -116,20 +116,22 @@ export interface ActiveElementProps {
 	strEnterKeyLabel?: string;
 }
 
+export type VKMRef_t = any;
+
 export interface VirtualKeyboardManager {
 	k_nKeyboardWindowOffset: number;
 	k_rgKeyboardLocations: string[];
-	m_OnActiveElementChanged: CCallbackList;
-	m_OnActiveElementClicked: CCallbackList;
+	m_OnActiveElementChanged: CCallbackList<VKMRef_t | null>;
+	m_OnActiveElementClicked: CCallbackList<VKMRef_t | null>;
 	m_bDismissOnEnter: boolean;
 	m_bIsInlineVirtualKeyboardOpen: SubscribableValue<boolean>;
 	m_bIsVirtualKeyboardModal: SubscribableValue<boolean>;
-	m_currentVirtualKeyboardRef: any;
+	m_currentVirtualKeyboardRef: VKMRef_t;
 	/**
 	 * Index of {@link k_rgKeyboardLocations}
 	 */
 	m_iKeyboardLocation: number;
-	m_lastActiveVirtualKeyboardRef: any;
+	m_lastActiveVirtualKeyboardRef: VKMRef_t;
 	m_strDeadKeyCombined: string | null;
 	m_strDeadKeyNext: string | null;
 	m_strDeadKeyPending: string | null;
@@ -180,7 +182,7 @@ export interface VirtualKeyboardManager {
 		bottom: number,
 		left: number,
 	): void;
-	SetVirtualKeyboardActiveRef(ref: any): void;
+	SetVirtualKeyboardActiveRef(ref: VKMRef_t): void;
 	SetVirtualKeyboardDone(ownerWindow: any): void;
 	SetVirtualKeyboardHidden(ownerWindow: any): void;
 	SetVirtualKeyboardShownInternal(value: boolean, ownerWindow: any): void;
@@ -189,7 +191,7 @@ export interface VirtualKeyboardManager {
 	 * @todo ownerWindow is r?.()
 	 */
 	ShowVirtualKeyboard(
-		ref: any,
+		ref: VKMRef_t,
 		props: ActiveElementProps,
 		ownerWindow: any,
 		bIsModal: boolean,
