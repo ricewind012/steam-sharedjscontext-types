@@ -38,12 +38,12 @@ export interface SteamPopupParameters {
 	 * Popup is centered on this window.
 	 */
 	center_on_window: Window;
-	dimensions: Partial<{
-		height: number;
-		left: number;
-		top: number;
-		width: number;
-	}>;
+	dimensions: {
+		height?: number;
+		left?: number;
+		top?: number;
+		width?: number;
+	};
 	/**
 	 * {@link EPopupCreationFlags}
 	 */
@@ -94,16 +94,6 @@ export interface SteamPopupParameters {
 	 * Parent browser ID.
 	 */
 	window_opener_id: number;
-
-	DoCallback(e: any): any;
-	OnBlur(): any;
-	OnClose(): any;
-	OnCreate(): any;
-	OnFocus(): any;
-	OnLoad(): any;
-	OnResize(): any;
-	Render(e: any, t: any): any;
-	UpdateParamsBeforeShow(e: any): any;
 }
 
 // @v
@@ -116,7 +106,7 @@ export interface CRenderWhenLinksReady {
 	m_rgLoadingLinks: Node[];
 
 	AddLink(link: Node, checkIfLoaded: boolean): void;
-	SetTarget(renderCallback: any): void;
+	SetTarget(renderCallback: () => void): void;
 }
 
 export interface SteamPopup {
@@ -174,8 +164,7 @@ export interface SteamPopup {
 	OnMessage(ev: MessageEvent): void;
 	OnResize(): void;
 	OnResizeEvent(): void;
-	/** @todo It accepts an argument, but the default one doesn't use it. */
-	OnUnload(param0: any): void;
+	OnUnload(ev?: Event): void;
 	ReleasePopup(): void;
 	RemoveEventListeners(): void;
 	Render(wnd: Window, element: HTMLElement): void;
@@ -202,67 +191,83 @@ export interface CPopupManager {
 	 * Adds a callback to dispatch on popup creation.
 	 */
 	AddPopupCreatedCallback(callback: PopupCallback_t): void;
+
 	/**
 	 * Adds a callback to dispatch on Steam shutdown.
 	 */
 	AddShutdownCallback(callback: () => void): void;
+
 	/**
 	 * Adds a popup and dispatches all the callbacks.
 	 */
 	AddTrackedPopup(popupName: string, popup: SteamPopup): void;
+
 	/**
 	 * @returns `true` if one of the context menus is focused, `false` otherwise.
 	 */
 	BAnyMenuHasFocus(): boolean;
+
 	/**
 	 * @returns `true` if one of the windows is focused, `false` otherwise.
 	 */
 	BAnyPopupHasFocus(): boolean;
+
 	/**
 	 * @returns `true` if Steam is about to shut down, `false` otherwise.
 	 */
 	BShuttingDown(): boolean;
+
 	/**
 	 * Clears saved restore details from {@link m_mapRestoreDetails}.
 	 */
 	ClearSavedDimensionStore(): void;
 	ClosePopupsOwnedByBrowser(browser: BrowserContext): void;
+
 	/**
 	 * @returns the popup for the specified popup name.
 	 */
 	GetExistingPopup(popupName: string): SteamPopup;
+
 	/**
 	 * @returns the key used for usage in localStorage. Saved on a per-account basis.
 	 */
 	GetLocalStorageKey(): string;
+
 	/**
 	 * @returns the popup for the specified window.
 	 */
 	GetPopupForWindow(window: Window): SteamPopup;
+
 	/**
 	 * @todo SteamPopup[] only with `[...g_PopupManager.GetPopups()]`
 	 */
 	GetPopups(): SteamPopup[];
+
 	/**
 	 * @returns restore details for the specified window.
 	 */
 	GetRestoreDetails(windowName: string): string;
+
 	/**
 	 * Loads saved restore details from localStorage.
 	 */
 	LoadSavedDimensionStore(): void;
+
 	/**
 	 * Deletes a popup.
 	 */
 	RemoveTrackedPopup(popup: SteamPopup): void;
+
 	/**
 	 * Saves restore details in localStorage.
 	 */
 	SaveSavedDimensionStore(): void;
+
 	/**
 	 * @param accountId SteamID 3
 	 */
 	SetCurrentLoggedInAccountID(accountId: number): void;
+
 	/**
 	 * Sets restore details for the specified popup.
 	 */

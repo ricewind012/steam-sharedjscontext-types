@@ -1,5 +1,5 @@
 import type { CSteamID } from "./CSteamID";
-import type { CCallbackList } from "./interfaces";
+import type { CCallbackList, UnknownFn_t } from "./interfaces";
 
 export interface CMInterfaceCallbacks {
 	m_ClientConnectionCallbacks: CCallbackList;
@@ -14,6 +14,7 @@ export interface CMInterfaceCallbacks {
 export interface ErrorReportingStore {
 	m_bEnabled: boolean;
 	m_bInitialized: boolean;
+	m_fnGetReportingInterval: () => number;
 	m_rgErrorQueue: any[];
 	m_sendTimer: any;
 	m_strProduct: string;
@@ -29,15 +30,20 @@ export interface ErrorReportingStore {
 }
 
 export interface ServiceTransport {
-	MakeReady(...args: any[]): any;
+	MakeReady: UnknownFn_t;
 	SendMsg(e: any, t: any, n: any): any;
 	SendNotification(e: any, t: any): any;
 }
 
+export interface UnknownInterface0 {
+	invoke: UnknownFn_t;
+	msgClass: any; // JsPbClass
+}
+
 export interface CMInterface {
 	ClientServersAvailableHandler: {
-		invoke(...args: any[]): any;
-		unregister(): any;
+		invoke: UnknownFn_t;
+		unregister(): void;
 	};
 	m_ServiceTransport: ServiceTransport;
 	m_bCompletedInitialConnect: boolean;
@@ -50,12 +56,12 @@ export interface CMInterface {
 	m_callbacksOnConnect: CMInterfaceCallbacks;
 	m_callbacksOnConnectOneTime: CMInterfaceCallbacks;
 	m_callbacksOnDisconnect: CMInterfaceCallbacks;
-	m_hEMsgRegistrationObserver(...args: any[]): any;
+	m_hEMsgRegistrationObserver: UnknownFn_t;
 	m_hSharedConnection: number;
 	m_messageHandlers: {
 		m_ErrorReportingStore: ErrorReportingStore;
-		m_mapCallbacks: {};
-		m_mapServiceMethodHandlers: {};
+		m_mapCallbacks: Map<number, UnknownInterface0>;
+		m_mapServiceMethodHandlers: Map<string, UnknownInterface0>;
 		m_rgRegisteredEMsgs: number[];
 		m_rgRegisteredServiceMethodHandlers: string[];
 
@@ -78,9 +84,9 @@ export interface CMInterface {
 	m_onConnect: any;
 	m_rtReconnectThrottleExpiration: number;
 	m_rtReconnectThrottleStart: number;
-	m_setConnectedServers: {};
-	m_setEMsgHandlers: {};
-	m_setServiceMethodHandlers: {};
+	m_setConnectedServers: Set<number>;
+	m_setEMsgHandlers: Set<number>;
+	m_setServiceMethodHandlers: Set<string>;
 	m_steamid: CSteamID;
 	m_strIPCountry: string;
 	m_strPersonaName: string;

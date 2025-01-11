@@ -114,7 +114,7 @@ export interface CCallbackList<T = never> {
 export interface SubscribableValue<T> {
 	m_callbacks: CCallbackList<T>;
 	m_currentValue: T;
-	m_fnEquals: (currentValue: T, newValue: T) => boolean;
+	m_fnEquals: (currentValue: T, newValue: T) => boolean | undefined;
 
 	/**
 	 * Sets a new value and notifies Subscribers of the new value.
