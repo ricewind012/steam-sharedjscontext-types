@@ -1,6 +1,7 @@
 import type { CCallbackList } from "../normal/shared/interfaces";
 
 export interface LocalizationManager {
+	m_bReportIndividualMissingTokens: boolean;
 	m_cbkTokensChanged: CCallbackList;
 	m_mapFallbackTokens: Map<any, any>;
 	m_mapTokens: Map<
@@ -23,7 +24,7 @@ export interface LocalizationManager {
 	GetPreferredLocales();
 	GetTokensChangedCallbackList();
 	InitDirect(e, t);
-	InitFromObjects(e, t, r, n, i);
+	InitFromObjects(e, t, n, r, i, s);
 	LocalizeIfToken(e, t);
 	LocalizeString(e, t);
 	LocalizeStringFromFallback(e);

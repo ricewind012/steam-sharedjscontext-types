@@ -6,6 +6,17 @@ export interface settingsStore {
 	m_BatteryPreferences: SubscribableValue<{ bShowBatteryPercentage: boolean }>;
 	m_CMInterface: CMInterface;
 	m_ClientSettings: {
+		accessibility_color_filter_name: string;
+		accessibility_debug_visualizer: boolean;
+		accessibility_desktop_ui_scale: number;
+		accessibility_high_contrast_mode: boolean;
+		accessibility_minimum_font_size: number;
+		accessibility_reduce_motion: boolean;
+		accessibility_screen_reader_enabled: boolean;
+		accessibility_screen_reader_locale: string;
+		accessibility_screen_reader_pitch: number;
+		accessibility_screen_reader_rate: number;
+		accessibility_screen_reader_volume: number;
 		always_show_user_chooser: boolean;
 		always_use_gamepadui_overlay: boolean;
 		auto_scale_factor: number;
@@ -24,13 +35,16 @@ export interface settingsStore {
 		cef_remote_debugging_enabled: boolean;
 		cloud_enabled: boolean;
 		controller_combine_nintendo_joycons: boolean;
+		controller_enable_chord: boolean;
 		controller_generic_support: boolean;
 		controller_guide_button_focus_steam: boolean;
+		controller_poll_rate: boolean;
 		controller_power_off_timeout: number;
 		controller_ps_support: number;
 		controller_switch_support: boolean;
 		controller_xbox_driver: boolean;
 		controller_xbox_support: boolean;
+		default_app_update_behavior: number;
 		default_ping_rate: number;
 		developer_mode_enabled: boolean;
 		disable_all_toasts: boolean;
@@ -56,32 +70,39 @@ export interface settingsStore {
 		force_deck_perf_tab: boolean;
 		force_fake_mandatory_update: boolean;
 		force_oobe: boolean;
-		g_background_a_m: boolean;
-		g_background_a_s: boolean;
-		g_background_audio: number;
-		g_background_br: number;
-		g_background_max_keep: string;
-		g_background_mk: {
-			alt_key: boolean;
-			ctrl_key: boolean;
-			display_name: string;
-			key_code: number;
-			meta_key: boolean;
-			shift_key: boolean;
-		};
-		g_background_mode: number;
-		g_background_path: string;
-		g_background_tg: {
-			alt_key: boolean;
-			ctrl_key: boolean;
-			display_name: string;
-			key_code: number;
-			meta_key: boolean;
-			shift_key: boolean;
-		};
-		g_background_time_resolution: number;
-		g_max_fps: number;
 		game_notes_enable_spellcheck: boolean;
+		gamerecording_automatic_gain_control: boolean;
+		gamerecording_background_a_m: boolean;
+		gamerecording_background_audio: number;
+		gamerecording_background_max_keep: string;
+		gamerecording_background_mk: {
+			alt_key: boolean;
+			ctrl_key: boolean;
+			display_name: string;
+			key_code: number;
+			meta_key: boolean;
+			shift_key: boolean;
+		};
+		gamerecording_background_mode: number;
+		gamerecording_background_path: string;
+		gamerecording_background_tg: {
+			alt_key: boolean;
+			ctrl_key: boolean;
+			display_name: string;
+			key_code: number;
+			meta_key: boolean;
+			shift_key: boolean;
+		};
+		gamerecording_background_time_resolution: number;
+		gamerecording_export_codec: number;
+		gamerecording_export_directory: string;
+		gamerecording_export_limit_bitrate: number;
+		gamerecording_export_limit_frame_rate: number;
+		gamerecording_export_limit_height: number;
+		gamerecording_export_limit_size_mb: number;
+		gamerecording_export_limit_type: number;
+		gamerecording_export_limit_width: number;
+		gamerecording_force_mic_mono: boolean;
 		gamerecording_hotkey_ic: {
 			alt_key: boolean;
 			ctrl_key: boolean;
@@ -91,6 +112,9 @@ export interface settingsStore {
 			shift_key: boolean;
 		};
 		gamerecording_ic_seconds: number;
+		gamerecording_max_fps: number;
+		gamerecording_video_bitrate: string;
+		gamerecording_video_maxheight: number;
 		gamescope_allow_tearing: boolean;
 		gamescope_app_target_framerate: number;
 		gamescope_composite_debug: boolean;
@@ -100,10 +124,30 @@ export interface settingsStore {
 		gamescope_enable_app_target_framerate: boolean;
 		gamescope_force_composite: boolean;
 		gamescope_game_resolution_global: string;
+		gamescope_guide_hotkey: {
+			alt_key: boolean;
+			ctrl_key: boolean;
+			display_name: string;
+			key_code: number;
+			meta_key: boolean;
+			shift_key: boolean;
+		};
+		gamescope_hdr_enabled: boolean;
 		gamescope_hdr_visualization: number;
 		gamescope_include_steamui_in_screenshots: boolean;
+		gamescope_native_external_res_in_steam: boolean;
+		gamescope_qam_hotkey: {
+			alt_key: boolean;
+			ctrl_key: boolean;
+			display_name: string;
+			key_code: number;
+			meta_key: boolean;
+			shift_key: boolean;
+		};
 		gamescope_use_game_refresh_rate_in_steam: boolean;
+		gamestream_enable_video_h265: boolean;
 		gamestream_hardware_video_encode: boolean;
+		hardware_updater_enabled: boolean;
 		hdr_compat_testing: boolean;
 		in_client_beta: boolean;
 		is_external_display: boolean;
@@ -120,14 +164,28 @@ export interface settingsStore {
 		music_download_high_quality: boolean;
 		music_pause_on_app_start: boolean;
 		music_pause_on_voice_chat: boolean;
-		music_playlist_notification: boolean;
 		music_volume: number;
 		needs_steam_service_repair: boolean;
 		no_save_personal_info: boolean;
 		oobe_test_mode_enabled: boolean;
 		os_version_unsupported: boolean;
+		overlay_fps_counter_allow_km_driver: boolean;
+		overlay_fps_counter_bgopacity: number;
 		overlay_fps_counter_corner: number;
+		overlay_fps_counter_cpu_graph: boolean;
+		overlay_fps_counter_detail_level: number;
+		overlay_fps_counter_fps_graph: boolean;
 		overlay_fps_counter_high_contrast: boolean;
+		overlay_fps_counter_key: {
+			alt_key: boolean;
+			ctrl_key: boolean;
+			display_name: string;
+			key_code: number;
+			meta_key: boolean;
+			shift_key: boolean;
+		};
+		overlay_fps_counter_saturation_factor: number;
+		overlay_fps_counter_scale_factor: number;
 		overlay_key: {
 			alt_key: boolean;
 			ctrl_key: boolean;
@@ -163,6 +221,14 @@ export interface settingsStore {
 		setting_validation_bool: boolean;
 		setting_validation_enum: number;
 		setting_validation_float: number;
+		setting_validation_hotkey: {
+			alt_key: boolean;
+			ctrl_key: boolean;
+			display_name: string;
+			key_code: number;
+			meta_key: boolean;
+			shift_key: boolean;
+		};
 		setting_validation_int32: number;
 		setting_validation_string: string;
 		setting_validation_uint32: number;
@@ -191,7 +257,13 @@ export interface settingsStore {
 		steam_os_underscan_level: number;
 		steamos_cec_enabled: boolean;
 		steamos_cec_wake_on_resume: boolean;
+		steamos_charge_limit: number;
+		steamos_charge_limit_devmode: boolean;
+		steamos_charge_limit_enabled: boolean;
 		steamos_magnifier_scale: number;
+		steamos_manual_gpu_clock_enabled: boolean;
+		steamos_manual_gpu_clock_hz: number;
+		steamos_platform_performance_profile: string;
 		steamos_status_led_brightness: number;
 		steamos_tdp_limit: number;
 		steamos_tdp_limit_enabled: boolean;
@@ -211,6 +283,7 @@ export interface settingsStore {
 		};
 		voice_push_to_talk_setting: number;
 		voice_speaker_output_gain: number;
+		vr_show_perf_graph_in_hmd: boolean;
 		web_browser_home: string;
 	};
 	m_CommunityPreferences: {
@@ -275,7 +348,6 @@ export interface settingsStore {
 		bDisplayIsExternal: boolean;
 		bDisplayIsUsingAutoScale: boolean;
 		bEnableSoftProcessKill: boolean;
-		bGameRecordingFeatureEnabled: boolean;
 		bIsInClientBeta: boolean;
 		bIsInDesktopUIBeta: boolean;
 		bIsSteamSideload: boolean;
@@ -319,8 +391,8 @@ export interface settingsStore {
 	MergeCommunityPreferences(e, t);
 	MergeNotificationPreferences(e);
 	MergeStorePreferences(e, t);
-	function(...r);
-	function(...r);
+	function(...n);
+	function(...n);
 	SetCommunityPreferences(e);
 	SetDeferred(e);
 	SetStorePreferences(e);
@@ -329,4 +401,5 @@ export interface settingsStore {
 	UpdateCommunityPreferences(e);
 	UpdateFriendSetting(e, t);
 	UpdateFriendSettings(e);
+	UpdateUserConfigObject();
 }

@@ -1,4 +1,3 @@
-import type { SteamCloudStorage } from "../normal/shared/storage";
 import type { CMInterface } from "../normal/shared/CMInterface";
 
 export interface App {
@@ -32,11 +31,25 @@ export interface App {
 	m_bHaveShownSupportAlertModal: boolean;
 	m_bServicesInitialized: boolean;
 	m_bStartedStage2: boolean;
-	m_bSupportAlertModalActive: boolean;
 	m_bWasEverLoggedIn: boolean;
-	m_cloudStorage: SteamCloudStorage;
 	m_cm: CMInterface;
 	m_eLoginState: number;
+	m_mapCloudStorage: Map<
+		number,
+		{
+			m_eNamespace: number;
+
+			Get(e);
+			GetByPrefix(e);
+			GetMapForPrefix(e);
+			GetObject(e): Promise<any>;
+			GetString(e): Promise<any>;
+			RegisterForChangeNotifications(e);
+			RemoveObject(e, t, r): Promise<any>;
+			StoreObject(e, t, r, n): Promise<any>;
+			StoreString(e, t, r, n): Promise<any>;
+		}
+	>;
 
 	BFinishedInitStageOne();
 	BHardwareSurveyPending();
@@ -48,9 +61,8 @@ export interface App {
 	BIsInOOBE();
 	BIsOfflineMode();
 	BMustShowSupportAlertDialog();
-	BSupportAlertDialogActive();
 	BWasEverLoggedIn();
-	CloseSupportAlertsModal();
+	GetCloudStorage(e = 1);
 	GetCloudStorageForLibrary();
 	GetCurrentUser();
 	GetFamilyGroupID();
@@ -59,6 +71,7 @@ export interface App {
 	Init(e): Promise<any>;
 	InitStage2(): Promise<any>;
 	OptOutOfSurvey();
+	PrefetchParentalSettingsForChildren(e);
 	SendSurvey();
 	ShowSupportAlertsModal();
 	WaitForServicesInitialized(): Promise<any>;

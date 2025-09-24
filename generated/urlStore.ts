@@ -113,7 +113,6 @@ export interface urlStore {
 			regexMatchURL: RegExp;
 			url: string;
 		};
-		LocalSSA: { feature: number; regexMatchURL: RegExp; url: string };
 		ManageGiftsPage: { feature: number; regexMatchURL: RegExp; url: string };
 		ManageSteamGuard: { feature: number; regexMatchURL: RegExp; url: string };
 		Mobile: { feature: number; regexMatchURL: RegExp; url: string };
@@ -220,6 +219,11 @@ export interface urlStore {
 			url: string;
 		};
 		StoreAccount: { feature: number; regexMatchURL: RegExp; url: string };
+		StoreAccountGatedAccessApp: {
+			feature: number;
+			regexMatchURL: RegExp;
+			url: string;
+		};
 		StoreAddFundsPage: { feature: number; regexMatchURL: RegExp; url: string };
 		StoreAppHover: { feature: number; regexMatchURL: RegExp; url: string };
 		StoreAppImages: { feature: number; regexMatchURL: RegExp; url: string };
@@ -360,7 +364,6 @@ export interface urlStore {
 			feature: number;
 			url: string;
 		};
-		localssa: { bDuplicate: boolean; feature: number; url: string };
 		managegiftspage: { bDuplicate: boolean; feature: number; url: string };
 		managesteamguard: { bDuplicate: boolean; feature: number; url: string };
 		mobile: { bDuplicate: boolean; feature: number; url: string };
@@ -451,6 +454,11 @@ export interface urlStore {
 			url: string;
 		};
 		storeaccount: { bDuplicate: boolean; feature: number; url: string };
+		storeaccountgatedaccessapp: {
+			bDuplicate: boolean;
+			feature: number;
+			url: string;
+		};
 		storeaddfundspage: { bDuplicate: boolean; feature: number; url: string };
 		storeapphover: { bDuplicate: boolean; feature: number; url: string };
 		storeappimages: { bDuplicate: boolean; feature: number; url: string };
@@ -494,6 +502,7 @@ export interface urlStore {
 	BuildCachedLibraryAssetURL(e, t, r);
 	BuildCachedStoreAssetURL(e, t, r);
 	BuildCustomAssetURL(e, t, r, n);
+	BuildLegacyCachedLibraryAssetURL(e, t, r);
 	BuildLibraryAssetURL(e, t, r);
 	BuildSteamURL(e, ...t);
 	BuildStoreAppDlcURL(e, t = null);

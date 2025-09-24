@@ -8,6 +8,7 @@ export interface MainWindowBrowserManager {
 	m_bRouterChangeTriggeredBySync: boolean;
 	m_browser: {
 		AddGlass(...args: any[]);
+		AddHeader(...args: any[]);
 		CanGoBackward(...args: any[]);
 		CanGoForward(...args: any[]);
 		DialogResponse(...args: any[]);
@@ -55,19 +56,25 @@ export interface MainWindowBrowserManager {
 			key: string;
 			pathname: string;
 			search: string;
-			state: any;
+			state: {
+				AppDetailsActivitySectionDays_HistoryValue: number;
+				strCollectionId: string;
+			};
 		};
 		push(...args: any[]);
 		replace(...args: any[]);
 	};
 	m_lastActiveTab: string;
-	m_lastActiveTabURLs: { me: string };
+	m_lastActiveTabURLs: { community: string; me: string };
 	m_lastLocation: {
 		hash: string;
 		key: string;
 		pathname: string;
 		search: string;
-		state: any;
+		state: {
+			AppDetailsActivitySectionDays_HistoryValue: number;
+			strCollectionId: string;
+		};
 	};
 	m_loadErrorCode: any;
 	m_loadErrorDesc: any;

@@ -1,5 +1,5 @@
-import type { SteamLocalStorage } from "../normal/shared/storage";
 import type { CMInterface } from "../normal/shared/CMInterface";
+import type { SteamLocalStorage } from "../normal/shared/storage";
 
 export interface trendingStore {
 	m_CMInterface: CMInterface;

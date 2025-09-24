@@ -93,7 +93,7 @@ export interface g_ClanStore {
 				Render();
 				SetAccountID(e);
 				SetAccountType(e);
-				SetFromComponents(e, t, r, i);
+				SetFromComponents(e, t, n, i);
 				SetInstance(e);
 				SetUniverse(e);
 			};
@@ -203,7 +203,7 @@ export interface g_ClanStore {
 				Render();
 				SetAccountID(e);
 				SetAccountType(e);
-				SetFromComponents(e, t, r, i);
+				SetFromComponents(e, t, n, i);
 				SetInstance(e);
 				SetUniverse(e);
 			};
@@ -314,7 +314,7 @@ export interface g_ClanStore {
 				Render();
 				SetAccountID(e);
 				SetAccountType(e);
-				SetFromComponents(e, t, r, i);
+				SetFromComponents(e, t, n, i);
 				SetInstance(e);
 				SetUniverse(e);
 			};
@@ -333,6 +333,7 @@ export interface g_ClanStore {
 	>;
 	m_rgQueuedEventsClanIDs: any[];
 
+	AddGroupVanities(e);
 	BHasClanInfoLoaded(e);
 	BHasClanInfoLoadedByAccountID(e);
 	GetClanInfoByClanAccountID(e);

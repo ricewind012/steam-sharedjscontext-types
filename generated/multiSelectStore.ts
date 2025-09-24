@@ -1,6 +1,6 @@
 export interface multiSelectStore {
-	m_anchor: any;
-	m_bShouldAutoSelectAnchor: any;
-	m_lastRangeSelection: any;
+	m_anchor: { m_appid: number; m_strCollectionId: string };
+	m_bShouldAutoSelectAnchor: boolean;
+	m_lastRangeSelection: { m_appid: number; m_strCollectionId: string };
 	m_mapOfSelectedApps: Map<any, any>;
 }

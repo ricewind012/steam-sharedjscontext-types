@@ -1,5 +1,3 @@
-import type { CMInterface } from "../normal/shared/CMInterface";
-
 export interface StoreItemCache {
 	k_AlreadyResolvedBusy: Promise<any>;
 	k_AlreadyResolvedInvalid: Promise<any>;
@@ -9,7 +7,6 @@ export interface StoreItemCache {
 	m_PendingInfoPromise: any;
 	m_PendingInfoResolve: any;
 	m_PendingTimer: any;
-	m_SteamInterface: CMInterface;
 	m_bActivelyResettingCache: boolean;
 	m_bInitialized: boolean;
 	m_bReturnUnavailableItems: boolean;
@@ -20,20 +17,23 @@ export interface StoreItemCache {
 			k_regexSalePage: RegExp;
 			m_Assets: {
 				m_strCommunityIcon: string;
+				m_strCommunityIcon_Full: string;
 				m_strHeaderURL: string;
 				m_strHeroCapsuleURL: string;
 				m_strHeroCapsuleURL_2x: any;
 				m_strLibraryCapsuleURL: string;
 				m_strLibraryCapsuleURL_2x: string;
 				m_strLibraryHeroURL: string;
-				m_strLibraryHeroURL_2x: any;
+				m_strLibraryHeroURL_2x: string;
 				m_strMainCapsuleURL: string;
 				m_strPackageHeaderURL: any;
 				m_strPageBackgroundURL: string;
+				m_strRawPageBackgroundURL: string;
 				m_strSmallCapsuleURL: string;
 
 				ConstructAssetURL(e, t);
 				GetCommunityIconURL();
+				GetCommunityIconURL_Full();
 				GetHeaderURL();
 				GetHeroCapsuleURL();
 				GetHeroCapsuleURL_2x();
@@ -44,6 +44,7 @@ export interface StoreItemCache {
 				GetMainCapsuleURL();
 				GetPackageHeaderURL();
 				GetPageBackgroundURL();
+				GetRawPageBackgroundURL();
 				GetSmallCapsuleURL();
 			};
 			m_AssetsWithoutOverrides: any;
@@ -51,46 +52,37 @@ export interface StoreItemCache {
 			m_BestPurchaseOption: {
 				active_discounts: any[];
 				hide_discount_pct_for_compliance: boolean;
-				inactive_discounts: any[];
-				user_active_discounts: any[];
+				included_game_count: number;
 			};
 			m_ContentDescriptorIDs: number[];
 			m_DataRequested: {
 				include_assets: boolean;
 				include_platforms: boolean;
-				include_release: boolean;
-				include_screenshots: boolean;
 				include_tag_count: number;
 			};
 			m_Platforms: {
+				mac: boolean;
 				steam_deck_compat_category: number;
+				steam_os_compat_category: number;
 				steamos_linux: boolean;
 				vr_support: {};
 				windows: boolean;
 			};
-			m_RelatedItems: {};
-			m_ReleaseInfo: {
-				original_release_date: number;
-				steam_release_date: number;
-			};
+			m_RelatedItems: { demo_appid: any[]; standalone_demo_appid: any[] };
+			m_ReleaseInfo: any;
 			m_ReviewInfo: any;
-			m_Screenshots: {
-				m_rgAllScreenshots: string[];
-				m_rgOnlyAllAgesScreenshots: string[];
-
-				GetAllAgesAndMatureScreenshots();
-				GetOnlyAllAgesScreenshots();
-			};
+			m_Screenshots: any;
 			m_SelfPurchaseOption: any;
 			m_StoreCategories: {
-				controller_categoryids: number[];
+				controller_categoryids: any[];
 				feature_categoryids: number[];
 				supported_player_categoryids: number[];
 			};
 			m_Trailers: any;
-			m_bIsEarlyAccess: any;
+			m_bIsComingSoon: boolean;
+			m_bIsEarlyAccess: boolean;
 			m_bIsFree: boolean;
-			m_bIsFreeTemporary: any;
+			m_bIsFreeTemporary: boolean;
 			m_bVisible: boolean;
 			m_eAppType: number;
 			m_eItemType: number;
@@ -108,15 +100,18 @@ export interface StoreItemCache {
 			m_strStoreURLPathOverride: any;
 			m_unAppID: number;
 			m_unID: number;
+			m_userFilterFailure: any;
 
 			BCheckDataRequestIncluded(e);
 			BContainDataRequest(e);
 			BHasAgeSafeScreenshots();
-			BHasHighlightTrailers();
+			BHasDemo();
+			BHasHighlightTrailers(e);
 			BHasSomeLanguageSupport(e);
 			BHasStoreCategory(e);
 			BHasTags();
-			BHasTrailers();
+			BHasTrailers(e);
+			BIsAgeSafeScreenshot(e);
 			BIsApplicationOrTool();
 			BIsComingSoon();
 			BIsCustomComingSoonDisplay();
@@ -128,6 +123,7 @@ export interface StoreItemCache {
 			BIsReleased();
 			BIsSalePage();
 			BIsVisible();
+			BLimitedLaunchActive();
 			GetAllCreatorClanIDs();
 			GetAllDeveloperCreatorClans();
 			GetAllFranchiseCreatorClans();
@@ -145,12 +141,13 @@ export interface StoreItemCache {
 			GetBestPurchaseOriginalPriceInCents();
 			GetBestPurchasePriceFormatted();
 			GetBestPurchasePriceInCents();
-			GetBothAllAgesSafeAndMatureScreenshots();
 			GetCapsuleHeadline();
 			GetCommunityDiscussionForumsURL();
 			GetCommunityPageURL();
 			GetContentDescriptorIDs();
 			GetDataRequest();
+			GetDemoAppIDs();
+			GetDemoStandaloneStorePageAppIDs();
 			GetDeveloperNames();
 			GetFilteredReviewSummary();
 			GetFormattedSteamReleaseDate();
@@ -163,29 +160,31 @@ export interface StoreItemCache {
 			GetIncludedAppTypes();
 			GetInternalName();
 			GetLinks();
-			GetMicroTrailer();
+			GetMicroTrailer(e);
 			GetName();
-			GetOnlyAllAgesSafeScreenshots();
 			GetOriginalReleaseDateRTime();
 			GetParentAppID();
 			GetPlatforms();
 			GetPublisherNames();
-			GetReleaseDateRTime();
+			GetReleaseDateRTime(e = !1);
 			GetSalePageVanityURL();
+			GetScreenshots(e);
 			GetSelfPurchaseOption();
 			GetShortDescription();
 			GetStoreCategories_Controller();
 			GetStoreCategories_Features();
 			GetStoreCategories_SupportedPlayers();
 			GetStoreItemType();
-			GetStorePageURL();
+			GetStorePageURL(e = !1);
 			GetStorePageURLOverride();
 			GetStorePageURLWithOverride();
 			GetTagIDs();
 			GetTags();
 			GetUnfilteredReviewSummary();
 			GetUniqueID();
+			GetUserFilterFailure();
 			HasContentDescriptorID(e);
+			HasDemoStandaloneStorePage();
 			MergeData(e, t);
 			ReplaceBestPurchaseOption(e);
 		}
@@ -201,6 +200,11 @@ export interface StoreItemCache {
 	m_mapPackages: Map<any, any>;
 	m_mapTags: Map<any, any>;
 	m_mapTagsInFlight: Map<any, any>;
+	m_serviceTransport: {
+		MakeReady(...args: any[]);
+		SendMsg(e, t, n);
+		SendNotification(e, t);
+	};
 	m_setPendingAppInfo: Set<any>;
 	m_setPendingBundleInfo: Set<any>;
 	m_setPendingCreatorInfo: Set<any>;
@@ -245,16 +249,16 @@ export interface StoreItemCache {
 	GetPackage(e);
 	GetPreviousSupersetLoadPromise(e, t, r);
 	GetReturnUnavailableItems();
-	GetSteamInterface();
+	GetServiceTransport();
 	GetStoreItem(e, t);
 	GetStoreItemDataRequest(e, t);
 	GetStoreItemWithLegacyVisibilityCheck(e, t);
 	GetTag(e);
 	HintLoadStoreApps(e, t): Promise<any>;
 	HintLoadStoreBundles(e, t): Promise<any>;
-	HintLoadStoreItems(e, t, r, n, i, a, s, o): Promise<any>;
+	HintLoadStoreItems(e, t, r, n, i, a, s): Promise<any>;
 	HintLoadStorePackages(e, t): Promise<any>;
-	InternalHandleLoadStoreItems(e, t, r): Promise<any>;
+	InternalHandleLoadStoreItems(e, t): Promise<any>;
 	MarkStoreItemIDUnavailable(e);
 	QueueAppRequest(e, t): Promise<any>;
 	QueueBundleRequest(e, t): Promise<any>;
@@ -270,10 +274,10 @@ export interface StoreItemCache {
 	QueuePackageRequest(e, t): Promise<any>;
 	QueueStoreItemRequest(e, t, r): Promise<any>;
 	QueueTagRequest(e, t): Promise<any>;
-	ReadItem(e, t);
 	ReadResults(e, t);
 	ResetCache(): Promise<any>;
 	SetReturnUnavailableItems(e);
+	SetServiceTransport(e);
 	SetSteamInterface(e);
 	SortStoreItems(e);
 }

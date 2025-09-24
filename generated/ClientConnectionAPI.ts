@@ -1,5 +1,4 @@
 export interface ClientConnectionAPI {
-	m_bAllowAccountMismatch: boolean;
 	m_connection: {
 		m_ClientInfo: {
 			bFriendsUIEnabled: boolean;
@@ -24,14 +23,14 @@ export interface ClientConnectionAPI {
 
 	BClientAccountMatches();
 	BClientConnected();
+	BClientConnectedAndSupportsMessage(e);
 	BClientSupportsMessage(e);
 	BIsSubscribedApp(e);
 	FailureResult(e = 2);
-	GenericEResultCall(e);
+	GenericEResultCall(e, t = !1);
 	OpenChatRoomGroupDialog(e, t);
 	OpenFriendChatDialog(e);
 	OpenFriendsDialog();
-	OpenSteamURL(e);
-	SetAllowAccountMismatch(e);
-	ShowChatRoomGroupInvite(e);
+	OpenSteamURL(e, t = !1);
+	ShowChatRoomGroupInvite(e, t = !0);
 }

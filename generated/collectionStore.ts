@@ -28,10 +28,10 @@ export interface collectionStore {
 		string,
 		{
 			m_filter: any;
-			m_mapFilterToAppCounts: Map<number, {}>;
+			m_mapFilterToAppCounts: Map<any, any>;
 			m_rgApps: any[];
-			m_setAddedManually: Set<number>;
-			m_setApps: Set<number>;
+			m_setAddedManually: Set<any>;
+			m_setApps: Set<any>;
 			m_setRemovedManually: Set<any>;
 			m_strId: string;
 			m_strName: string;
@@ -70,16 +70,14 @@ export interface collectionStore {
 			8: string;
 		}
 	>;
-	m_shortcutCollectionInfo: {
-		favorite: { added: number[]; id: string; removed: any[] };
-	};
+	m_shortcutCollectionInfo: {};
 
 	AddOrRemoveApp(e, t, r);
 	BHasNonGamepadOptions();
 	BIncludeInFamilyGroupCollection(e);
 	BIncludeInSharedLibraryCollection(e);
 	BIsFriendInAnyCollection(e);
-	ImportUserTags(e, t, r): Promise<any>;
+	CreateSystemCollections(): Promise<any>;
 	Init(e): Promise<any>;
 	InitPartnerCollectionNameMap();
 	InitSystemCollectionNameMap();

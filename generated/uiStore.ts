@@ -1,7 +1,8 @@
-import type { SteamLocalStorage } from "../normal/shared/storage";
 import type { CMInterface } from "../normal/shared/CMInterface";
+import type { SteamLocalStorage } from "../normal/shared/storage";
 
 export interface uiStore {
+	SetGameListSelection(...args: any[]);
 	m_RecentGamesFirstApp: number;
 	m_bGameListGroupedByCollection: boolean;
 	m_bGameListGroupedBySharedLibraries: boolean;
@@ -48,6 +49,7 @@ export interface uiStore {
 	m_latchedMostRecentApp: number;
 	m_localStorage: SteamLocalStorage;
 	m_mapLibrarySectionCollapseState: Map<string, {}>;
+	m_setClientSuggestionIds: Set<any>;
 	m_setStoreSuggestionIds: Set<any>;
 	m_setStoreSuggestions: any;
 
@@ -65,7 +67,6 @@ export interface uiStore {
 	RestoreNavigation();
 	SetCollectionEditorOpen(e);
 	SetCollectionRenameOpen(e);
-	SetGameListSelection(e, t);
 	SetMultiSelectHooksForGameListSelection();
 	SetRecentGamesFirstApp(e);
 	ShowCollectionViewWithAppTypes(...e);

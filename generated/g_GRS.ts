@@ -1,52 +1,125 @@
 export interface g_GRS {
 	m_bClipLoadingTriggered: boolean;
 	m_bEnoughDiskSpace: boolean;
-	m_bLoadingAppsWithTimelines: boolean;
+	m_bLoadingAppsWithBackgroundVideo: boolean;
 	m_bLoadingClips: boolean;
 	m_clipExportProgress: Map<any, any>;
-	m_clips: Map<any, any>;
-	m_clipsGroupByGame: Map<any, any>;
+	m_clips: Map<
+		string,
+		{
+			clip_id: string;
+			date_clipped: number;
+			date_recorded: number;
+			duration_ms: string;
+			file_size: string;
+			game_id: string;
+			start_offset_ms: string;
+			start_timeline_id: string;
+			temporary: boolean;
+			thumbnail_height: number;
+			thumbnail_url: string;
+			thumbnail_width: number;
+		}
+	>;
+	m_clipsGroupByGame: Map<
+		string,
+		{
+			0: {
+				clip_id: string;
+				date_clipped: number;
+				date_recorded: number;
+				duration_ms: string;
+				file_size: string;
+				game_id: string;
+				start_offset_ms: string;
+				start_timeline_id: string;
+				temporary: boolean;
+				thumbnail_height: number;
+				thumbnail_url: string;
+				thumbnail_width: number;
+			};
+			1: {
+				clip_id: string;
+				date_clipped: number;
+				date_recorded: number;
+				duration_ms: string;
+				file_size: string;
+				game_id: string;
+				start_offset_ms: string;
+				start_timeline_id: string;
+				temporary: boolean;
+				thumbnail_height: number;
+				thumbnail_url: string;
+				thumbnail_width: number;
+			};
+			2: {
+				clip_id: string;
+				date_clipped: number;
+				date_recorded: number;
+				duration_ms: string;
+				file_size: string;
+				game_id: string;
+				start_offset_ms: string;
+				start_timeline_id: string;
+				temporary: boolean;
+				thumbnail_height: number;
+				thumbnail_url: string;
+				thumbnail_width: number;
+			};
+
+			function();
+			function();
+			function(t, r);
+			function(t, r);
+			function(t, r);
+			function(t, r);
+			function(t, r);
+			function(t, r);
+			function();
+			function(t, r);
+			function(t, r);
+			function();
+			function();
+			function();
+			function();
+			function(t, r);
+			function();
+			function();
+			function();
+			function();
+			function();
+			function();
+			function();
+			function(t, r);
+			function();
+			function(e, t);
+			function();
+			function(t, r);
+			function();
+			function();
+			function();
+			function();
+			function();
+		}
+	>;
 	m_currentlyExportingClip: any;
 	m_fnGetAchievementInfo(...args: any[]);
-	m_mapActiveTimelines: Map<
+	m_mapActiveTimelines: Map<any, any>;
+	m_mapClipLoaders: Map<
 		string,
 		{
 			loader: {
 				m_bInitialized: boolean;
-				m_clipID: any;
+				m_clipID: string;
 				m_fnTimelineURLBuilder(...args: any[]);
 				m_gameID: string;
-				m_mapRunningTimelines: Map<
-					string,
-					{
-						m_globalStartMS: number;
-						m_metadata: {
-							date_recorded: number;
-							duration_ms: string;
-							game_id: string;
-							recordings: any[];
-							timeline_id: string;
-						};
-						m_nPerfCounterOffsetMS: number;
-						m_perfCounterStart: number;
-						m_runningRecording: any;
-					}
-				>;
-				m_mapTimelineData: Map<
-					string,
-					{
-						m_rgEntries: any[];
-						m_rgGameModeChanges: any[];
-						m_rgPhases: any[];
-						m_rgStateDescriptions: any[];
-						m_strState: string;
-					}
-				>;
+				m_mapRunningTimelines: Map<any, any>;
+				m_mapTimelineData: Map<any, any>;
 				m_rgListeners: any[];
 				m_rgTimelineMetadata: { undefined }[];
 				m_schUpdateRunning: {
-					m_fnCallback(...args: any[]);
-					m_schTimer: number;
+					m_fnCallback: any;
+					m_schTimer: any;
 
 					Cancel();
 					IsScheduled();
@@ -71,6 +144,7 @@ export interface g_GRS {
 				ConvertRecordingTimeMStoPreTrimTimeMS(e, t);
 				CreateGlobalRangeForTimeline(e, t, r, n);
 				CreateTimelineIterator(e, t);
+				FindRangeEventsAtGlobalMS(e);
 				FindRecordingAndOffsetForEntry(e): Promise<any>;
 				FindTimelineAtOffset(e, t);
 				FireEvent(e, ...t);
@@ -109,8 +183,8 @@ export interface g_GRS {
 				IsActiveRecording(e);
 				IsActiveTimeline(e);
 				LoadTimelineData(e): Promise<any>;
+				LoadTimelinesForBackgroundVideo(e): Promise<any>;
 				LoadTimelinesForClip(e): Promise<any>;
-				LoadTimelinesForGame(e): Promise<any>;
 				LoadTimelinesForSharedClip(e);
 				LoadTimelinesForTestClip(e, t, r, n);
 				LoadTimelinesForTestGame(e, t);
@@ -126,10 +200,9 @@ export interface g_GRS {
 				UpdateTimelineMetadata(e);
 				UpdateUserMarker(e, t, r);
 			};
-			release();
+			nRefCount: number;
 		}
 	>;
-	m_mapClipLoaders: Map<any, any>;
 	m_mapManualRecordingCallbacks: Map<any, any>;
 	m_mapSharedClipLoaders: Map<any, any>;
 	m_mapTimelineLoaders: Map<
@@ -140,37 +213,13 @@ export interface g_GRS {
 				m_clipID: any;
 				m_fnTimelineURLBuilder(...args: any[]);
 				m_gameID: string;
-				m_mapRunningTimelines: Map<
-					string,
-					{
-						m_globalStartMS: number;
-						m_metadata: {
-							date_recorded: number;
-							duration_ms: string;
-							game_id: string;
-							recordings: any[];
-							timeline_id: string;
-						};
-						m_nPerfCounterOffsetMS: number;
-						m_perfCounterStart: number;
-						m_runningRecording: any;
-					}
-				>;
-				m_mapTimelineData: Map<
-					string,
-					{
-						m_rgEntries: any[];
-						m_rgGameModeChanges: any[];
-						m_rgPhases: any[];
-						m_rgStateDescriptions: any[];
-						m_strState: string;
-					}
-				>;
+				m_mapRunningTimelines: Map<any, any>;
+				m_mapTimelineData: Map<any, any>;
 				m_rgListeners: any[];
 				m_rgTimelineMetadata: { undefined }[];
 				m_schUpdateRunning: {
-					m_fnCallback(...args: any[]);
-					m_schTimer: number;
+					m_fnCallback: any;
+					m_schTimer: any;
 
 					Cancel();
 					IsScheduled();
@@ -195,6 +244,7 @@ export interface g_GRS {
 				ConvertRecordingTimeMStoPreTrimTimeMS(e, t);
 				CreateGlobalRangeForTimeline(e, t, r, n);
 				CreateTimelineIterator(e, t);
+				FindRangeEventsAtGlobalMS(e);
 				FindRecordingAndOffsetForEntry(e): Promise<any>;
 				FindTimelineAtOffset(e, t);
 				FireEvent(e, ...t);
@@ -233,8 +283,8 @@ export interface g_GRS {
 				IsActiveRecording(e);
 				IsActiveTimeline(e);
 				LoadTimelineData(e): Promise<any>;
+				LoadTimelinesForBackgroundVideo(e): Promise<any>;
 				LoadTimelinesForClip(e): Promise<any>;
-				LoadTimelinesForGame(e): Promise<any>;
 				LoadTimelinesForSharedClip(e);
 				LoadTimelinesForTestClip(e, t, r, n);
 				LoadTimelinesForTestGame(e, t);
@@ -254,29 +304,26 @@ export interface g_GRS {
 		}
 	>;
 	m_recordingState: any;
-	m_rgAppsWithTimelines: {
+	m_rgAppsWithBackgroundVideo: {
 		file_size: string;
 		game_id: string;
 		is_active: boolean;
 		most_recent_start_time: number;
-		recording_type: number;
 		timeline_duration_seconds: number;
 		video_duration_seconds: number;
 	}[];
 	m_strLastClipID: any;
 	m_transport: {
 		MakeReady(...args: any[]);
-		SendMsg(e, t, r);
+		SendMsg(e, t, n);
 		SendNotification(e, t);
 	};
 
 	BEnoughDiskSpace();
-	BLoadingAppsWithTimelines();
+	BLoadingAppsWithBackgroundVideo();
 	BLoadingClips();
-	BShouldReloadAppsWithTimelines(e, t);
 	CheckEnoughDiskSpace(): Promise<any>;
-	GetAppsWithTimelines();
-	GetAppsWithTimelinesWithVideo();
+	GetAppsWithBackgroundVideo();
 	GetAvailableDiskSpace(): Promise<any>;
 	GetBestClipTitle(e);
 	GetClipExportProgress(e);
@@ -286,14 +333,15 @@ export interface g_GRS {
 	GetClipSummary(e);
 	GetCurrentExportingClip();
 	GetLastClip();
+	GetRecordingHighlights(e, t): Promise<any>;
 	GetRecordingState();
 	GetTotalDiskSpaceUsage(e, t): Promise<any>;
 	Init(e, t): Promise<any>;
 	InternalAddClipSummary(e);
 	LazyLoadClips(): Promise<any>;
-	LoadAppsWithTimelines(): Promise<any>;
+	LoadAppsWithBackgroundVideo(): Promise<any>;
 	ManuallyDeleteRecordingForApps(e);
-	ReloadAppsWithTimelinesIfNeeded(e);
+	ReloadAppsWithBackgroundVideoIfNecessary(e);
 	ReportClipRange(e, t, r, n, i);
 	ReportClipShare(e, t, r, n, i);
 }

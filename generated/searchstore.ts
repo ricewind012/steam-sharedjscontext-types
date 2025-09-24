@@ -1,5 +1,5 @@
-import type { SubscribableValue } from "../normal/shared/interfaces";
 import type { CMInterface } from "../normal/shared/CMInterface";
+import type { SubscribableValue } from "../normal/shared/interfaces";
 
 export interface searchstore {
 	m_cm: CMInterface;

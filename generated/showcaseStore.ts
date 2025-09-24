@@ -29,7 +29,7 @@ export interface showcaseStore {
 		{
 			bExpanded: boolean;
 			eSortBy: number;
-			nOrder: number;
+			nOrder: any;
 			nShowcaseId: number;
 			strCollectionId: string;
 		}

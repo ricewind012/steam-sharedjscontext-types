@@ -30,14 +30,12 @@ export interface SteamClient {
 		GetGameActionDetails(...args: any[]);
 		GetGameActionForApp(...args: any[]);
 		GetLaunchOptionsForApp(...args: any[]);
-		GetLibraryBootstrapData(...args: any[]);
 		GetMyAchievementsForApp(...args: any[]);
 		GetPlaytime(...args: any[]);
 		GetPrePurchasedApps(...args: any[]);
 		GetResolutionOverrideForApp(...args: any[]);
 		GetScreenshotInfo(...args: any[]);
 		GetScreenshotsInTimeRange(...args: any[]);
-		GetShortcutData(...args: any[]);
 		GetShortcutDataForPath(...args: any[]);
 		GetSoundtrackDetails(...args: any[]);
 		GetSubscribedWorkshopItemDetails(...args: any[]);
@@ -94,6 +92,7 @@ export interface SteamClient {
 		SetShortcutIsVR(...args: any[]);
 		SetShortcutLaunchOptions(...args: any[]);
 		SetShortcutName(...args: any[]);
+		SetShortcutSortAs(...args: any[]);
 		SetShortcutStartDir(...args: any[]);
 		SetStreamingClientForApp(...args: any[]);
 		SetThirdPartyControllerConfiguration(...args: any[]);
@@ -115,14 +114,19 @@ export interface SteamClient {
 		VerifyApp(...args: any[]);
 	};
 	Auth: {
+		ClearCachedSignInPin(...args: any[]);
+		CurrentUserHasCachedSignInPin(...args: any[]);
 		GetLocalHostname(...args: any[]);
 		GetMachineID(...args: any[]);
 		GetRefreshInfo(...args: any[]);
 		GetSteamGuardData(...args: any[]);
 		IsSecureComputer(...args: any[]);
+		SetCachedSignInPin(...args: any[]);
 		SetLoginToken(...args: any[]);
 		SetSteamGuardData(...args: any[]);
 		StartSignInFromCache(...args: any[]);
+		UserHasCachedSignInPin(...args: any[]);
+		ValidateCachedSignInPin(...args: any[]);
 	};
 	Broadcast: {
 		ApproveViewerRequest(...args: any[]);
@@ -169,6 +173,7 @@ export interface SteamClient {
 		ResolveAppSyncConflict(...args: any[]);
 		RetryAppSync(...args: any[]);
 	};
+	CloudStorage: { WriteKey(...args: any[]) };
 	CommunityItems: {
 		DownloadItemAsset(...args: any[]);
 		GetItemAssetPath(...args: any[]);
@@ -200,14 +205,9 @@ export interface SteamClient {
 		SuspendLanPeerContent(...args: any[]);
 	};
 	FamilySharing: {
-		AuthorizeLocalDevice(...args: any[]);
-		DeauthorizeLocalDevice(...args: any[]);
 		GetAvailableLenders(...args: any[]);
-		GetFamilyGroupInfo(...args: any[]);
 		RegisterForKickedBorrower(...args: any[]);
-		RequestLocalDeviceAuthorization(...args: any[]);
 		SetPreferredLender(...args: any[]);
-		UpdateAuthorizedBorrower(...args: any[]);
 	};
 	FriendSettings: {
 		GetEnabledFeatures(...args: any[]);
@@ -215,7 +215,6 @@ export interface SteamClient {
 		SetFriendSettings(...args: any[]);
 	};
 	Friends: {
-		AddFriend(...args: any[]);
 		GetCoplayData(...args: any[]);
 		InviteUserToCurrentGame(...args: any[]);
 		InviteUserToGame(...args: any[]);
@@ -223,7 +222,6 @@ export interface SteamClient {
 		InviteUserToRemotePlayTogetherCurrentGame(...args: any[]);
 		RegisterForMultiplayerSessionShareURLChanged(...args: any[]);
 		RegisterForVoiceChatStatus(...args: any[]);
-		RemoveFriend(...args: any[]);
 		ShowRemotePlayTogetherUI(...args: any[]);
 	};
 	GameNotes: {
@@ -258,10 +256,10 @@ export interface SteamClient {
 		CloseDesktopConfigurator(...args: any[]);
 		ControllerKeyboardSendText(...args: any[]);
 		ControllerKeyboardSetKeyState(...args: any[]);
-		DeauthorizeControllerAccount(...args: any[]);
 		DecrementCloudedControllerConfigsCounter(...args: any[]);
 		DeletePersonalControllerConfiguration(...args: any[]);
 		DuplicateControllerConfigurationSourceMode(...args: any[]);
+		EnableControllerAnalogInputMessages(...args: any[]);
 		EndControllerDeviceSupportFlow(...args: any[]);
 		ExportCurrentControllerConfiguration(...args: any[]);
 		ForceConfiguratorFocus(...args: any[]);
@@ -281,6 +279,7 @@ export interface SteamClient {
 		PreviewConfigForAppAndController(...args: any[]);
 		PreviewControllerLEDColor(...args: any[]);
 		QueryControllerConfigsForApp(...args: any[]);
+		RegisterForActiveConfigLoadedMessages(...args: any[]);
 		RegisterForActiveControllerChanges(...args: any[]);
 		RegisterForConfigSelectionChanges(...args: any[]);
 		RegisterForControllerAccountChanges(...args: any[]);
@@ -311,7 +310,6 @@ export interface SteamClient {
 		SaveControllerPersonalizationSettings(...args: any[]);
 		SaveControllerSounds(...args: any[]);
 		SaveEditingControllerConfiguration(...args: any[]);
-		SetActiveControllerAccount(...args: any[]);
 		SetControllerConfigurationModeShiftBinding(...args: any[]);
 		SetControllerHapticSetting(...args: any[]);
 		SetControllerMappingString(...args: any[]);
@@ -345,7 +343,9 @@ export interface SteamClient {
 			...args: any[]
 		);
 		StartGyroSWCalibration(...args: any[]);
+		StartUIVisualization(...args: any[]);
 		StopEditingControllerConfiguration(...args: any[]);
+		StopUIVisualization(...args: any[]);
 		SwapControllerConfigurationSourceModes(...args: any[]);
 		SwapControllerModeInputBindings(...args: any[]);
 		SwapControllerOrder(...args: any[]);
@@ -353,7 +353,6 @@ export interface SteamClient {
 		TriggerHapticPulse(...args: any[]);
 		TriggerSimpleHapticEvent(...args: any[]);
 		UnregisterForControllerStateChanges(...args: any[]);
-		UnregisterForUIVisualization(...args: any[]);
 		UploadChangesForCloudedControllerConfigs(...args: any[]);
 	};
 	InstallFolder: {
@@ -401,7 +400,6 @@ export interface SteamClient {
 	Music: {
 		DecreaseVolume(...args: any[]);
 		IncreaseVolume(...args: any[]);
-		PlayEntry(...args: any[]);
 		PlayNext(...args: any[]);
 		PlayPrevious(...args: any[]);
 		RegisterForMusicPlaybackChanges(...args: any[]);
@@ -428,6 +426,7 @@ export interface SteamClient {
 			GetStringDeviceProperty(...args: any[]);
 			RegisterForDevicePropertyChange(...args: any[]);
 		};
+		ExtendActivityTimeout(...args: any[]);
 		GetMutualCapabilities(...args: any[]);
 		GetWebSecret(...args: any[]);
 		InstallVR(...args: any[]);
@@ -548,6 +547,7 @@ export interface SteamClient {
 		RegisterForSessionStarted(...args: any[]);
 		RegisterForSessionStopped(...args: any[]);
 		RegisterForSettingsChanges(...args: any[]);
+		RegisterForVRStreamingInvitation(...args: any[]);
 		SetClientStreamingBitrate(...args: any[]);
 		SetClientStreamingQuality(...args: any[]);
 		SetGameSystemVolume(...args: any[]);
@@ -637,13 +637,13 @@ export interface SteamClient {
 		GetWindowed(...args: any[]);
 		IgnoreSteamDeckRewards(...args: any[]);
 		OpenWindowsMicSettings(...args: any[]);
+		RegisterForAppsWithAutoUpdateOverrides(...args: any[]);
 		RegisterForMicVolumeUpdates(...args: any[]);
 		RegisterForSettingsArrayChanges(...args: any[]);
 		RegisterForSettingsChanges(...args: any[]);
 		RegisterForTimeZoneChange(...args: any[]);
 		ReinitMicSettings(...args: any[]);
 		RenderHotkey(...args: any[]);
-		RequestDeviceAuthInfo(...args: any[]);
 		SelectClientBeta(...args: any[]);
 		SetCurrentLanguage(...args: any[]);
 		SetEnableSoftProcessKill(...args: any[]);
@@ -654,7 +654,6 @@ export interface SteamClient {
 		SetRegisteredSteamDeck(...args: any[]);
 		SetSaveAccountCredentials(...args: any[]);
 		SetSetting(...args: any[]);
-		SetSteamPlayEnabled(...args: any[]);
 		SetTimeZone(...args: any[]);
 		SetUseNintendoButtonLayout(...args: any[]);
 		SetUseUniversalFaceButtonGlyphs(...args: any[]);
@@ -791,6 +790,7 @@ export interface SteamClient {
 			RegisterForSystemKeyEvents(...args: any[]);
 		};
 		UpdateSettings(...args: any[]);
+		VideoRecordingDriverCheck(...args: any[]);
 	};
 	UI: {
 		EnsureMainWindowCreated(...args: any[]);
@@ -827,6 +827,7 @@ export interface SteamClient {
 		AuthorizeMicrotxn(...args: any[]);
 		CancelLogin(...args: any[]);
 		CancelMicrotxn(...args: any[]);
+		CancelRefreshLogin(...args: any[]);
 		CancelShutdown(...args: any[]);
 		ChangeUser(...args: any[]);
 		Connect(...args: any[]);
@@ -863,6 +864,7 @@ export interface SteamClient {
 		SignOutAndRestart(...args: any[]);
 		StartLogin(...args: any[]);
 		StartOffline(...args: any[]);
+		StartRefreshLogin(...args: any[]);
 		StartRestart(...args: any[]);
 		StartShutdown(...args: any[]);
 	};
@@ -923,11 +925,11 @@ export interface SteamClient {
 		ProcessShuttingDown(...args: any[]);
 		ResizeTo(...args: any[]);
 		RestoreWindowSizeAndPosition(...args: any[]);
-		SetAutoDisplayScale(...args: any[]);
 		SetComposition(...args: any[]);
+		SetGamepadUIAutoDisplayScale(...args: any[]);
+		SetGamepadUIManualDisplayScaleFactor(...args: any[]);
 		SetHideOnClose(...args: any[]);
 		SetKeyFocus(...args: any[]);
-		SetManualDisplayScaleFactor(...args: any[]);
 		SetMaxSize(...args: any[]);
 		SetMinSize(...args: any[]);
 		SetModal(...args: any[]);

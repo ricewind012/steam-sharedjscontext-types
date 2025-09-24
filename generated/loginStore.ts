@@ -9,6 +9,7 @@ export interface loginStore {
 	m_vecLoginUsers: {
 		accountName: string;
 		avatarUrl: string;
+		hasPin: boolean;
 		personaName: string;
 		rememberPassword: boolean;
 	}[];

@@ -1,5 +1,5 @@
-import type { SteamLocalStorage } from "../normal/shared/storage";
 import type { CMInterface } from "../normal/shared/CMInterface";
+import type { SteamLocalStorage } from "../normal/shared/storage";
 
 export interface playNextStore {
 	m_CMInterface: CMInterface;

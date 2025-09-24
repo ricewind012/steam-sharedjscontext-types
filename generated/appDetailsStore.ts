@@ -6,12 +6,16 @@ export interface appDetailsStore {
 		number,
 		{
 			appDetailsSpotlight: any;
-			associationData: any;
+			associationData: {
+				rgDevelopers: { strName: string; strURL: string }[];
+				rgFranchises: any[];
+				rgPublishers: { strName: string; strURL: string }[];
+			};
 			bLoadingAchievments: boolean;
 			cRegistered: number;
 			customImageInfo: any;
 			customImageInfoRtime: number;
-			descriptionsData: any;
+			descriptionsData: { strFullDescription: string; strSnippet: string };
 			details: {
 				achievements: {
 					nAchieved: number;
@@ -52,6 +56,7 @@ export interface appDetailsStore {
 				bCloudSyncOnSuspendEnabled: boolean;
 				bCommunityMarketPresence: boolean;
 				bControllerSurveyFilledOut: boolean;
+				bDisableUserMediaUpload: boolean;
 				bEnableAllowDesktopConfiguration: boolean;
 				bFreeRemovableLicense: boolean;
 				bGamepadRequired: boolean;
@@ -61,6 +66,7 @@ export interface appDetailsStore {
 				bHasDifferentCopies: boolean;
 				bHasLockedPrivateBetas: boolean;
 				bIsExcludedFromSharing: boolean;
+				bIsFreeApp: boolean;
 				bIsSubscribedTo: boolean;
 				bIsThirdPartyUpdater: boolean;
 				bOverlayEnabled: boolean;
@@ -111,6 +117,7 @@ export interface appDetailsStore {
 					strLogoImage: string;
 				};
 				nBuildID: number;
+				nCloudProgressPercent: number;
 				nCompatToolPriority: number;
 				nPlaytimeForever: number;
 				nScreenshots: number;
@@ -124,10 +131,8 @@ export interface appDetailsStore {
 				strCompatToolDisplayName: string;
 				strCompatToolName: string;
 				strDeveloperName: string;
-				strDeveloperURL: string;
 				strDisplayName: string;
 				strExternalSubscriptionURL: string;
-				strFallbackHeaderImage: string;
 				strFlatpakAppID: string;
 				strHomepageURL: string;
 				strInstallFolder: string;
@@ -171,11 +176,15 @@ export interface appDetailsStore {
 					strUrl: string;
 					ugcHandle: string;
 				}[];
+				vecSteamOSCompatTestResults: {
+					test_loc_token: string;
+					test_result: number;
+				}[];
 			};
 			hAppDetails: { unregister(...args: any[]) };
-			listeners: any[];
-			screenshots: any;
-			socialMediaData: any;
+			listeners: function[];
+
+			BHasCurrentCustomImageInfo(e);
 		}
 	>;
 	m_mapRecentlyLaunchedApps: Map<any, any>;
@@ -191,25 +200,22 @@ export interface appDetailsStore {
 	GetAppData(e);
 	GetAppDetails(e);
 	GetAppDetailsSpotlight(e);
-	GetAppScreenshots(e);
 	GetAssociations(e);
 	GetCustomLogoPosition(e);
 	GetDescriptions(e);
-	GetHeaderImages(e);
-	GetHeaderImagesForAppId(e, t, r);
+	GetHeaderImages(e, t);
+	GetHeaderImagesForAppId(e, t, r, n);
 	GetHeroBlurImages(e);
 	GetHeroBlurImagesForAppId(e, t, r);
 	GetHeroImages(e);
 	GetHeroImagesForAppId(e, t, r);
 	GetLogoImages(e);
 	GetLogoImagesForAppId(e, t, r);
-	GetSocialMediaData(e);
 	Init(e);
 	MarkAppAsRecentlyLaunched(e);
 	RegisterForAppData(e, t);
 	RequestAppDetails(e): Promise<any>;
 	RequestAppDetailsSpotlight(e): Promise<any>;
-	RequestAppScreenshots(e): Promise<any>;
 	RequestCustomImageInfo(e): Promise<any>;
 	SaveCustomLogoPosition(e, t): Promise<any>;
 	UnregisterForAppData(e, t);

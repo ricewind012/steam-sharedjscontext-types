@@ -16,10 +16,11 @@ export interface NotificationStore {
 	m_hTrayRemoveTimer: any;
 	m_iLastBatteryLevelNotification: number;
 	m_mapAppOverlayToasts: Map<any, any>;
+	m_mapToastLastShown: Map<number, {}>;
 	m_nNextTestNotificationID: number;
 	m_nUnviewedNotifications: number;
 	m_rgNotificationToasts: any[];
-	m_rgNotificationTray: any[];
+	m_rgNotificationTray: { undefined }[];
 	m_rgPendingToasts: any[];
 	m_rtNextTrayRemove: number;
 	m_setContextsRenderingToasts: Set<any>;
@@ -32,9 +33,10 @@ export interface NotificationStore {
 	BAnyContextRenderingToasts();
 	BAnyToastDisplayAlone(e);
 	BContextRenderingToasts(e);
+	BIsToastRateLimited(e, t, r);
 	BIsUserInGame();
 	BNextToastDisplayAlone(e);
-	BShowToast(e);
+	BShowToast(e, t);
 	BSkipSystemUpdateNotification(e);
 	ChooseSound(e, t);
 	ClearAllToastNotifications();
@@ -87,6 +89,7 @@ export interface NotificationStore {
 	TestFriendOnline(e);
 	TestGRE();
 	TestGRUM();
+	TestGameRecordingInstantClip();
 	TestGameRecordingStart();
 	TestGameRecordingStop();
 	TestGeneralAnnouncement();
@@ -97,12 +100,14 @@ export interface NotificationStore {
 	TestHelpRequest();
 	TestIncomingVoiceChat();
 	TestItemAnnouncement(e): Promise<any>;
+	TestLowBatteryNotification(e);
 	TestMajorSale();
 	TestModeratorMessage();
 	TestParentalFeatureRequest(e);
 	TestParentalFeatureResponse(e);
 	TestParentalPlaytimeRequest(e);
 	TestParentalPlaytimeResponse(e);
+	TestPlaytestInvite();
 	TestPlaytimeWarning();
 	TestReadControllerGuide();
 	TestRemoteClientConnection();
@@ -113,6 +118,7 @@ export interface NotificationStore {
 	TestStreamingClientConnection();
 	TestSystemUpdate(e);
 	TestTradeOffer();
+	TestTradeReversal();
 	TestUnsupportedDock();
 	TestWishlist(e);
 	Viewed();

@@ -1,5 +1,5 @@
-import type { CCallbackList } from "../normal/shared/interfaces";
 import type { CMInterface } from "../normal/shared/CMInterface";
+import type { CCallbackList } from "../normal/shared/interfaces";
 
 export interface subscriberAgreementStore {
 	m_PromiseLoading: any;
