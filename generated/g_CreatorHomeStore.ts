@@ -1,3 +1,13 @@
+import type { CMInterface } from "../normal/shared/CMInterface";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
+
 export interface g_CreatorHomeStore {
 	m_bLoadedFromConfig: boolean;
 	m_mapAppToCreatorIDList: Map<any, any>;

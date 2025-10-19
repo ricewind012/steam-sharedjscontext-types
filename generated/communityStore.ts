@@ -1,138 +1,17 @@
 import type { CMInterface } from "../normal/shared/CMInterface";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
 
 export interface communityStore {
 	m_CMInterface: CMInterface;
 	m_CommentThreadStore: {
-		m_mapThreads: Map<
-			string,
-			{
-				m_bUpdating: boolean;
-				m_eThreadType: number;
-				m_gidfeature: string;
-				m_gidfeature2: string;
-				m_msLastUpdated: number;
-				m_rgComments: any[];
-				m_steamIDActor: {
-					m_ulSteamID: {
-						high: number;
-						low: number;
-						unsigned: boolean;
-
-						function(e);
-						function(e);
-						function();
-						function(e);
-						function(e);
-						function();
-						function();
-						function();
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function();
-						function(e);
-						function();
-						function();
-						function();
-						function();
-						function();
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function();
-						function();
-						function();
-						function();
-						function();
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function();
-						function();
-						function(e);
-						function();
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function(e);
-						function();
-						function();
-						function();
-						function();
-						function();
-						function(e);
-						function();
-						function(e);
-					};
-
-					BIsClanAccount();
-					BIsIndividualAccount();
-					BIsValid();
-					ConvertTo64BitString();
-					GetAccountID();
-					GetAccountType();
-					GetInstance();
-					GetUniverse();
-					Render();
-					SetAccountID(e);
-					SetAccountType(e);
-					SetFromComponents(e, t, n, i);
-					SetInstance(e);
-					SetUniverse(e);
-				};
-				m_threadInfo: {
-					answer_actor: number;
-					answer_actor_rank: number;
-					answer_commentid: string;
-					can_post: boolean;
-					comment_thread_type: number;
-					comments: any[];
-					commentthreadid: string;
-					count: number;
-					deleted_comments: any[];
-					gidfeature: string;
-					gidfeature2: string;
-					start: number;
-					steamid: string;
-					total_count: number;
-					upvoters: any[];
-					upvotes: number;
-					user_subscribed: boolean;
-					user_upvoted: boolean;
-				};
-
-				BLocalUserOwnsThread();
-				DeleteComment(e): Promise<any>;
-				FetchPastComments(e): Promise<any>;
-				FetchRecentComments(): Promise<any>;
-				GetSecondsSinceLoaded();
-				GetUpVoters();
-				PostCommentToThread(e): Promise<any>;
-				RefreshIfNeeded();
-			}
-		>;
+		m_mapThreads: Map<any, any>;
 
 		FindOrLoadThread(e, t, r, n);
 		FindOrLoadThreadByPublishedFileID(e, t);

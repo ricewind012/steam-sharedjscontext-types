@@ -1,4 +1,12 @@
 import type { CMInterface } from "../normal/shared/CMInterface";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
 
 export interface workshopStore {
 	m_CMInterface: CMInterface;
@@ -11,70 +19,8 @@ export interface workshopStore {
 	m_mapWorkshopItemsDownloaded: Map<any, any>;
 	m_mapWorkshopItemsDownloading: Map<any, any>;
 	m_mapWorkshopItemsSubscribed: Map<any, any>;
-	m_mapWorkshopItemsSubscriptionCount: Map<number, {}>;
-	m_mapWorkshopItemsTrendy: Map<
-		number,
-		{
-			0: {
-				app_name: string;
-				author_snapshots: any[];
-				available_revisions: number[];
-				ban_reason: string;
-				ban_text_check_result: number;
-				banned: boolean;
-				banner: string;
-				can_be_deleted: boolean;
-				can_subscribe: boolean;
-				children: any[];
-				consumer_appid: number;
-				consumer_shortcutid: number;
-				content_descriptorids: any[];
-				creator: string;
-				creator_appid: number;
-				favorited: number;
-				file_size: string;
-				file_type: number;
-				filename: string;
-				flags: number;
-				followers: number;
-				hcontent_file: string;
-				hcontent_preview: string;
-				kvtags: any[];
-				language: number;
-				lifetime_favorited: number;
-				lifetime_followers: number;
-				lifetime_playtime: string;
-				lifetime_playtime_sessions: string;
-				lifetime_subscriptions: number;
-				maybe_inappropriate_sex: boolean;
-				maybe_inappropriate_violence: boolean;
-				num_children: number;
-				num_comments_public: number;
-				num_reports: number;
-				preview_file_size: string;
-				preview_url: string;
-				previews: any[];
-				publishedfileid: string;
-				reactions: any[];
-				result: number;
-				revision: number;
-				revision_change_number: string;
-				short_description: string;
-				show_subscribe_all: boolean;
-				subscriptions: number;
-				tags: { display_name: string; tag: string }[];
-				time_created: number;
-				time_updated: number;
-				title: string;
-				url: string;
-				views: number;
-				visibility: number;
-				vote_data: { score: number; votes_down: number; votes_up: number };
-				workshop_accepted: boolean;
-				workshop_file: boolean;
-			};
-		}
-	>;
+	m_mapWorkshopItemsSubscriptionCount: Map<any, any>;
+	m_mapWorkshopItemsTrendy: Map<any, any>;
 
 	BConnectedToSteam();
 	BVotedForPublishedFile(e);

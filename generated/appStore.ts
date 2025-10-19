@@ -1,5 +1,12 @@
 import type { CMInterface } from "../normal/shared/CMInterface";
-import type { SteamCloudStorage } from "../normal/shared/storage";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
 
 export interface appStore {
 	m_bIsInitialized: boolean;
@@ -25,12 +32,12 @@ export interface appStore {
 			icon_data: any;
 			icon_data_format: any;
 			icon_hash: string;
-			library_capsule_filename: any;
+			library_capsule_filename: string;
 			library_id: string;
 			local_cache_version: number;
 			m_gameid: any;
-			m_setStoreCategories: Set<any>;
-			m_setStoreTags: Set<any>;
+			m_setStoreCategories: Set<number>;
+			m_setStoreTags: Set<number>;
 			m_ulGameId: any;
 			mastersub_appid: any;
 			mastersub_includedwith_logo: any;
@@ -56,11 +63,11 @@ export interface appStore {
 			review_score_with_bombs: number;
 			review_score_without_bombs: number;
 			rt_custom_image_mtime: any;
-			rt_last_time_locally_played: any;
+			rt_last_time_locally_played: number;
 			rt_last_time_played: number;
 			rt_last_time_played_or_installed: number;
 			rt_original_release_date: number;
-			rt_purchased_time: any;
+			rt_purchased_time: number;
 			rt_recent_activity_time: number;
 			rt_steam_release_date: number;
 			rt_store_asset_mtime: number;
@@ -96,6 +103,7 @@ export interface appStore {
 			BIsModOrShortcut();
 			BIsMusicAlbum();
 			BIsNewToLibrary();
+			BIsNonVRGame();
 			BIsOwned();
 			BIsOwnedByAnotherUser();
 			BIsPerClientDataEqual(e);

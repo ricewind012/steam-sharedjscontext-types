@@ -1,3 +1,13 @@
+import type { CMInterface } from "../normal/shared/CMInterface";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
+
 export interface SteamClient {
 	Apps: {
 		AddShortcut(...args: any[]);
@@ -179,6 +189,7 @@ export interface SteamClient {
 		GetItemAssetPath(...args: any[]);
 		RemoveDownloadedItemAsset(...args: any[]);
 	};
+	Compat: { CheckBootProtectionEnabled(...args: any[]) };
 	Console: {
 		ExecCommand(...args: any[]);
 		GetAutocompleteSuggestions(...args: any[]);
@@ -251,7 +262,6 @@ export interface SteamClient {
 		CalibrateControllerIMU(...args: any[]);
 		CalibrateControllerJoystick(...args: any[]);
 		CalibrateControllerTrackpads(...args: any[]);
-		CancelGyroSWCalibration(...args: any[]);
 		ClearSelectedConfigForApp(...args: any[]);
 		CloseDesktopConfigurator(...args: any[]);
 		ControllerKeyboardSendText(...args: any[]);
@@ -290,7 +300,6 @@ export interface SteamClient {
 		RegisterForControllerConfigInfoMessages(...args: any[]);
 		RegisterForControllerInputMessages(...args: any[]);
 		RegisterForControllerListChanges(...args: any[]);
-		RegisterForControllerStateChanges(...args: any[]);
 		RegisterForDualSenseUpdateNotification(...args: any[]);
 		RegisterForGameKeyboardMessages(...args: any[]);
 		RegisterForRemotePlayConfigChanges(...args: any[]);
@@ -342,7 +351,6 @@ export interface SteamClient {
 		StartEditingControllerConfigurationForAppIDAndControllerIndex(
 			...args: any[]
 		);
-		StartGyroSWCalibration(...args: any[]);
 		StartUIVisualization(...args: any[]);
 		StopEditingControllerConfiguration(...args: any[]);
 		StopUIVisualization(...args: any[]);
@@ -352,7 +360,6 @@ export interface SteamClient {
 		SyncCloudedControllerConfigs(...args: any[]);
 		TriggerHapticPulse(...args: any[]);
 		TriggerSimpleHapticEvent(...args: any[]);
-		UnregisterForControllerStateChanges(...args: any[]);
 		UploadChangesForCloudedControllerConfigs(...args: any[]);
 	};
 	InstallFolder: {
@@ -458,6 +465,7 @@ export interface SteamClient {
 		RegisterForVRHardwareDetected(...args: any[]);
 		RegisterForVRModeChange(...args: any[]);
 		RegisterForVRSceneAppChange(...args: any[]);
+		RegisterForVRTrackedDevices(...args: any[]);
 		SetOverlayInteractionAffordance(...args: any[]);
 		StartVR(...args: any[]);
 		TriggerOverlayHapticEffect(...args: any[]);
@@ -501,14 +509,10 @@ export interface SteamClient {
 		BCanAcceptInviteForGame(...args: any[]);
 		BCanCreateInviteForGame(...args: any[]);
 		BRemotePlayTogetherGuestOnPhoneOrTablet(...args: any[]);
-		BRemotePlayTogetherGuestSupported(...args: any[]);
 		CancelInviteAndSession(...args: any[]);
-		CancelInviteAndSessionWithGuestID(...args: any[]);
 		CancelRemoteClientPairing(...args: any[]);
 		CloseGroup(...args: any[]);
-		CreateGroup(...args: any[]);
 		CreateInviteAndSession(...args: any[]);
-		CreateInviteAndSessionWithGuestID(...args: any[]);
 		GetClientID(...args: any[]);
 		GetClientStreamingBitrate(...args: any[]);
 		GetClientStreamingQuality(...args: any[]);
@@ -516,6 +520,7 @@ export interface SteamClient {
 		GetGameSystemVolume(...args: any[]);
 		GetPerUserInputSettings(...args: any[]);
 		GetPerUserInputSettingsWithGuestID(...args: any[]);
+		GetRemotePlayTogetherGroupIDForOverlayPID(...args: any[]);
 		IdentifyController(...args: any[]);
 		InstallAudioDriver(...args: any[]);
 		InstallInputDriver(...args: any[]);
@@ -692,9 +697,10 @@ export interface SteamClient {
 		RegisterForStreamingClientLaunchProgress(...args: any[]);
 		RegisterForStreamingClientStarted(...args: any[]);
 		RegisterForStreamingLaunchComplete(...args: any[]);
+		RegisterForStreamingPrelaunchCheck(...args: any[]);
 		RegisterForStreamingShowEula(...args: any[]);
-		RegisterForStreamingShowIntro(...args: any[]);
 		RegisterForStreamingShowLaunchOptions(...args: any[]);
+		RegisterForStreamingStillDownloading(...args: any[]);
 		StreamingContinueStreamGame(...args: any[]);
 		StreamingSetLaunchOption(...args: any[]);
 	};
@@ -768,8 +774,6 @@ export interface SteamClient {
 		RegisterForAirplaneModeChanges(...args: any[]);
 		RegisterForBatteryStateChanges(...args: any[]);
 		RegisterForFormatStorageProgress(...args: any[]);
-		RegisterForOnResumeFromSuspend(...args: any[]);
-		RegisterForOnSuspendRequest(...args: any[]);
 		RegisterForSettingsChanges(...args: any[]);
 		Report: {
 			GenerateSystemReport(...args: any[]);

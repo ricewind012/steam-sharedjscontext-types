@@ -1,4 +1,12 @@
-import type { CCallbackList } from "../normal/shared/interfaces";
+import type { CMInterface } from "../normal/shared/CMInterface";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
 
 export interface MainWindowBrowserManager {
 	m_URL: string;
@@ -56,10 +64,7 @@ export interface MainWindowBrowserManager {
 			key: string;
 			pathname: string;
 			search: string;
-			state: {
-				AppDetailsActivitySectionDays_HistoryValue: number;
-				strCollectionId: string;
-			};
+			state: {};
 		};
 		push(...args: any[]);
 		replace(...args: any[]);
@@ -71,10 +76,7 @@ export interface MainWindowBrowserManager {
 		key: string;
 		pathname: string;
 		search: string;
-		state: {
-			AppDetailsActivitySectionDays_HistoryValue: number;
-			strCollectionId: string;
-		};
+		state: {};
 	};
 	m_loadErrorCode: any;
 	m_loadErrorDesc: any;
@@ -97,6 +99,7 @@ export interface MainWindowBrowserManager {
 		m_rgWebPageRequests: any[];
 
 		AddWebPageRequest(e, t);
+		CycleThroughWebPageRequests();
 		GetWebPageRequestsChangedCallbackList();
 		RemoveAllRequests();
 		RemoveWebPageRequest(e);

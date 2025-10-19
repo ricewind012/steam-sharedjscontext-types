@@ -1,3 +1,13 @@
+import type { CMInterface } from "../normal/shared/CMInterface";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
+
 export interface g_PartnerEventStore {
 	m_PendingInfoPromise: any;
 	m_PendingInfoResolve: any;
@@ -8815,6 +8825,7 @@ export interface g_PartnerEventStore {
 			GetAllSalePageGroups();
 			GetAllTags();
 			GetAnnouncementGID();
+			GetAppIDOrReferenceAppID();
 			GetBroadcastChatVisibility();
 			GetBroadcastTitle(e);
 			GetBroadcastWhitelist();
@@ -8837,7 +8848,7 @@ export interface g_PartnerEventStore {
 			GetImageHash(e, t = 0);
 			GetImageHashAndExt(e, t = 0);
 			GetImageURL(e, t = 0, r = m.wI.full);
-			GetImageURLWithFallback(e, t, r = m.wI.full);
+			GetImageURLWithFallback(e, t, r = m.wI.full, n = !0);
 			GetImgArray(e);
 			GetIncludedRealmList();
 			GetLastReferencedSaleDay();

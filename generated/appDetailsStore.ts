@@ -1,4 +1,12 @@
 import type { CMInterface } from "../normal/shared/CMInterface";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
 
 export interface appDetailsStore {
 	m_CMInterface: CMInterface;
@@ -6,16 +14,12 @@ export interface appDetailsStore {
 		number,
 		{
 			appDetailsSpotlight: any;
-			associationData: {
-				rgDevelopers: { strName: string; strURL: string }[];
-				rgFranchises: any[];
-				rgPublishers: { strName: string; strURL: string }[];
-			};
+			associationData: any;
 			bLoadingAchievments: boolean;
 			cRegistered: number;
 			customImageInfo: any;
 			customImageInfoRtime: number;
-			descriptionsData: { strFullDescription: string; strSnippet: string };
+			descriptionsData: any;
 			details: {
 				achievements: {
 					nAchieved: number;
@@ -182,7 +186,7 @@ export interface appDetailsStore {
 				}[];
 			};
 			hAppDetails: { unregister(...args: any[]) };
-			listeners: function[];
+			listeners: any[];
 
 			BHasCurrentCustomImageInfo(e);
 		}

@@ -1,7 +1,12 @@
+import type { CMInterface } from "../normal/shared/CMInterface";
 import type {
 	CCallbackList,
 	SubscribableValue,
 } from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
 
 export interface NotificationStore {
 	m_LastSystemUpdateNotification: any;
@@ -97,6 +102,7 @@ export interface NotificationStore {
 	TestGroupChatMention(e, t);
 	TestGroupChatMessage(e, t);
 	TestHardwareSurvey();
+	TestHardwareUpdateNotification();
 	TestHelpRequest();
 	TestIncomingVoiceChat();
 	TestItemAnnouncement(e): Promise<any>;

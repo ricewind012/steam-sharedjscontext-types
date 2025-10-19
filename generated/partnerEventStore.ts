@@ -1,3 +1,13 @@
+import type { CMInterface } from "../normal/shared/CMInterface";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
+
 export interface partnerEventStore {
 	m_PendingInfoPromise: any;
 	m_PendingInfoResolve: any;
@@ -41,6 +51,9 @@ export interface partnerEventStore {
 			1: string;
 			2: string;
 			3: string;
+			4: string;
+			5: string;
+			6: string;
 
 			function();
 			function();
@@ -84,6 +97,9 @@ export interface partnerEventStore {
 			1: string;
 			2: string;
 			3: string;
+			4: string;
+			5: string;
+			6: string;
 
 			function();
 			function();
@@ -1791,6 +1807,7 @@ export interface partnerEventStore {
 			GetAllSalePageGroups();
 			GetAllTags();
 			GetAnnouncementGID();
+			GetAppIDOrReferenceAppID();
 			GetBroadcastChatVisibility();
 			GetBroadcastTitle(e);
 			GetBroadcastWhitelist();
@@ -1813,7 +1830,7 @@ export interface partnerEventStore {
 			GetImageHash(e, t = 0);
 			GetImageHashAndExt(e, t = 0);
 			GetImageURL(e, t = 0, r = m.wI.full);
-			GetImageURLWithFallback(e, t, r = m.wI.full);
+			GetImageURLWithFallback(e, t, r = m.wI.full, n = !0);
 			GetImgArray(e);
 			GetIncludedRealmList();
 			GetLastReferencedSaleDay();

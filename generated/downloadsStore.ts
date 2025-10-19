@@ -1,6 +1,12 @@
 import type { CMInterface } from "../normal/shared/CMInterface";
-import type { CCallbackList } from "../normal/shared/interfaces";
-import type { SteamLocalStorage } from "../normal/shared/storage";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
 
 export interface downloadsStore {
 	m_DownloadHistory: {
@@ -16,6 +22,7 @@ export interface downloadsStore {
 	m_DownloadOverview: {
 		history: any;
 		lan_peer_hostname: string;
+		overall_estimated_time_remaining_sec: number;
 		overall_percent_complete: number;
 		paused: boolean;
 		progress: {
@@ -33,7 +40,6 @@ export interface downloadsStore {
 		update_is_workshop: boolean;
 		update_network_bytes_per_second: number;
 		update_peak_network_bytes_per_second: number;
-		update_publishedfileid: string;
 		update_start_time: number;
 		update_state: string;
 		update_state_flags: number;
@@ -41,7 +47,7 @@ export interface downloadsStore {
 	m_MachineStorage: SteamLocalStorage;
 	m_cmInterface: CMInterface;
 	m_fnCallbackOnDownloadItemsUpdate: CCallbackList;
-	m_mapRecentDownloadPreviousBuilds: Map<number, { undefined }>;
+	m_mapRecentDownloadPreviousBuilds: Map<number, {}>;
 	m_rgRecentlyCompleted: { undefined }[];
 
 	GetDownloadItemForAppId(e);

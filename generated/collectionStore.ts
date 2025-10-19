@@ -1,3 +1,8 @@
+import type { CMInterface } from "../normal/shared/CMInterface";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
 import type {
 	SteamCloudStorage,
 	SteamLocalStorage,
@@ -28,10 +33,10 @@ export interface collectionStore {
 		string,
 		{
 			m_filter: any;
-			m_mapFilterToAppCounts: Map<any, any>;
+			m_mapFilterToAppCounts: Map<number, {}>;
 			m_rgApps: any[];
-			m_setAddedManually: Set<any>;
-			m_setApps: Set<any>;
+			m_setAddedManually: Set<number>;
+			m_setApps: Set<number>;
 			m_setRemovedManually: Set<any>;
 			m_strId: string;
 			m_strName: string;

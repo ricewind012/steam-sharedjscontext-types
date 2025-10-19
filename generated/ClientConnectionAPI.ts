@@ -1,8 +1,18 @@
+import type { CMInterface } from "../normal/shared/CMInterface";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
+
 export interface ClientConnectionAPI {
 	m_connection: {
 		m_ClientInfo: {
 			bFriendsUIEnabled: boolean;
-			rgSupportedMessages: string[];
+			rgSupportedMessages: any[];
 			ulVersion: string;
 			unAccountID: number;
 		};
@@ -12,14 +22,14 @@ export interface ClientConnectionAPI {
 		m_iCallSeq: number;
 		m_mapWaitingCallbacks: Map<any, any>;
 		m_promiseConnect: any;
-		m_socket: {};
+		m_socket: any;
 
 		BSendMsg(e, t);
 		Connect();
 		OnSocketMessage(e);
 		SendMsgAndAwaitResponse(e);
 	};
-	m_mapCacheSubscribedApp: Map<number, {}>;
+	m_mapCacheSubscribedApp: Map<any, any>;
 
 	BClientAccountMatches();
 	BClientConnected();

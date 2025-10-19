@@ -1,4 +1,12 @@
 import type { CMInterface } from "../normal/shared/CMInterface";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
 
 export interface libraryEventStore {
 	m_CMInterface: CMInterface;
@@ -46,11 +54,12 @@ export interface libraryEventStore {
 	GetWhatsNewEvents();
 	Init(e): Promise<any>;
 	LowerAppPriorityForApp(e): Promise<any>;
-	OnSteamConnectionEstablished();
+	OnNetworkOrVisibilityStateChanged();
 	RaiseAppPriorityForApp(e): Promise<any>;
 	RemoveEvent(e);
 	ResetDoNotShowList();
 	ResetUserAppPriorityForApp(e): Promise<any>;
+	ScheduleEventsLoad();
 	ScheduleUpdateBestEventsForUser(e);
 	SetEventsLoaded(e);
 	TrackEventClickedByUser(e, t);

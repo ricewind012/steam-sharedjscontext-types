@@ -1,3 +1,8 @@
+import type { CMInterface } from "../normal/shared/CMInterface";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
 import type {
 	SteamCloudStorage,
 	SteamLocalStorage,
@@ -29,6 +34,7 @@ export interface showcaseStore {
 		{
 			bExpanded: boolean;
 			eSortBy: number;
+			nLastChangedMS: number;
 			nOrder: any;
 			nShowcaseId: number;
 			strCollectionId: string;

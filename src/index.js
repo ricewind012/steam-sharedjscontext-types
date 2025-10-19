@@ -1,7 +1,7 @@
-import cdp from "chrome-remote-interface";
 import cp from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
+import cdp from "chrome-remote-interface";
 
 /**
  * Globals that do not have a detectable name.

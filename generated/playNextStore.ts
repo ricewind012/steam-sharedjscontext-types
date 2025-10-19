@@ -1,14 +1,21 @@
 import type { CMInterface } from "../normal/shared/CMInterface";
-import type { SteamLocalStorage } from "../normal/shared/storage";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
 
 export interface playNextStore {
 	m_CMInterface: CMInterface;
 	m_LocalStorage: SteamLocalStorage;
 	m_bFresh: boolean;
-	m_bPlayNextRequestInFlight: boolean;
+	m_bPlayNextRequestInFlight: any;
 	m_cachedPlayNext: { appids: number[]; last_update_time: number };
 	m_nIgnoredChecksum: number;
-	m_nLastFetchTime: number;
+	m_nLastFetchTime: any;
 	m_nNextAllowableRetry: number;
 	m_rgLocalIgnoredAppIDs: any[];
 

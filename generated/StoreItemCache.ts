@@ -1,3 +1,13 @@
+import type { CMInterface } from "../normal/shared/CMInterface";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
+
 export interface StoreItemCache {
 	k_AlreadyResolvedBusy: Promise<any>;
 	k_AlreadyResolvedInvalid: Promise<any>;
@@ -19,16 +29,16 @@ export interface StoreItemCache {
 				m_strCommunityIcon: string;
 				m_strCommunityIcon_Full: string;
 				m_strHeaderURL: string;
-				m_strHeroCapsuleURL: string;
+				m_strHeroCapsuleURL: any;
 				m_strHeroCapsuleURL_2x: any;
 				m_strLibraryCapsuleURL: string;
 				m_strLibraryCapsuleURL_2x: string;
 				m_strLibraryHeroURL: string;
-				m_strLibraryHeroURL_2x: string;
-				m_strMainCapsuleURL: string;
+				m_strLibraryHeroURL_2x: any;
+				m_strMainCapsuleURL: any;
 				m_strPackageHeaderURL: any;
 				m_strPageBackgroundURL: string;
-				m_strRawPageBackgroundURL: string;
+				m_strRawPageBackgroundURL: any;
 				m_strSmallCapsuleURL: string;
 
 				ConstructAssetURL(e, t);
@@ -51,8 +61,13 @@ export interface StoreItemCache {
 			m_BasicInfo: any;
 			m_BestPurchaseOption: {
 				active_discounts: any[];
+				final_price_in_cents: string;
+				formatted_final_price: string;
 				hide_discount_pct_for_compliance: boolean;
 				included_game_count: number;
+				packageid: number;
+				purchase_option_name: string;
+				user_can_purchase_as_gift: boolean;
 			};
 			m_ContentDescriptorIDs: number[];
 			m_DataRequested: {
@@ -150,6 +165,7 @@ export interface StoreItemCache {
 			GetDemoStandaloneStorePageAppIDs();
 			GetDeveloperNames();
 			GetFilteredReviewSummary();
+			GetFilteredReviewSummaryLanguage();
 			GetFormattedSteamReleaseDate();
 			GetFranchiseNames();
 			GetFreeWeekendEnd();

@@ -1,29 +1,16 @@
 import type { CMInterface } from "../normal/shared/CMInterface";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
 
 export interface badgeStore {
 	m_CMInterface: CMInterface;
-	m_mapBadgeData: Map<
-		number,
-		{
-			bMaxed: number;
-			dtNextRetry: number;
-			nLevel: number;
-			nMaxLevel: number;
-			nNextLevelXP: number;
-			nXP: number;
-			rgCards: {
-				nOwned: number;
-				strArtworkURL: string;
-				strImgURL: string;
-				strMarketHash: string;
-				strName: string;
-				strTitle: string;
-			}[];
-			strIconURL: string;
-			strName: string;
-			strNextLevelName: string;
-		}
-	>;
+	m_mapBadgeData: Map<any, any>;
 	m_mapCommunityItemDefs: Map<any, any>;
 
 	FetchBadgeData(e): Promise<any>;

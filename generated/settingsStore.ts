@@ -1,6 +1,12 @@
 import type { CMInterface } from "../normal/shared/CMInterface";
-import type { SubscribableValue } from "../normal/shared/interfaces";
-import type { SteamLocalStorage } from "../normal/shared/storage";
+import type {
+	CCallbackList,
+	SubscribableValue,
+} from "../normal/shared/interfaces";
+import type {
+	SteamCloudStorage,
+	SteamLocalStorage,
+} from "../normal/shared/storage";
 
 export interface settingsStore {
 	m_BatteryPreferences: SubscribableValue<{ bShowBatteryPercentage: boolean }>;
@@ -41,6 +47,7 @@ export interface settingsStore {
 		controller_poll_rate: boolean;
 		controller_power_off_timeout: number;
 		controller_ps_support: number;
+		controller_siapi_config_author_mode: boolean;
 		controller_switch_support: boolean;
 		controller_xbox_driver: boolean;
 		controller_xbox_support: boolean;
@@ -265,8 +272,10 @@ export interface settingsStore {
 		steamos_manual_gpu_clock_hz: number;
 		steamos_platform_performance_profile: string;
 		steamos_status_led_brightness: number;
+		steamos_system_tracing_enabled: boolean;
 		steamos_tdp_limit: number;
 		steamos_tdp_limit_enabled: boolean;
+		steamos_vrs_enabled: boolean;
 		steamos_wifi_debug: boolean;
 		steamos_wifi_force_wpa_supplicant: boolean;
 		system_bluetooth_enabled: boolean;
